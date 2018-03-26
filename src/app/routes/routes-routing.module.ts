@@ -25,9 +25,8 @@ const routes: Routes = [
         path: '',
         component: LayoutDefaultComponent,
         children: [
-            { path: '', redirectTo: 'dashboard/v1', pathMatch: 'full' },
-            { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },
-            { path: 'dashboard/v1', component: DashboardV1Component },
+            { path: '', redirectTo: '/passport/login', pathMatch: 'full' },
+            { path: 'dashboard', redirectTo: '/account/appfile' },
             { path: 'dashboard/analysis', component: DashboardAnalysisComponent },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent },
             { path: 'dashboard/workplace', component: DashboardWorkplaceComponent },
@@ -42,7 +41,9 @@ const routes: Routes = [
             { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
             { path: 'logics', loadChildren: './logics/logics.module#LogicsModule' },
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
-            { path: 'pro', loadChildren: './pro/pro.module#ProModule' }
+            { path: 'pro', loadChildren: './pro/pro.module#ProModule' },
+            { path: 'account', loadChildren: './account/account.module#AccountModule' },
+            { path: 'system', loadChildren: './system/system.module#SystemModule' },
         ]
     },
     // 全屏布局

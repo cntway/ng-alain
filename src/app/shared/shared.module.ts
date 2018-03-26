@@ -1,7 +1,11 @@
+import { MenuSelectComponent } from './menuselect/menu-select.component';
+import { ZselectComponent } from './zselect/zselect.component';
+import { SelectComponent } from './appselect/select.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NzTreeModule } from 'ng-tree-antd';
 // delon
 import { NgZorroAntdExtraModule } from 'ng-zorro-antd-extra';
 import { AlainThemeModule } from '@delon/theme';
@@ -24,12 +28,13 @@ const THIRDMODULES = [
 // endregion
 
 // region: your componets & directives
-const COMPONENTS = [];
+const COMPONENTS = [ZselectComponent, MenuSelectComponent, SelectComponent];
 const DIRECTIVES = [];
 // endregion
 
 @NgModule({
     imports: [
+        NzTreeModule,
         CommonModule,
         FormsModule,
         RouterModule,

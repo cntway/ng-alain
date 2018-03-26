@@ -1,8 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse,
-         HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent,
-       } from '@angular/common/http';
+import {
+    HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse,
+    HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent,
+} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
@@ -16,7 +17,7 @@ import { environment } from '@env/environment';
  */
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor {
-    constructor(private injector: Injector) {}
+    constructor(private injector: Injector) { }
 
     get msg(): NzMessageService {
         return this.injector.get(NzMessageService);
@@ -35,13 +36,14 @@ export class DefaultInterceptor implements HttpInterceptor {
                 // 业务层级错误处理，以下假如响应体的 `status` 若不为 `0` 表示业务级异常
                 // 并显示 `error_message` 内容
 
-                // const body: any = event instanceof HttpResponse && event.body;
-                // if (body && body.status !== 0) {
-                //     this.msg.error(body.error_message);
-                //     // 继续抛出错误中断后续所有 Pipe、subscribe 操作，因此：
-                //     // this.http.get('/').subscribe() 并不会触发
-                //     return ErrorObservable.throw(event);
-                // }
+                const body: any = event instanceof HttpResponse && event.body;
+                if (body && body.error === '5') {
+                    this.msg.error(body.error_text);
+                    // 继续抛出错误中断后续所有 Pipe、subscribe 操作，因此：
+                    // this.http.get('/').subscribe() 并不会触发
+                    this.goTo('/passport/login');
+                    return ErrorObservable.throw(event);
+                }
                 break;
             case 401: // 未登录状态码
                 this.goTo('/passport/login');
@@ -51,6 +53,10 @@ export class DefaultInterceptor implements HttpInterceptor {
             case 500:
                 this.goTo(`/${event.status}`);
                 break;
+            case 504:
+                this.goTo('/500');
+                break;
+    
         }
         return of(event);
     }
@@ -60,22 +66,23 @@ export class DefaultInterceptor implements HttpInterceptor {
 
         // 统一加上服务端前缀
         let url = req.url;
-        if (!url.startsWith('https://') && !url.startsWith('http://')) {
+        if (!url.startsWith('https://') && !url.startsWith('http://') && !url.startsWith('assets')) {
             url = environment.SERVER_URL + url;
         }
 
         const newReq = req.clone({
-            url: url
+            url: url,
+            params: req.params.set('sid', req.headers.get('token')),
         });
         return next.handle(newReq).pipe(
-                    mergeMap((event: any) => {
-                        // 允许统一对请求错误处理，这是因为一个请求若是业务上错误的情况下其HTTP请求的状态是200的情况下需要
-                        if (event instanceof HttpResponse && event.status === 200)
-                            return this.handleData(event);
-                        // 若一切都正常，则后续操作
-                        return of(event);
-                    }),
-                    catchError((err: HttpErrorResponse) => this.handleData(err))
-                );
+            mergeMap((event: any) => {
+                // 允许统一对请求错误处理，这是因为一个请求若是业务上错误的情况下其HTTP请求的状态是200的情况下需要
+                if (event instanceof HttpResponse && event.status === 200)
+                    return this.handleData(event);
+                // 若一切都正常，则后续操作
+                return of(event);
+            }),
+            catchError((err: HttpErrorResponse) => this.handleData(err))
+        );
     }
 }
