@@ -8,12 +8,20 @@ import * as model_sdk from '@sdk/sdk.model';
 import * as users_enums from '@sdk/sdk.users_enum';
 import * as bcexs_enums from '@sdk/sdk.bcexs_enum';
 import * as admins_enums from '@sdk/sdk.admins_enum';
+import * as columns_app from './sdk.columns.app';
+
 import {
     FormBuilder,
     FormGroup,
     Validators,
     FormControl
 } from '@angular/forms'
+import {
+    UINT_LIAT,
+    FLOAT_LIST,
+    STRING_LIST,
+    BYTE_LIST
+} from '@sdk/sdk.util';
 
 
 @Injectable()
@@ -260,7 +268,7 @@ export abstract class EditComponentBase implements OnInit {
         if (filedName.indexOf('email') > -1) {
             return false
         }
-        return model_sdk.STRING_LIST.indexOf(key) > -1 || model_sdk.BYTE_LIST.indexOf(key) > -1;
+        return STRING_LIST.indexOf(key) > -1 || BYTE_LIST.indexOf(key) > -1;
     }
 
     isDate(key: string, filedName: string): boolean {
@@ -270,7 +278,7 @@ export abstract class EditComponentBase implements OnInit {
         return key === 'datetime';
     }
     isNumber(key: string, filedName: string): boolean {
-        return model_sdk.FLOAT_LIST.indexOf(key) > -1 || key === 'int32' || key === 'int64' || model_sdk.UINT_LIAT.indexOf(key) > -1;
+        return FLOAT_LIST.indexOf(key) > -1 || key === 'int32' || key === 'int64' || UINT_LIAT.indexOf(key) > -1;
     }
     isEnum(key: string, filedName: string): boolean {
         return key.length > 4 && key.slice(0, 4) === 'Enum';

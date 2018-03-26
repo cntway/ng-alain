@@ -48,7 +48,9 @@
                     <td nz-td>
                         <a (click)="edit(data)">{{'修改'|translate}}</a>
                         <span nz-table-divider></span>
-
+                        <nz-popconfirm [nzTitle]="'确定删除？'|translate" [nzOkText]="'ok'" [nzCancelText]="'cancel'" (nzOnConfirm)="delete(data)">
+                            <a nz-popconfirm>{{'删除'|translate}}</a>
+                        </nz-popconfirm>
                     </td>
                 </tr>
             </tbody>

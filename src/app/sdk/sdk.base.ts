@@ -54,6 +54,7 @@ export class SdkBase {
                 }
             }
         } catch (error) {
+            console.log(error);
             this.showError(error.message);
             return Observable.empty();
         }

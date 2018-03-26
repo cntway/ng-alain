@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import * as FileSaver from 'file-saver';
+import * as skd_columns from '@sdk/sdk.columns';
+import * as sdk_model from '@sdk/sdk.model';
+import * as sdk_api from '@sdk/sdk.service';
+import {
+    UINT_LIAT,
+    FLOAT_LIST,
+    STRING_LIST,
+    BYTE_LIST
+} from '@sdk/sdk.util';
 import {
     FormControl,
     FormBuilder,
     FormGroup,
     Validators
 } from '@angular/forms';
-import * as FileSaver from 'file-saver';
-import * as skd_columns from '@sdk/sdk.columns';
-import * as sdk_model from '@sdk/sdk.model';
-import * as sdk_api from '@sdk/sdk.service';
-
 
 @Component({
     selector: 'app-appfile',
@@ -97,15 +102,12 @@ export class AppfileComponent implements OnInit {
 
 
     ngOnInit() {
-        console.log(this._skd_columns);
         this.validateForm = this.fb.group({
             deleteApi: [null, [Validators.required]],
             loadApi: [null, [Validators.required]],
             componentName: [null, [Validators.required]],
             deleteModel: [null, [Validators.required]],
             columns: [null, [Validators.required]],
-
-
         });
 
         this.editForm = this.fb.group({
@@ -143,12 +145,12 @@ export class AppfileComponent implements OnInit {
                 import { QueryParam } from '@sdk/sdk.util';
                 import * as sdk_model from '@sdk/sdk.model';
                 import * as skd_columns from '@sdk/sdk.columns';
-                import { ${this.makeClassName(componentDf['componentName'])}AddComponent } from './${componentDf['componentName']}-add/${componentDf['componentName']}-add.component';
-                import { ${this.makeClassName(componentDf['componentName'])}EditComponent } from './${componentDf['componentName']}-edit/${componentDf['componentName']}-edit.component';
+                import { ${this.makeClassName(componentDf['componentName'])}AddComponent } from './${this.nameChange(componentDf['componentName'])}-add/${this.nameChange(componentDf['componentName'])}-add.component';
+                import { ${this.makeClassName(componentDf['componentName'])}EditComponent } from './${this.nameChange(componentDf['componentName'])}-edit/${this.nameChange(componentDf['componentName'])}-edit.component';
                 
                 @Component({
-                    selector: 'app-${componentDf['componentName']}',
-                    templateUrl: './${componentDf['componentName']}.component.html',
+                    selector: 'app-${this.makeClassName(componentDf['componentName'])}',
+                    templateUrl: './${this.makeClassName(componentDf['componentName'])}.component.html',
                 })
                 export class ${this.makeClassName(componentDf['componentName'])}Component extends ComponentBase {
 
@@ -349,7 +351,7 @@ export class AppfileComponent implements OnInit {
         if (filedName.indexOf('email') > -1) {
             return false
         }
-        return sdk_model.STRING_LIST.indexOf(key) > -1 || sdk_model.BYTE_LIST.indexOf(key) > -1;
+        return STRING_LIST.indexOf(key) > -1 || BYTE_LIST.indexOf(key) > -1;
     }
 
     isDate(key: string, filedName: string): boolean {
@@ -359,7 +361,7 @@ export class AppfileComponent implements OnInit {
         return key === 'datetime';
     }
     isNumber(key: string, filedName: string): boolean {
-        return sdk_model.FLOAT_LIST.indexOf(key) > -1 || key === 'int32' || key === 'int64' || sdk_model.UINT_LIAT.indexOf(key) > -1;
+        return FLOAT_LIST.indexOf(key) > -1 || key === 'int32' || key === 'int64' || UINT_LIAT.indexOf(key) > -1;
     }
     isEnum(key: string, filedName: string): boolean {
         return key.length > 4 && (key.slice(0, 4) === 'Enum' || key.slice(-4) === 'Enum');
@@ -369,7 +371,7 @@ export class AppfileComponent implements OnInit {
     getEmail(key, label) {
         let tpl = `
         <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+            <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
                 <label for="${key}" nz-form-item-required>{{'${label}'|translate}}</label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
@@ -385,7 +387,7 @@ export class AppfileComponent implements OnInit {
     getPWd(key, label) {
         let tpl = `
             <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+            <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
                 <label for="${key}" nz-form-item-required>{{'${label}'|translate}}</label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
@@ -394,7 +396,7 @@ export class AppfileComponent implements OnInit {
             </div>
             </div>
             <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+            <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
                 <label for="checkPassword" nz-form-item-required>{{'确认密码'|translate}}</label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
@@ -410,7 +412,7 @@ export class AppfileComponent implements OnInit {
     getString(key, label) {
         let tpl = `
         <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
             <label for="${key}" nz-form-item-required>
                 <span>
                     {{'${label}'|translate}}
@@ -429,7 +431,7 @@ export class AppfileComponent implements OnInit {
     getNumber(key, label) {
         let tpl = `
         <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
             <label for="${key}" nz-form-item-required>
                 <span>
                     {{'${label}'|translate}}
@@ -448,7 +450,7 @@ export class AppfileComponent implements OnInit {
     getEnum(key, label, typeValue) {
         let tpl = `
         <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
             <label for="${key}" nz-form-item-required>
                 <span>
                     {{'${label}'|translate}}
@@ -467,7 +469,7 @@ export class AppfileComponent implements OnInit {
     getDate(key, label) {
         let tpl = `
         <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
             <label for="${key}" nz-form-item-required>
                 <span>
                      {{'${label}'|translate}}
@@ -487,7 +489,7 @@ export class AppfileComponent implements OnInit {
     getDateTime(key, label) {
         let tpl = `
         <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
             <label for="${key}" nz-form-item-required>
                 <span>
                      {{'${label}'|translate}}

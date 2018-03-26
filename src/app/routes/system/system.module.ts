@@ -14,6 +14,10 @@ import { PairPropertyGroupComponent } from './pair-property-group/pair-property-
 import { PairPropertyGroupMapComponent } from './pair-property-group-map/pair-property-group-map.component';
 import { PairPropertyEditComponent } from './pair-property/pair-property-edit/pair-property-edit.component';
 import { PairPropertyAddComponent } from './pair-property/pair-property-add/pair-property-add.component';
+import { PairPropertyGroupAddComponent } from './pair-property-group/pair-property-group-add/pair-property-group-add.component';
+import { PairPropertyGroupEditComponent } from './pair-property-group/pair-property-group-edit/pair-property-group-edit.component';
+import { PairPropertyGroupMapAddComponent } from './pair-property-group-map/pair-property-group-map-add/pair-property-group-map-add.component';
+import { PairPropertyGroupMapEditComponent } from './pair-property-group-map/pair-property-group-map-edit/pair-property-group-map-edit.component';
 
 const routes: Routes = [
   { path: 'market', component: MarketComponent },
@@ -31,6 +35,12 @@ const COMPONENT_NOROUNT = [
   CoinEditComponent,
   PairEditComponent,
   PairAddComponent,
+  PairPropertyEditComponent,
+  PairPropertyAddComponent,
+  PairPropertyGroupMapAddComponent,
+  PairPropertyGroupMapEditComponent,
+  PairPropertyGroupAddComponent,
+  PairPropertyGroupEditComponent,
 ];
 
 @NgModule({
@@ -52,7 +62,11 @@ const COMPONENT_NOROUNT = [
     PairPropertyGroupComponent,
     PairPropertyGroupMapComponent,
     PairPropertyEditComponent,
-    PairPropertyAddComponent
+    PairPropertyAddComponent,
+    PairPropertyGroupAddComponent,
+    PairPropertyGroupEditComponent,
+    PairPropertyGroupMapAddComponent,
+    PairPropertyGroupMapEditComponent
   ],
   entryComponents: COMPONENT_NOROUNT
 })

@@ -1,6 +1,7 @@
 import * as admins_enums from './sdk.admins_enum';
 import * as users_enums from './sdk.users_enum';
 import * as bcexs_enums from './sdk.bcexs_enum';
+import * as columns_app from './sdk.columns.app';
 
 
 export const sys_menu_detail_get_columns = [
@@ -146,6 +147,7 @@ export const pair_property_group_map_get_columns = [
     { index: 'pairid', text: '交易对id' },
     { index: 'propertyid', text: '属性id' },
     { index: 'marketid', text: '市场id' },
+
 ];
 
 export const user_users_contact_get_columns = [
@@ -210,3 +212,39 @@ export const user_parames_get_columns = [
     { index: 'paramsvalue', text: '参数值', dataType: 'string' },
 ];
 
+/**
+ * 加载开发手工配置
+ * disabled:true，不显示该项
+ */
+const me = this;
+for (const key in me) {
+    let columnsMe = me[key];
+    const columnsApp = columns_app[key];
+    if (typeof (columnsApp) === 'undefined') {
+        continue;
+    }
+    const tmp = [];
+    const disabledArray: Array<any> = [];
+    for (let colMe of columnsMe) {
+        let isPush: boolean = true;
+        for (const colApp of columnsApp) {
+            if (colMe['index'] === colApp['index']) {
+                isPush = false;
+            }
+            if (colApp['disabled']) {
+                disabledArray.push(colApp);
+            }
+        }
+        if (isPush) {
+            tmp.push(colMe);
+        }
+    }
+    columnsApp.push(...tmp);
+    for (const iterator of disabledArray) {
+        let index = columnsApp.indexOf(iterator);
+        if (index > -1) {
+            columnsApp.splice(index, 1);
+        }
+    }
+    me[key] = columnsApp;
+}

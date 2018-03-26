@@ -5,16 +5,16 @@ import * as skd_columns from '@sdk/sdk.columns';
 import * as sdk_model from '@sdk/sdk.model';
 
 @Component({
-    selector: 'app-pair-property-add',
-    templateUrl: './pair-property-add.component.html',
+    selector: 'app-pair-property-group-map-add',
+    templateUrl: './pair-property-group-map-add.component.html',
 })
-export class PairPropertyAddComponent extends EditComponentBase {
+export class PairPropertyGroupMapAddComponent extends EditComponentBase {
 
-    columns = skd_columns.pair_property_get_columns;
-    edit_model = new sdk_model.PairPropertyPost();
+    columns = skd_columns.pair_property_group_map_get_columns;
+    edit_model = new sdk_model.PairPropertyGroupMapPost();
     save() {
         const param = Object.assign(this.edit_model, this.validateForm.getRawValue());
-        this.sdk.pair_property_post_api(param).subscribe((res) => {
+        this.sdk.pair_property_group_map_post_api(param).subscribe((res) => {
             this.subject.next('onOk');
             this.close();
         });
