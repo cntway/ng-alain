@@ -32,7 +32,6 @@ const routes: Routes = [
             { path: 'dashboard/workplace', component: DashboardWorkplaceComponent },
             { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' },
             { path: 'elements', loadChildren: './elements/elements.module#ElementsModule' },
-            { path: 'other', loadChildren: './other/other.module#OtherModule' },
             { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
             { path: 'editor', loadChildren: './editor/editor.module#EditorModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
@@ -41,7 +40,6 @@ const routes: Routes = [
             { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
             { path: 'logics', loadChildren: './logics/logics.module#LogicsModule' },
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
-            { path: 'pro', loadChildren: './pro/pro.module#ProModule' },
             { path: 'account', loadChildren: './account/account.module#AccountModule' },
             { path: 'system', loadChildren: './system/system.module#SystemModule' },
         ]
