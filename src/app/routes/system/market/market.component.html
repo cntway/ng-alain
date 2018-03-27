@@ -6,7 +6,7 @@
             </div>
             <div nz-form-item>
                 <div nz-form-control>
-                    <nz-input [(ngModel)]="args.username" name="username"></nz-input>
+                    <nz-input [(ngModel)]="args.marketname" name="marketname"></nz-input>
                 </div>
             </div>
             <div nz-form-item>
@@ -21,9 +21,7 @@
 
 <nz-card>
     <ng-template #body>
-        <div class="mb-sm text-right">
-            <button nz-button [nzType]="'primary'" (click)="edit({})">{{'添加'|translate}}</button>
-        </div>
+
         <nz-table #nzTable [nzAjaxData]="list" [nzShowSizeChanger]="true" [nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pi"
             (nzPageIndexChange)="load()" [(nzPageSize)]="ps" [nzBordered]="'true'" [nzShowTotal]="'false'">
             <thead nz-thead>
