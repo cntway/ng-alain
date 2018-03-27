@@ -16,7 +16,7 @@ export class PairComponent extends ComponentBase {
 
     public deleteModel = undefined;
     public columns: Array<any> = skd_columns.coin_pair_get_columns;
-    public editComponent = PairAddComponent;
+    public editComponent = PairEditComponent;
     public addComponent = PairAddComponent;
 
     loadData(): Observable<any> {

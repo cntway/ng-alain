@@ -8,12 +8,12 @@
         <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
             <label for="propertyid" nz-form-item-required>
                 <span>
-                    {{'属性id'|translate}}
+                    {{'交易对属性'|translate}}
                 </span>
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input-number [nzSize]="'large'" formControlName="propertyid" [nzStep]="1" [nzMax]="1000000" [nzMin]="0"></nz-input-number>
+            <app-skd-select formControlName="propertyid" [loadService]="propertyLoad" [key]="'propertyid'" [name]="'propertyid'"></app-skd-select>
             <div nz-form-explain *ngIf="getFormControl('propertyid').dirty&&getFormControl('propertyid').hasError('required')">{{'Please input propertyid!'|translate}}</div>
         </div>
     </div>
@@ -22,12 +22,12 @@
         <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
             <label for="propertygroupid" nz-form-item-required>
                 <span>
-                    {{'属性组id'|translate}}
+                    {{'属性组'|translate}}
                 </span>
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input-number [nzSize]="'large'" formControlName="propertygroupid" [nzStep]="1" [nzMax]="1000000" [nzMin]="0"></nz-input-number>
+            <app-skd-select formControlName="propertygroupid" [loadService]="propertyGroupLoad" [key]="'propertygroupid'" [name]="'groupname'"></app-skd-select>
             <div nz-form-explain *ngIf="getFormControl('propertygroupid').dirty&&getFormControl('propertygroupid').hasError('required')">{{'Please input propertygroupid!'|translate}}</div>
         </div>
     </div>

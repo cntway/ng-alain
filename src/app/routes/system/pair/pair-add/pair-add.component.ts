@@ -10,6 +10,7 @@ import * as sdk_model from '@sdk/sdk.model';
 })
 export class PairAddComponent extends EditComponentBase {
 
+    marketLoad = this.sdk.bcex_market_get_api([]);
     columns = skd_columns.coin_pair_get_columns;
     edit_model = new sdk_model.CoinPairPost();
     save() {

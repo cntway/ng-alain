@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SdkService } from '@sdk/sdk.service';
 import { _HttpClient } from '@delon/theme';
 import * as model_sdk from '@sdk/sdk.model';
+import * as sdk_util from '@sdk/sdk.util';
 import * as skd_columns from '@sdk/sdk.columns';
 import { EnumUserStatusTranslate, EnumIdTypeTranslate } from '@sdk/sdk.admins_enum';
 
@@ -168,7 +169,7 @@ export class ManagerEditComponent implements OnInit {
         if (filedName.indexOf('email') > -1) {
             return false
         }
-        return model_sdk.STRING_LIST.indexOf(key) > -1 || model_sdk.BYTE_LIST.indexOf(key) > -1;
+        return sdk_util.STRING_LIST.indexOf(key) > -1 || sdk_util.BYTE_LIST.indexOf(key) > -1;
     }
 
     isDate(key: string, filedName: string): boolean {
@@ -178,7 +179,7 @@ export class ManagerEditComponent implements OnInit {
         return key === 'datetime';
     }
     isNumber(key: string, filedName: string): boolean {
-        return model_sdk.FLOAT_LIST.indexOf(key) > -1 || key === 'int32' || key === 'int64' || model_sdk.UINT_LIAT.indexOf(key) > -1;
+        return sdk_util.FLOAT_LIST.indexOf(key) > -1 || key === 'int32' || key === 'int64' || sdk_util.UINT_LIAT.indexOf(key) > -1;
     }
     isEnum(key: string, filedName: string): boolean {
         return key.length > 4 && key.slice(0, 4) === 'Enum';

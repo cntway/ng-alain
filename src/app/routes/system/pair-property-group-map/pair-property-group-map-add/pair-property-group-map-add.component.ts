@@ -9,7 +9,8 @@ import * as sdk_model from '@sdk/sdk.model';
     templateUrl: './pair-property-group-map-add.component.html',
 })
 export class PairPropertyGroupMapAddComponent extends EditComponentBase {
-
+    propertyGroupLoad = this.sdk.pair_property_group_get_api([]);
+    propertyLoad = this.sdk.pair_property_get_api([]);
     columns = skd_columns.pair_property_group_map_get_columns;
     edit_model = new sdk_model.PairPropertyGroupMapPost();
     save() {

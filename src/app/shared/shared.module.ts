@@ -19,6 +19,7 @@ import { CountdownModule } from 'ngx-countdown';
 import { UEditorModule } from 'ngx-ueditor';
 import { NgxTinymceModule } from 'ngx-tinymce';
 import { NzSchemaFormModule } from 'nz-schema-form';
+import { SkdSelectComponent } from './skd-select/skd-select.component';
 const THIRDMODULES = [
     CountdownModule,
     UEditorModule,
@@ -28,7 +29,7 @@ const THIRDMODULES = [
 // endregion
 
 // region: your componets & directives
-const COMPONENTS = [ZselectComponent, MenuSelectComponent, SelectComponent];
+const COMPONENTS = [ZselectComponent, MenuSelectComponent, SelectComponent, SkdSelectComponent];
 const DIRECTIVES = [];
 // endregion
 
@@ -50,7 +51,7 @@ const DIRECTIVES = [];
     declarations: [
         // your components
         ...COMPONENTS,
-        ...DIRECTIVES
+        ...DIRECTIVES,
     ],
     exports: [
         CommonModule,

@@ -9,6 +9,12 @@ export const BYTE_LIST = ['byte24'];
 
 export class FeildCheckError extends Error { }
 
+export interface SdkRes {
+    results: Array<object>;
+    error: string;
+    error_text: string;
+}
+
 export abstract class FeildCheck {
 
     public abstract fields_options: any;

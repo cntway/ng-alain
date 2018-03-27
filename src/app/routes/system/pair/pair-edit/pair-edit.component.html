@@ -46,19 +46,7 @@
         </div>
     </div>
 
-    <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-            <label for="pairid" nz-form-item-required>
-                <span>
-                    {{'交易对id'|translate}}
-                </span>
-            </label>
-        </div>
-        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input-number [nzSize]="'large'" formControlName="pairid" [nzStep]="1" [nzMax]="1000000" [nzMin]="0"></nz-input-number>
-            <div nz-form-explain *ngIf="getFormControl('pairid').dirty&&getFormControl('pairid').hasError('required')">{{'Please input pairid!'|translate}}</div>
-        </div>
-    </div>
+
 
 </form>
 <div class="modal-footer">

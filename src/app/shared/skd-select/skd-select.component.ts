@@ -1,37 +1,37 @@
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
-import { _HttpClient } from '@delon/theme';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SdkRes } from '@sdk/sdk.util';
+import { Observable } from 'rxjs/Rx';
+
 
 @Component({
-    selector: 'app-zselect',
-    templateUrl: './zselect.component.html',
+    selector: 'app-skd-select',
+    templateUrl: './skd-select.component.html',
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ZselectComponent),
+            useExisting: forwardRef(() => SkdSelectComponent),
             multi: true
         }
     ],
 })
-export class ZselectComponent implements OnInit {
+export class SkdSelectComponent implements OnInit {
+
     _value: number;
     options;
-    @Input() data;
+    @Input() loadService: Observable<any>;
+    @Input() key: string;
+    @Input() name: string;
     onChange: any = Function.prototype;
     onTouched: any = Function.prototype;
 
-    constructor(
-        private http: _HttpClient
-    ) { }
+    constructor() { }
 
     ngOnInit() {
-        const tmp = [];
-        for (const key in this.data) {
-            if (this.data[key] !== 'None') {
-                tmp.push({ value: Number(key), label: this.data[key] });
-            }
-        }
-        this.options = tmp;
+        const me = this;
+        this.loadService.subscribe((res: SdkRes) => {
+            me.options = res.results;
+        })
     }
 
     get nzValue(): number {

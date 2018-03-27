@@ -9,7 +9,7 @@ import * as sdk_model from '@sdk/sdk.model';
     templateUrl: './pair-property-add.component.html',
 })
 export class PairPropertyAddComponent extends EditComponentBase {
-
+    pairLoad = this.sdk.coin_pair_get_api([]);
     columns = skd_columns.pair_property_get_columns;
     edit_model = new sdk_model.PairPropertyPost();
     save() {
