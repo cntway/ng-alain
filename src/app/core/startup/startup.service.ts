@@ -31,7 +31,7 @@ export class StartupService {
             zip(
                 this.httpClient.get(`assets/i18n/${this.i18n.defaultLang}.json`),
                 this.httpClient.get('assets/app-data.json'),
-                this.httpClient.get('sys/menus/detail?page=[0,99999]')
+                this.httpClient.get('/sys/menus/detail?page=[0,99999]')
             ).pipe(
                 // 接收其他拦截器后产生的异常消息
                 catchError(([langData, appData, menuData]) => {
@@ -52,6 +52,8 @@ export class StartupService {
                 // ACL：设置权限为全量
                 this.aclService.setFull(true);
                 let menuList = [];
+                console.log(menuData);
+
                 for (const row of menuData.results) {
                     const m = {};
                     m['text'] = row['menuname'];
@@ -64,7 +66,6 @@ export class StartupService {
                     menuList.push(m);
                 }
                 menuList = this.transData(menuList, 'id', 'parentid', 'children');
-                console.log(menuList);
                 // 初始化菜单
                 this.menuService.add(menuList);
                 this.menuService.resume();

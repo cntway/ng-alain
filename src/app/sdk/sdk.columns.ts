@@ -212,39 +212,3 @@ export const user_parames_get_columns = [
     { index: 'paramsvalue', text: '参数值', dataType: 'string' },
 ];
 
-/**
- * 加载开发手工配置
- * disabled:true，不显示该项
- */
-const me = this;
-for (const key in me) {
-    let columnsMe = me[key];
-    const columnsApp = columns_app[key];
-    if (typeof (columnsApp) === 'undefined') {
-        continue;
-    }
-    const tmp = [];
-    const disabledArray: Array<any> = [];
-    for (let colMe of columnsMe) {
-        let isPush: boolean = true;
-        for (const colApp of columnsApp) {
-            if (colMe['index'] === colApp['index']) {
-                isPush = false;
-            }
-            if (colApp['disabled']) {
-                disabledArray.push(colApp);
-            }
-        }
-        if (isPush) {
-            tmp.push(colMe);
-        }
-    }
-    columnsApp.push(...tmp);
-    for (const iterator of disabledArray) {
-        let index = columnsApp.indexOf(iterator);
-        if (index > -1) {
-            columnsApp.splice(index, 1);
-        }
-    }
-    me[key] = columnsApp;
-}

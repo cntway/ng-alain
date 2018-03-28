@@ -9,6 +9,8 @@ import * as users_enums from '@sdk/sdk.users_enum';
 import * as bcexs_enums from '@sdk/sdk.bcexs_enum';
 import * as admins_enums from '@sdk/sdk.admins_enum';
 import * as columns_app from './sdk.columns.app';
+import * as columns_sdk from '@sdk/sdk.columns';
+
 
 import {
     FormBuilder,
@@ -34,7 +36,7 @@ export abstract class ComponentBase implements OnInit, OnDestroy {
     isInitLoad: boolean = false;
     sub: Subscription;
     _loading: boolean;
-    total:null;
+    total: null;
 
     public abstract columns: Array<any>;
     public abstract deleteModel: any;
@@ -50,6 +52,35 @@ export abstract class ComponentBase implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        /**
+         * 加载手工配置
+         */
+        let columns_new = [];
+        let pushed = [];
+        for (const key in columns_app) {
+            if (columns_sdk.hasOwnProperty(key) && columns_sdk[key] === this.columns) {
+                for (const iterator of this.columns) {
+                    let is_push = true;
+                    for (const iterator_app of columns_app[key]) {
+                        if (iterator['index'] === iterator_app['index']) {
+                            is_push = false;
+                            break;
+                        }
+                    }
+                    if (is_push) {
+                        pushed.push(iterator)
+                    }
+                }
+                for (const colApp of columns_app[key]) {
+                    if(colApp['disabled']){
+                        columns_new.push(colApp)
+                    }
+                }
+                columns_new.push(...pushed)
+                this.columns = columns_new;
+            }
+        }
+
         if (this.isInitLoad) {
             this.load();
         }
@@ -126,9 +157,9 @@ export abstract class EditComponentBase implements OnInit {
     i: any;
     _isNew: boolean;
     validateForm: FormGroup;
-    admins_enums=admins_enums;
-    users_enums=users_enums;
-    bcexs_enums=bcexs_enums
+    admins_enums = admins_enums;
+    users_enums = users_enums;
+    bcexs_enums = bcexs_enums
 
     abstract columns: any;
     abstract edit_model: any;
