@@ -37,6 +37,10 @@ export abstract class ComponentBase implements OnInit, OnDestroy {
     sub: Subscription;
     _loading: boolean;
     total: null;
+    admins_enums = admins_enums;
+    users_enums = users_enums;
+    bcexs_enums = bcexs_enums
+
 
     public abstract columns: Array<any>;
     public abstract deleteModel: any;
@@ -72,7 +76,7 @@ export abstract class ComponentBase implements OnInit, OnDestroy {
                     }
                 }
                 for (const colApp of columns_app[key]) {
-                    if(colApp['disabled']){
+                    if (!colApp['disabled']) {
                         columns_new.push(colApp)
                     }
                 }

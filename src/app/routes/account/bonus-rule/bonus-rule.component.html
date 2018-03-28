@@ -1,17 +1,12 @@
 ﻿<nz-card>
     <ng-template #body>
-        <form nz-form class="ant-advanced-search-form" [nzLayout]="'inline'">
-
+        <form nz-form class="search-form" [nzLayout]="'inline'">
             <div nz-form-item>
-                <div nz-form-label>
-                    <label for="vipclass" nz-form-item-required>
-                        <span>
-                            {{'vip等级'|translate}}
-                        </span>
-                    </label>
-                </div>
-                <div nz-form-control  style="width: 150px;">
-                    <app-zselect [data]="bcexs_enums.VipEnumTranslate" [(ngModel)]="args.vipclass" name="vipclass"></app-zselect>
+                <label>{{"积分大于"|translate}}</label>
+            </div>
+            <div nz-form-item>
+                <div nz-form-control>
+                    <nz-input [(ngModel)]="args.vipclass" name="vipclass"></nz-input>
                 </div>
             </div>
             <div nz-form-item>
@@ -51,9 +46,9 @@
                         </ng-template>
                     </td>
                     <td nz-td>
-                        <a (click)="edit(data)">{{'修改'|translate}}</a>
-                        <span nz-table-divider></span>
-
+                        <nz-popconfirm [nzTitle]="'确定删除？'|translate" [nzOkText]="'ok'" [nzCancelText]="'cancel'" (nzOnConfirm)="delete(data)">
+                            <a nz-popconfirm>{{'删除'|translate}}</a>
+                        </nz-popconfirm>
                     </td>
                 </tr>
             </tbody>

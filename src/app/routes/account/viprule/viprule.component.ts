@@ -11,6 +11,7 @@ import { VipruleEditComponent } from './viprule-edit/viprule-edit.component';
 @Component({
     selector: 'app-viprule',
     templateUrl: './viprule.component.html',
+    styleUrls:['viprule.component.css'],
 })
 export class VipruleComponent extends ComponentBase {
 
@@ -24,8 +25,8 @@ export class VipruleComponent extends ComponentBase {
         Object.keys(this.args).forEach((key) => {
             const qp = new QueryParam();
             qp.key = key;
-            qp.value = this.args[key] + '%';
-            qp.op = qp.op_like;
+            qp.value = this.args[key];
+            qp.op = qp.op_eq;
             parma_list.push(qp);
         });
         return this.sdk.bonus_vip_rule_get_api(parma_list, this.pi).map((res): any => {

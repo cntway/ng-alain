@@ -149,8 +149,8 @@ export class AppfileComponent implements OnInit {
                 import { ${this.makeClassName(componentDf['componentName'])}EditComponent } from './${this.nameChange(componentDf['componentName'])}-edit/${this.nameChange(componentDf['componentName'])}-edit.component';
                 
                 @Component({
-                    selector: 'app-${this.makeClassName(componentDf['componentName'])}',
-                    templateUrl: './${this.makeClassName(componentDf['componentName'])}.component.html',
+                    selector: 'app-${this.nameChange(componentDf['componentName'])}',
+                    templateUrl: './${this.nameChange(componentDf['componentName'])}.component.html',
                 })
                 export class ${this.makeClassName(componentDf['componentName'])}Component extends ComponentBase {
 

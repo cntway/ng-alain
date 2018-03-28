@@ -165,6 +165,19 @@ export const AccTypeEnumTranslate = {
 }
 
 
+export enum UserTypeEnum { 
+    NONE = 0,  // None
+    EXCH = 1,  // 交易所
+    USER = 2,  // 投资者
+}
+
+export const UserTypeEnumTranslate = { 
+    0: 'None',
+    1: '交易所',
+    2: '投资者',
+}
+
+
 export enum BonusEnum { 
     NONE = 0,  // None
     LOGIN = 1,  // 登陆
@@ -237,21 +250,6 @@ export const MarketModeEnumTranslate = {
     0: 'None',
     1: '现货交易模式',
     2: '保证金交易模式',
-}
-
-
-export enum MarketStatusEnum { 
-    NONE = 0,  // None
-    OPEN = 1,  // 开市
-    BREAK = 2,  // 休市
-    SHUTDOWN = 3,  // 关闭
-}
-
-export const MarketStatusEnumTranslate = { 
-    0: 'None',
-    1: '开市',
-    2: '休市',
-    3: '关闭',
 }
 
 
@@ -383,6 +381,8 @@ export enum UMTypeEnum {
     FEEGAIN = 6,  // 得到手续费
     C2CPAY = 7,  // C2C卖出
     C2CGAIN = 8,  // C2C买入
+    USEDTAKE = 9,  // 收取占用
+    USEDBACK = 10,  // 回退占用
 }
 
 export const UMTypeEnumTranslate = { 
@@ -395,6 +395,8 @@ export const UMTypeEnumTranslate = {
     6: '得到手续费',
     7: 'C2C卖出',
     8: 'C2C买入',
+    9: '收取占用',
+    10: '回退占用',
 }
 
 

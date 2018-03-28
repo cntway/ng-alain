@@ -1,7 +1,6 @@
 import * as admins_enums from './sdk.admins_enum';
 import * as users_enums from './sdk.users_enum';
 import * as bcexs_enums from './sdk.bcexs_enum';
-import * as columns_app from './sdk.columns.app';
 
 
 export const sys_menu_detail_get_columns = [
@@ -58,17 +57,12 @@ export const muser_parames_get_columns = [
 ];
 
 export const bonus_rule_get_columns = [
+    { index: 'ruleid', text: '规则id', dataType: 'int' },
+    { index: 'bonustype', text: '积分类型', dataType: 'enum', enum: bcexs_enums.BonusEnumTranslate },
+    { index: 'bonus', text: '积分', dataType: 'int' },
     { index: 'pairid', text: '交易对id', dataType: 'int' },
-    { index: 'paircode', text: '交易对代码', dataType: 'string' },
-    { index: 'pairname', text: '交易对名称', dataType: 'string' },
-    { index: 'symbolcode', text: '交易对标的币', dataType: 'string' },
-    { index: 'currencycode', text: '交易对结算币', dataType: 'string' },
-    { index: 'pairstatus', text: '交易对状态', dataType: 'enum', enum: bcexs_enums.PairStatusEnumTranslate },
-    { index: 'pricescale', text: '报价小数位', dataType: 'int' },
-    { index: 'amountscale', text: '金额小数位', dataType: 'int' },
-    { index: 'marketmode', text: '市场模式', dataType: 'enum', enum: bcexs_enums.MarketModeEnumTranslate },
-    { index: 'marketid', text: '市场id', dataType: 'int' },
-    { index: 'cdt', text: '创建时间', dataType: 'datetime' },
+    { index: 'lower', text: '积分范围l', dataType: 'int' },
+    { index: 'upper', text: '积分范围h', dataType: 'int' },
 ];
 
 export const bonus_vip_privilege_get_columns = [
@@ -93,7 +87,7 @@ export const coin_info_get_columns = [
     { index: 'coincnname', text: '币种中文名', dataType: 'string' },
     { index: 'refillstatus', text: '充值状态', dataType: 'enum', enum: bcexs_enums.IOStatusEnumTranslate },
     { index: 'wdstatus', text: '提现状态', dataType: 'enum', enum: bcexs_enums.IOStatusEnumTranslate },
-    { index: 'pubdtime', text: '上市日期', dataType: 'datetime' },
+    { index: 'pubtime', text: '上市日期', dataType: 'datetime' },
     { index: 'tradestatus', text: '交易状态', dataType: 'enum', enum: bcexs_enums.PairStatusEnumTranslate },
     { index: 'cdt', text: '创建时间', dataType: 'datetime' },
 ];
@@ -137,17 +131,16 @@ export const pair_property_get_columns = [
 ];
 
 export const pair_property_group_get_columns = [
-    { index: 'propertygroupid', text: '属性组id' },
-    { index: 'note', text: '备注' },
-    { index: 'groupname', text: '属性组名称' },
+    { index: 'propertygroupid', text: '属性组id', dataType: 'int' },
+    { index: 'note', text: '备注', dataType: 'string' },
+    { index: 'groupname', text: '属性组名称', dataType: 'string' },
 ];
 
 export const pair_property_group_map_get_columns = [
-    { index: 'propertygroupid', text: '属性组id' },
-    { index: 'pairid', text: '交易对id' },
-    { index: 'propertyid', text: '属性id' },
-    { index: 'marketid', text: '市场id' },
-
+    { index: 'propertygroupid', text: '属性组id', dataType: 'int' },
+    { index: 'pairid', text: '交易对id', dataType: 'int' },
+    { index: 'propertyid', text: '属性id', dataType: 'int' },
+    { index: 'marketid', text: '市场id', dataType: 'int' },
 ];
 
 export const user_users_contact_get_columns = [

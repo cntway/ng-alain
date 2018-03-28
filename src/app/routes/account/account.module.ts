@@ -16,6 +16,12 @@ import { RoleRightComponent } from './role/role-right/role-right.component';
 import { VipruleComponent } from './viprule/viprule.component';
 import { VipruleAddComponent } from './viprule/viprule-add/viprule-add.component';
 import { VipruleEditComponent } from './viprule/viprule-edit/viprule-edit.component';
+import { VipPrivilegeComponent } from './vip-privilege/vip-privilege.component';
+import { BonusRuleComponent } from './bonus-rule/bonus-rule.component';
+import { BonusRuleEditComponent } from './bonus-rule/bonus-rule-edit/bonus-rule-edit.component';
+import { BonusRuleAddComponent } from './bonus-rule/bonus-rule-add/bonus-rule-add.component';
+import { VipPrivilegeAddComponent } from './vip-privilege/vip-privilege-add/vip-privilege-add.component';
+import { VipPrivilegeEditComponent } from './vip-privilege/vip-privilege-edit/vip-privilege-edit.component';
 
 
 const routes: Routes = [
@@ -25,6 +31,8 @@ const routes: Routes = [
     { path: 'user', component: UserComponent },
     { path: 'appfile', component: AppfileComponent },
     { path: 'viprule', component: VipruleComponent },
+    { path: 'vip/privilege', component: VipPrivilegeComponent },
+    { path: 'bonus/rule', component: BonusRuleComponent },
 
 ];
 
@@ -39,6 +47,10 @@ const COMPONENTS_NOROUNT = [
     RoleRightComponent,
     VipruleEditComponent,
     VipruleAddComponent,
+    VipPrivilegeAddComponent,
+    VipPrivilegeEditComponent,
+    BonusRuleEditComponent,
+    BonusRuleAddComponent,
 ];
 
 @NgModule({
@@ -62,6 +74,12 @@ const COMPONENTS_NOROUNT = [
         VipruleComponent,
         VipruleAddComponent,
         VipruleEditComponent,
+        VipPrivilegeComponent,
+        BonusRuleComponent,
+        BonusRuleEditComponent,
+        BonusRuleAddComponent,
+        VipPrivilegeAddComponent,
+        VipPrivilegeEditComponent,
         MenuEditComponent
     ],
     exports: [

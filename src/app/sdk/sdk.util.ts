@@ -187,14 +187,26 @@ export abstract class FeildCheck {
 
 export class QueryOp {
     static op_eq = '$eq';
-    static op_in = '$eq';
     static op_like = '$like';
+    static op_in = '$in';
+    static op_nin = '$nin';
+    static op_gt = '$gt';
+    static op_gte = '$gte';
+    static op_lt = '$lt';
+    static op_lte = '$lte';
+    static op_ne = '$ne';
 }
 
 export class QueryParam {
     op_eq = '$eq';
-    op_in = '$eq';
     op_like = '$like';
+    op_in = '$in';
+    op_nin = '$nin';
+    op_gt = '$gt';
+    op_gte = '$gte';
+    op_lt = '$lt';
+    op_lte = '$lte';
+    op_ne = '$ne';
     PageIndex = 1;
     pageSize = 10;
     sort = '';
