@@ -4,8 +4,9 @@ import * as bcexs_enums from './sdk.bcexs_enum';
 
 export const pair_property_group_map_get_columns = [
     { index: 'propertygroupid', text: '属性组', width: "100px" },
+    { index: 'propertyname', text: '属性名称', width: "100px" },
+    { index: 'propertyid', text: '属性id', width: "100px" ,disabled: true, },
     { index: 'pairid', text: '交易对id', disabled: true, width: "100px" },
-    { index: 'propertyid', text: '属性id', width: "100px" },
     { index: 'marketid', text: '市场id', disabled: true, width: "100px" },
 
 ];
@@ -30,4 +31,18 @@ export const bonus_rule_get_columns = [
     { index: 'upper', text: '积分范围最低', dataType: 'int' },
     { index: 'pairid', text: '交易对id', dataType: 'int', disabled: true },
 
+];
+
+export const coin_pair_get_columns = [
+    { index: 'pairid', text: '交易对id', dataType: 'int' },
+    { index: 'paircode', text: '交易对代码', dataType: 'string' },
+    { index: 'pairname', text: '交易对名称', dataType: 'string' },
+    { index: 'symbolcode', text: '交易对标的币', dataType: 'string' },
+    { index: 'currencycode', text: '交易对结算币', dataType: 'string' },
+    { index: 'pairstatus', text: '交易对状态', dataType: 'enum', enum: bcexs_enums.PairStatusEnumTranslate },
+    { index: 'pricescale', text: '报价小数位', dataType: 'int' },
+    { index: 'amountscale', text: '金额小数位', dataType: 'int' },
+    { index: 'marketmode', text: '市场模式', dataType: 'enum', enum: bcexs_enums.MarketModeEnumTranslate },
+    { index: 'marketid', text: '市场id', dataType: 'int', disabled: true },
+    { index: 'cdt', text: '创建时间', dataType: 'datetime' },
 ];

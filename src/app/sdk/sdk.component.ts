@@ -175,6 +175,9 @@ export abstract class EditComponentBase implements OnInit {
         protected sdk: SdkService,
         protected subject: NzModalSubject) { }
 
+    formatterPercent = value => `${value * 100}%`;
+    parserPercent = value => parseFloat(value.replace('%', '')) / 100;
+
     ngOnInit() {
         this.isNew();
         const fields_options = this.edit_model.fields_options;

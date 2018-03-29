@@ -13,7 +13,7 @@
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <app-skd-select formControlName="propertyid" [loadService]="propertyLoad" [key]="'propertyid'" [name]="'propertyid'"></app-skd-select>
+            <app-skd-select formControlName="propertyid" [loadService]="propertyLoad" [key]="'propertyid'" [name]="'propertyname'"></app-skd-select>
             <div nz-form-explain *ngIf="getFormControl('propertyid').dirty&&getFormControl('propertyid').hasError('required')">{{'Please input propertyid!'|translate}}</div>
         </div>
     </div>

@@ -84,7 +84,7 @@
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input [nzSize]="'large'" formControlName="symbolcode"></nz-input>
+            <app-skd-select formControlName="symbolcode" [loadService]="coinLoad" [key]="'coincode'" [name]="'coincode'"></app-skd-select>
             <div nz-form-explain *ngIf="getFormControl('symbolcode').dirty&&getFormControl('symbolcode').hasError('required')">{{'Please input symbolcode!'|translate}}</div>
         </div>
     </div>
@@ -99,12 +99,10 @@
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input [nzSize]="'large'" formControlName="currencycode"></nz-input>
+            <app-skd-select formControlName="currencycode" [loadService]="coinLoad" [key]="'coincode'" [name]="'coincode'"></app-skd-select>
             <div nz-form-explain *ngIf="getFormControl('currencycode').dirty&&getFormControl('currencycode').hasError('required')">{{'Please input currencycode!'|translate}}</div>
         </div>
     </div>
-
-
 
 </form>
 <div class="modal-footer">

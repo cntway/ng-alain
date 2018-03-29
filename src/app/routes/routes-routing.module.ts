@@ -26,7 +26,7 @@ const routes: Routes = [
         component: LayoutDefaultComponent,
         children: [
             { path: '', redirectTo: '/passport/login', pathMatch: 'full' },
-            { path: 'dashboard', redirectTo: '/account/appfile' },
+            { path: 'dashboard', redirectTo: '/system/market' },
             { path: 'dashboard/analysis', component: DashboardAnalysisComponent },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent },
             { path: 'dashboard/workplace', component: DashboardWorkplaceComponent },
