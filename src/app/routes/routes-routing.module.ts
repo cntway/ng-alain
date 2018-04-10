@@ -42,6 +42,8 @@ const routes: Routes = [
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
             { path: 'account', loadChildren: './account/account.module#AccountModule' },
             { path: 'system', loadChildren: './system/system.module#SystemModule' },
+            { path: 'query', loadChildren: './query/query.module#QueryModule' },
+
         ]
     },
     // 全屏布局

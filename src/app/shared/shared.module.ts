@@ -20,6 +20,8 @@ import { UEditorModule } from 'ngx-ueditor';
 import { NgxTinymceModule } from 'ngx-tinymce';
 import { NzSchemaFormModule } from 'nz-schema-form';
 import { SkdSelectComponent } from './skd-select/skd-select.component';
+import { SummodalComponent } from './summodal/summodal.component';
+import { ExprotmodalComponent } from './exprotmodal/exprotmodal.component';
 const THIRDMODULES = [
     CountdownModule,
     UEditorModule,
@@ -29,7 +31,7 @@ const THIRDMODULES = [
 // endregion
 
 // region: your componets & directives
-const COMPONENTS = [ZselectComponent, MenuSelectComponent, SelectComponent, SkdSelectComponent];
+const COMPONENTS = [ZselectComponent, MenuSelectComponent, SelectComponent, SkdSelectComponent, SummodalComponent, ExprotmodalComponent];
 const DIRECTIVES = [];
 // endregion
 
@@ -52,6 +54,8 @@ const DIRECTIVES = [];
         // your components
         ...COMPONENTS,
         ...DIRECTIVES,
+        SummodalComponent,
+        ExprotmodalComponent,
     ],
     exports: [
         CommonModule,
@@ -70,6 +74,10 @@ const DIRECTIVES = [];
         // your components
         ...COMPONENTS,
         ...DIRECTIVES
-    ]
+    ],
+    entryComponents: [
+        SummodalComponent,
+        ExprotmodalComponent,
+    ],
 })
 export class SharedModule { }

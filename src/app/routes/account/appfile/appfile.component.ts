@@ -3,6 +3,9 @@ import * as FileSaver from 'file-saver';
 import * as skd_columns from '@sdk/sdk.columns';
 import * as sdk_model from '@sdk/sdk.model';
 import * as sdk_api from '@sdk/sdk.service';
+import * as query_skd_columns from '@sdk/query/query.columns';
+import * as query_sdk_api from '@sdk/query/query.service';
+
 import {
     UINT_LIAT,
     FLOAT_LIST,
@@ -29,11 +32,35 @@ export class AppfileComponent implements OnInit {
 
     _sdk_model = sdk_model;
     _skd_columns = skd_columns;
+    
     validateForm: FormGroup;
     editForm: FormGroup;
+    queryForm: FormGroup;
     searchColumnsOptions = [];
     searchModelOptions = [];
     searchApiOptions = [];
+
+
+    searchQueryColumnsOptions = [];
+    searchQueryApiOptions = [];
+
+    searchQueryColumns(event) {
+        this.searchQueryColumnsOptions = [];
+        for (let key in query_skd_columns) {
+            if (key.indexOf(event) > -1) {
+                this.searchQueryColumnsOptions.push([key]);
+            }
+        }
+    }
+
+    searchQueryApi(event) {
+        this.searchQueryApiOptions = [];
+        for (let key in this._query_sdk_api) {
+            if (key.indexOf(event) > -1) {
+                this.searchQueryApiOptions.push([key]);
+            }
+        }
+    }
 
 
     searchColumns(event) {
@@ -68,8 +95,8 @@ export class AppfileComponent implements OnInit {
         //     this.validateForm.controls[i].markAsDirty();
         // }
         let componentDf = this.validateForm.getRawValue();
-        let componentTs = this.queryComponent(componentDf);
-        let componentTemplate = this.queryTemplate(componentDf);
+        let componentTs = this.mainComponent(componentDf);
+        let componentTemplate = this.mainTemplate(componentDf);
 
         let blobComponent = new Blob([componentTs], { type: "text/plain;charset=utf-8" });
         FileSaver.saveAs(blobComponent, `${this.nameChange(componentDf['componentName'])}.component.ts`);
@@ -96,7 +123,23 @@ export class AppfileComponent implements OnInit {
 
     }
 
-    constructor(private fb: FormBuilder, private _sdk_api: sdk_api.SdkService) {
+    _submitQueryForm() {
+        // for (const i in this.validateForm.controls) {
+        //     this.validateForm.controls[i].markAsDirty();
+        // }
+        let componentDf = this.queryForm.getRawValue();
+        let componentTs = this.queryComponent(componentDf);
+        let componentTemplate = this.queryTemplate(componentDf);
+
+        let blobComponent = new Blob([componentTs], { type: "text/plain;charset=utf-8" });
+        FileSaver.saveAs(blobComponent, `${this.nameChange(componentDf['componentName'])}.component.ts`);
+
+        let blobHtml = new Blob([componentTemplate], { type: "text/plain;charset=utf-8" });
+        FileSaver.saveAs(blobHtml, `${this.nameChange(componentDf['componentName'])}.component.html`);
+
+    }
+
+    constructor(private fb: FormBuilder, private _sdk_api: sdk_api.SdkService, private _query_sdk_api: query_sdk_api.QuerySdkService) {
     }
 
 
@@ -116,6 +159,16 @@ export class AppfileComponent implements OnInit {
             editModel: [null, [Validators.required]],
             updateApi: [null, [Validators.required]],
         });
+
+        this.queryForm = this.fb.group({
+            exportApi:[null, [Validators.required]],
+            loadApi: [null, [Validators.required]],
+            loadSumApi: [null, [Validators.required]],
+            componentName: [null, [Validators.required]],
+            columns: [null, [Validators.required]],
+        });
+
+        
     }
 
     getFormControl(type: number, name: string) {
@@ -124,6 +177,9 @@ export class AppfileComponent implements OnInit {
         }
         if (type === 2) {
             return this.editForm.controls[name];
+        }
+        if (type === 3) {
+            return this.queryForm.controls[name];
         }
     }
 
@@ -137,7 +193,7 @@ export class AppfileComponent implements OnInit {
         return name;
     }
 
-    queryComponent(componentDf) {
+    mainComponent(componentDf) {
         const tpl = `
                 import { Observable } from 'rxjs/Rx';
                 import { Component } from '@angular/core';
@@ -186,7 +242,7 @@ export class AppfileComponent implements OnInit {
         return tpl;
     }
 
-    queryTemplate(componentDf) {
+    mainTemplate(componentDf) {
         const tpl = `
 <nz-card>
     <ng-template #body>
@@ -504,5 +560,108 @@ export class AppfileComponent implements OnInit {
             `
         return tpl;
     }
+
+
+    queryComponent(componentDf) {
+        const tpl = `
+import { Observable } from 'rxjs/Rx';
+import { Component } from '@angular/core';
+import { QueryComponentBase } from '@sdk/sdk.component';
+import { QueryParam } from '@sdk/sdk.util';
+import * as query_skd_columns from '@sdk/query/query.columns';
+
+@Component({
+    selector: 'app-${this.nameChange(componentDf['componentName'])}',
+    templateUrl: './${this.nameChange(componentDf['componentName'])}.component.html',
+})
+export class ${this.makeClassName(componentDf['componentName'])}Component extends QueryComponentBase {
+
+    public columns: Array<any> = query_skd_columns.${componentDf['columns']};
+
+    getQueryParams(): Array<QueryParam> {
+        const parma_list = [];
+        Object.keys(this.args).forEach((key) => {
+            const qp = new QueryParam();
+            qp.key = key;
+            qp.value = this.args[key];
+            qp.op = qp.op_eq;
+            parma_list.push(qp);
+        });
+        return parma_list;
+    }
+
+    loadData(): Observable<any> {
+        return this.querySdk.${componentDf['loadApi']}(this.getQueryParams(), this.pi).map((res): any => {
+            {
+                return res;
+            }
+        });
+    }
+
+    loadSumData() {
+        return this.querySdk.${componentDf['loadSumApi']}(this.getQueryParams())
+    }
+
+    exportApi() {
+        return this.querySdk.${componentDf['exportApi']}(this.getTitle(), this.modal.i['csvdesc'], this.getQueryParams());
+    }
+}
+        `
+        return tpl;
+    }
+
+    queryTemplate(componentDf) {
+        const tpl = `
+<nz-card>
+    <ng-template #body>
+        <form nz-form class="search-form" [nzLayout]="'inline'">
+            <div nz-form-item>
+                <label>{{"名称"|translate}}</label>
+            </div>
+            <div nz-form-item>
+                <div nz-form-control>
+                    <nz-input [(ngModel)]="args.username" name="username"></nz-input>
+                </div>
+            </div>
+            <div nz-form-item>
+                <div nz-form-control>
+                    <button nz-button [nzType]="'primary'" (click)="load(1)" [nzLoading]="loading">{{"查询"|translate}}</button>
+                    <button nz-button (click)="clear()" [disabled]="loading">{{"清除"|translate}}</button>
+                    <button nz-button (click)="sum()" [nzLoading]="loading">{{"统计"|translate}}</button>
+                    <button nz-button (click)="export()" [nzLoading]="loading">{{"导出"|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</nz-card>
+
+<nz-card>
+    <ng-template #body>
+        <nz-table #nzTable [nzAjaxData]="list" [nzShowSizeChanger]="true" [nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pi"
+            (nzPageIndexChange)="load()" [(nzPageSize)]="ps" [nzBordered]="'true'" [nzShowTotal]="'false'">
+            <thead nz-thead>
+                <tr>
+                    <th nz-th *ngFor="let column of columns" [nzWidth]="column.width">
+                        <span>{{column.text|translate}}</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody nz-tbody>
+                <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                    <td nz-td *ngFor="let column of columns">
+                        <span *ngIf="column.enum  else elseBlock ">{{column.enum[data[column.index]]}}</span>
+                        <ng-template #elseBlock>
+                            <span>{{data[column.index]}}</span>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </ng-template>
+</nz-card>
+        `
+        return tpl;
+    }
+
 
 }

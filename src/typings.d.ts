@@ -17,4 +17,6 @@ declare var G2: any;
 declare var Slider: any;
 declare var Cloud: any;
 
-declare var serverUrl: any
+// index文件所定义的服务地址
+declare var serverUrl: string
+declare var queryServerUrl: string

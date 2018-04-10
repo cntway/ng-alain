@@ -87,7 +87,7 @@ export const coin_info_get_columns = [
     { index: 'coincnname', text: '币种中文名', dataType: 'string' },
     { index: 'refillstatus', text: '充值状态', dataType: 'enum', enum: bcexs_enums.IOStatusEnumTranslate },
     { index: 'wdstatus', text: '提现状态', dataType: 'enum', enum: bcexs_enums.IOStatusEnumTranslate },
-    { index: 'pubtime', text: '上市日期', dataType: 'datetime' },
+    { index: 'pubdtime', text: '上市日期', dataType: 'datetime' },
     { index: 'tradestatus', text: '交易状态', dataType: 'enum', enum: bcexs_enums.PairStatusEnumTranslate },
     { index: 'cdt', text: '创建时间', dataType: 'datetime' },
 ];
@@ -120,6 +120,7 @@ export const bcex_market_get_columns = [
 export const pair_property_get_columns = [
     { index: 'propertyid', text: '属性id', dataType: 'int' },
     { index: 'pairid', text: '交易对id', dataType: 'int' },
+    { index: 'propertyname', text: '属性名称', dataType: 'string' },
     { index: 'takerfeeratio', text: '主动吃单手续费', dataType: 'float' },
     { index: 'makerfeeratio', text: '挂单成交手续费', dataType: 'float' },
     { index: 'wdfeeratio', text: '提现手续费', dataType: 'float' },
@@ -141,6 +142,18 @@ export const pair_property_group_map_get_columns = [
     { index: 'pairid', text: '交易对id', dataType: 'int' },
     { index: 'propertyid', text: '属性id', dataType: 'int' },
     { index: 'marketid', text: '市场id', dataType: 'int' },
+    { index: 'propertyname', text: '属性名称', dataType: 'string' },
+];
+
+export const exchange_money_get_columns = [
+    { index: 'coincode', text: '币代码', dataType: 'string' },
+    { index: 'balance', text: '该币种在交易所余额', dataType: 'float' },
+    { index: 'totalfee', text: '交易所收取的总手续费', dataType: 'float' },
+    { index: 'dayfee', text: '交易所当天收取的手续费', dataType: 'float' },
+    { index: 'totalrefill', text: '该币种入金总数量', dataType: 'float' },
+    { index: 'dayrefill', text: '该币种当天入金总数量', dataType: 'float' },
+    { index: 'totalwithdraw', text: '该币种出金总数量', dataType: 'float' },
+    { index: 'daywithdraw', text: '该币种当出入金总数量', dataType: 'float' },
 ];
 
 export const user_users_contact_get_columns = [
@@ -203,5 +216,137 @@ export const user_parames_get_columns = [
     { index: 'paramssection', text: '参数段', dataType: 'string' },
     { index: 'paramsname', text: '参数名称', dataType: 'string' },
     { index: 'paramsvalue', text: '参数值', dataType: 'string' },
+];
+
+export const users_step_one_desc_get_columns = [
+    { index: 'reviewid', text: '审核id', dataType: 'int' },
+    { index: 'reviewtype', text: '审核类型', dataType: 'enum', enum: admins_enums.EnumReviewTypeTranslate },
+    { index: 'reviewstatus', text: '审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'applytime', text: '申请时间', dataType: 'datetime' },
+    { index: 'applyuserid', text: '申请用户id', dataType: 'int' },
+    { index: 'applylogincode', text: '申请用户账号', dataType: 'string' },
+    { index: 'applyacctype', text: '申请用户账号类型', dataType: 'enum', enum: admins_enums.EnumUserAccTypeTranslate },
+    { index: 'applydesc', text: '申请信息备注', dataType: 'string' },
+    { index: 'lastoptime', text: '最后审核时间', dataType: 'datetime' },
+    { index: 'lastopuserid', text: '最后审核人用户id', dataType: 'int' },
+    { index: 'lastlogincode', text: '最后审核人账号', dataType: 'string' },
+    { index: 'laststatus', text: '最后审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'lastdesc', text: '最后审核描述', dataType: 'string' },
+    { index: 'reqjson', text: '请求修改的字段', dataType: 'string' },
+    { index: 'beforejson', text: '修改前数据定义', dataType: 'string' },
+    { index: 'afterjson', text: '修改后数据定义', dataType: 'string' },
+];
+
+export const users_step_one_log_desc_get_columns = [
+    { index: 'reviewid', text: '审核id', dataType: 'int' },
+    { index: 'reviewtype', text: '审核类型', dataType: 'enum', enum: admins_enums.EnumReviewTypeTranslate },
+    { index: 'applytime', text: '申请时间', dataType: 'datetime' },
+    { index: 'applyuserid', text: '申请用户id', dataType: 'int' },
+    { index: 'applylogincode', text: '申请用户账号', dataType: 'string' },
+    { index: 'applyacctype', text: '申请用户账号类型', dataType: 'enum', enum: admins_enums.EnumUserAccTypeTranslate },
+    { index: 'applydesc', text: '申请信息备注', dataType: 'string' },
+    { index: 'lastoptime', text: '最后审核时间', dataType: 'datetime' },
+    { index: 'lastopuserid', text: '最后审核人用户id', dataType: 'int' },
+    { index: 'lastlogincode', text: '最后审核人账号', dataType: 'string' },
+    { index: 'laststatus', text: '最后审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'lastdesc', text: '最后审核描述', dataType: 'string' },
+    { index: 'reqjson', text: '请求修改的字段', dataType: 'string' },
+    { index: 'beforejson', text: '修改前数据定义', dataType: 'string' },
+    { index: 'afterjson', text: '修改后数据定义', dataType: 'string' },
+];
+
+export const users_step_one_log_get_columns = [
+    { index: 'reviewid', text: '审核id', dataType: 'int' },
+    { index: 'reviewtype', text: '审核类型', dataType: 'enum', enum: admins_enums.EnumReviewTypeTranslate },
+    { index: 'applytime', text: '申请时间', dataType: 'datetime' },
+    { index: 'applylogincode', text: '申请用户账号', dataType: 'string' },
+    { index: 'applyacctype', text: '申请用户账号类型', dataType: 'enum', enum: admins_enums.EnumUserAccTypeTranslate },
+    { index: 'applydesc', text: '申请信息备注', dataType: 'string' },
+    { index: 'lastoptime', text: '最后审核时间', dataType: 'datetime' },
+    { index: 'lastlogincode', text: '最后审核人账号', dataType: 'string' },
+    { index: 'laststatus', text: '最后审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'lastdesc', text: '最后审核描述', dataType: 'string' },
+    { index: 'reqjson', text: '请求修改的字段', dataType: 'string' },
+];
+
+export const users_step_one_get_columns = [
+    { index: 'reviewid', text: '审核id', dataType: 'int' },
+    { index: 'reviewtype', text: '审核类型', dataType: 'enum', enum: admins_enums.EnumReviewTypeTranslate },
+    { index: 'reviewstatus', text: '审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'applytime', text: '申请时间', dataType: 'datetime' },
+    { index: 'applylogincode', text: '申请用户账号', dataType: 'string' },
+    { index: 'applyacctype', text: '申请用户账号类型', dataType: 'enum', enum: admins_enums.EnumUserAccTypeTranslate },
+    { index: 'applydesc', text: '申请信息备注', dataType: 'string' },
+    { index: 'lastoptime', text: '最后审核时间', dataType: 'datetime' },
+    { index: 'lastlogincode', text: '最后审核人账号', dataType: 'string' },
+    { index: 'laststatus', text: '最后审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'lastdesc', text: '最后审核描述', dataType: 'string' },
+    { index: 'reqjson', text: '请求修改的字段', dataType: 'string' },
+];
+
+export const users_step_two_get_columns = [
+    { index: 'reviewid', text: '审核id', dataType: 'int' },
+    { index: 'reviewtype', text: '审核类型', dataType: 'enum', enum: admins_enums.EnumReviewTypeTranslate },
+    { index: 'reviewstatus', text: '审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'applytime', text: '申请时间', dataType: 'datetime' },
+    { index: 'applylogincode', text: '申请用户账号', dataType: 'string' },
+    { index: 'applyacctype', text: '申请用户账号类型', dataType: 'enum', enum: admins_enums.EnumUserAccTypeTranslate },
+    { index: 'applydesc', text: '申请信息备注', dataType: 'string' },
+    { index: 'lastoptime', text: '最后审核时间', dataType: 'datetime' },
+    { index: 'lastlogincode', text: '最后审核人账号', dataType: 'string' },
+    { index: 'laststatus', text: '最后审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'lastdesc', text: '最后审核描述', dataType: 'string' },
+    { index: 'reqjson', text: '请求修改的字段', dataType: 'string' },
+];
+
+export const users_step_two_log_desc_get_columns = [
+    { index: 'reviewid', text: '审核id', dataType: 'int' },
+    { index: 'reviewtype', text: '审核类型', dataType: 'enum', enum: admins_enums.EnumReviewTypeTranslate },
+    { index: 'applytime', text: '申请时间', dataType: 'datetime' },
+    { index: 'applyuserid', text: '申请用户id', dataType: 'int' },
+    { index: 'applylogincode', text: '申请用户账号', dataType: 'string' },
+    { index: 'applyacctype', text: '申请用户账号类型', dataType: 'enum', enum: admins_enums.EnumUserAccTypeTranslate },
+    { index: 'applydesc', text: '申请信息备注', dataType: 'string' },
+    { index: 'lastoptime', text: '最后审核时间', dataType: 'datetime' },
+    { index: 'lastopuserid', text: '最后审核人用户id', dataType: 'int' },
+    { index: 'lastlogincode', text: '最后审核人账号', dataType: 'string' },
+    { index: 'laststatus', text: '最后审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'lastdesc', text: '最后审核描述', dataType: 'string' },
+    { index: 'reqjson', text: '请求修改的字段', dataType: 'string' },
+    { index: 'beforejson', text: '修改前数据定义', dataType: 'string' },
+    { index: 'afterjson', text: '修改后数据定义', dataType: 'string' },
+];
+
+export const users_step_two_log_get_columns = [
+    { index: 'reviewid', text: '审核id', dataType: 'int' },
+    { index: 'reviewtype', text: '审核类型', dataType: 'enum', enum: admins_enums.EnumReviewTypeTranslate },
+    { index: 'applytime', text: '申请时间', dataType: 'datetime' },
+    { index: 'applylogincode', text: '申请用户账号', dataType: 'string' },
+    { index: 'applyacctype', text: '申请用户账号类型', dataType: 'enum', enum: admins_enums.EnumUserAccTypeTranslate },
+    { index: 'applydesc', text: '申请信息备注', dataType: 'string' },
+    { index: 'lastoptime', text: '最后审核时间', dataType: 'datetime' },
+    { index: 'lastlogincode', text: '最后审核人账号', dataType: 'string' },
+    { index: 'laststatus', text: '最后审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'lastdesc', text: '最后审核描述', dataType: 'string' },
+    { index: 'reqjson', text: '请求修改的字段', dataType: 'string' },
+];
+
+export const users_step_two_desc_get_columns = [
+    { index: 'reviewid', text: '审核id', dataType: 'int' },
+    { index: 'reviewtype', text: '审核类型', dataType: 'enum', enum: admins_enums.EnumReviewTypeTranslate },
+    { index: 'reviewstatus', text: '审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'applytime', text: '申请时间', dataType: 'datetime' },
+    { index: 'applyuserid', text: '申请用户id', dataType: 'int' },
+    { index: 'applylogincode', text: '申请用户账号', dataType: 'string' },
+    { index: 'applyacctype', text: '申请用户账号类型', dataType: 'enum', enum: admins_enums.EnumUserAccTypeTranslate },
+    { index: 'applydesc', text: '申请信息备注', dataType: 'string' },
+    { index: 'lastoptime', text: '最后审核时间', dataType: 'datetime' },
+    { index: 'lastopuserid', text: '最后审核人用户id', dataType: 'int' },
+    { index: 'lastlogincode', text: '最后审核人账号', dataType: 'string' },
+    { index: 'laststatus', text: '最后审核状态', dataType: 'enum', enum: admins_enums.EnumDataReviewStatusTranslate },
+    { index: 'lastdesc', text: '最后审核描述', dataType: 'string' },
+    { index: 'reqjson', text: '请求修改的字段', dataType: 'string' },
+    { index: 'beforejson', text: '修改前数据定义', dataType: 'string' },
+    { index: 'afterjson', text: '修改后数据定义', dataType: 'string' },
 ];
 

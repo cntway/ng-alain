@@ -1,16 +1,26 @@
 import { Component, OnInit, OnDestroy, Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { NzMessageService } from 'ng-zorro-antd';
-import { ModalHelper, _HttpClient } from '@delon/theme';
-import { SdkService } from '@sdk/sdk.service';
-import { NzModalSubject } from 'ng-zorro-antd';
-import * as model_sdk from '@sdk/sdk.model';
-import * as users_enums from '@sdk/sdk.users_enum';
-import * as bcexs_enums from '@sdk/sdk.bcexs_enum';
-import * as admins_enums from '@sdk/sdk.admins_enum';
-import * as columns_app from './sdk.columns.app';
-import * as columns_sdk from '@sdk/sdk.columns';
+import { ModalHelper, _HttpClient, MenuService } from '@delon/theme';
+import { ReuseTabService } from '@delon/abc';
+import { Router } from '@angular/router';
 
+import { SdkService } from './sdk.service';
+import { NzModalSubject } from 'ng-zorro-antd';
+import * as model_sdk from './sdk.model';
+import * as users_enums from './sdk.users_enum';
+import * as bcexs_enums from './sdk.bcexs_enum';
+import * as admins_enums from './sdk.admins_enum';
+import * as columns_app from './sdk.columns.app';
+import * as columns_sdk from './sdk.columns';
+
+import * as query_admins_enums from '@sdk/query/query.admins_enum';
+import * as query_bcexs_enums from './query/query.bcexs_enum';
+import * as query_columns_sdk from './query/query.columns';
+import * as query_columns_app from './query/query.columns.app';
+import { QuerySdkService } from './query/query.service';
+import { SummodalComponent } from '@shared/summodal/summodal.component';
+import { ExprotmodalComponent } from '@shared/exprotmodal/exprotmodal.component';
 
 import {
     FormBuilder,
@@ -62,7 +72,7 @@ export abstract class ComponentBase implements OnInit, OnDestroy {
         let columns_new = [];
         let pushed = [];
         for (const key in columns_app) {
-            if (columns_sdk.hasOwnProperty(key) && columns_sdk[key] === this.columns) {
+            if (key in columns_sdk && columns_sdk[key] === this.columns) {
                 for (const iterator of this.columns) {
                     let is_push = true;
                     for (const iterator_app of columns_app[key]) {
@@ -191,32 +201,6 @@ export abstract class EditComponentBase implements OnInit {
         }
         this.validateForm = this.fb.group(group);
 
-        //模版生成代码，可以抽象为工具
-        let tpl = '';
-        for (const index in fields_options) {
-            const type = fields_options[index]['type'];
-            if (this.isEmail(type, index)) {
-                tpl += this.getEmail(index, this.getFieldName(index));
-            }
-            if (this.isString(type, index)) {
-                tpl += this.getString(index, this.getFieldName(index));
-            }
-            if (this.isPwd(type, index)) {
-                tpl += this.getPWd(index, this.getFieldName(index));
-            }
-            if (this.isNumber(type, index)) {
-                tpl += this.getNumber(index, this.getFieldName(index));
-            }
-            if (this.isEnum(type, index)) {
-                tpl += this.getEnum(index, this.getFieldName(index));
-            }
-            if (this.isDate(type, index)) {
-                tpl += this.getDate(index, this.getFieldName(index));
-            }
-            if (this.isDateTime(type, index)) {
-                tpl += this.getDateTime(index, this.getFieldName(index));
-            }
-        }
 
     }
 
@@ -322,146 +306,145 @@ export abstract class EditComponentBase implements OnInit {
         return key.length > 4 && key.slice(0, 4) === 'Enum';
     }
 
+}
 
-    getEmail(key, label) {
-        let tpl = `
-                <div nz-form-item nz-row>
-                    <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-                        <label for="${key}" nz-form-item-required>{{'${label}'|translate}}</label>
-                    </div>
-                    <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                        <nz-input [nzSize]="'large'" formControlName="${key}" ></nz-input>
-                        <div nz-form-explain *ngIf="getFormControl('${key}').dirty&&getFormControl('${key}').hasError('${key}')">{{'The input is not valid E-mail!'|translate}}</div>
-                    </div>
-                </div>
-            `
-        return tpl;
+@Injectable()
+export abstract class QueryComponentBase implements OnInit, OnDestroy {
+
+    pi = 1;
+    ps = 10;
+    list: Array<any> = [];
+    args: any = {};
+    isInitLoad: boolean = false;
+    sub: Subscription;
+    _loading: boolean;
+    total: null;
+    modal: any;
+    admins_enums = query_admins_enums;
+    bcexs_enums = query_bcexs_enums
+
+
+    public abstract columns: Array<any>;
+    public abstract loadData(): Observable<any>;
+    public abstract loadSumData(): Observable<any>;
+    public abstract exportApi(): Observable<any>;
+
+    constructor(
+        protected router: Router,
+        protected menuService: MenuService,
+        protected subject: NzModalSubject,
+        protected sdk: SdkService,
+        protected querySdk: QuerySdkService,
+        protected message: NzMessageService,
+        protected modalHelper: ModalHelper) {
     }
 
+    ngOnInit() {
+        /**
+         * 加载手工配置
+         */
+        let columns_new = [];
+        let pushed = [];
+        for (const key in query_columns_app) {
+            if (query_columns_sdk.hasOwnProperty(key) && query_columns_sdk[key] === this.columns) {
+                for (const iterator of this.columns) {
+                    let is_push = true;
+                    for (const iterator_app of query_columns_app[key]) {
+                        if (iterator['index'] === iterator_app['index']) {
+                            is_push = false;
+                            break;
+                        }
+                    }
+                    if (is_push) {
+                        pushed.push(iterator)
+                    }
+                }
+                for (const colApp of query_columns_app[key]) {
+                    if (!colApp['disabled']) {
+                        columns_new.push(colApp)
+                    }
+                }
+                columns_new.push(...pushed)
+                this.columns = columns_new;
+            }
+        }
 
-    getPWd(key, label) {
-        let tpl = `
-            <div nz-form-item nz-row>
-                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-                    <label for="${key}" nz-form-item-required>{{'${label}'|translate}}</label>
-                </div>
-                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-input [nzSize]="'large'" formControlName="${key}" [nzType]="'password'"  (ngModelChange)="updateConfirmValidator()"></nz-input>
-                    <div nz-form-explain *ngIf="getFormControl('${key}').dirty&&getFormControl('${key}').hasError('required')">{{'Please input password!'|translate}}</div>
-                </div>
-             </div>
-             <div nz-form-item nz-row>
-                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-                    <label for="checkPassword" nz-form-item-required>{{'确认密码'|translate}}</label>
-                </div>
-                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-input [nzSize]="'large'" formControlName="checkPassword" [nzType]="'password'" [nzId]="'checkPassword'"></nz-input>
-                    <div nz-form-explain *ngIf="getFormControl('checkPassword').dirty&&getFormControl('checkPassword').hasError('required')">{{'Please confirm password!'|translate}}</div>
-                    <div nz-form-explain *ngIf="getFormControl('checkPassword').dirty&&getFormControl('checkPassword').hasError('confirm')">{{'Two passwords that enter is inconsistent!'|translate}}</div>
-                </div>
-             </div>
-            `
-        return tpl;
+        if (this.isInitLoad) {
+            this.load();
+        }
     }
 
-    getString(key, label) {
-        let tpl = `
-            <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-                <label for="${key}" nz-form-item-required>
-                    <span>
-                        ${label}
-                    </span>
-                </label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                <nz-input [nzSize]="'large'" formControlName="${key}" ></nz-input>
-                <div nz-form-explain *ngIf="getFormControl('${key}').dirty&&getFormControl('${key}').hasError('required')">{{'Please input ${key}!'|translate}}</div>
-            </div>
-            </div>
-            `
-        return tpl;
+    ngOnDestroy() {
+        try {
+            if (this.sub) {
+                this.sub.unsubscribe();
+            }
+        } catch (e) {
+            console.error(e);
+        }
     }
 
-    getNumber(key, label) {
-        let tpl = `
-            <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-                <label for="${key}" nz-form-item-required>
-                    <span>
-                        ${label}
-                    </span>
-                </label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                <nz-input-number [nzSize]="'large'" formControlName="${key}"  [nzStep]="1" [nzMax]="1000000" [nzMin]="0"></nz-input-number>
-                <div nz-form-explain *ngIf="getFormControl('${key}').dirty&&getFormControl('${key}').hasError('required')">{{'Please input ${key}!'|translate}}</div>
-            </div>
-            </div>
-            `
-        return tpl;
+    /** 是否正在加载中 */
+    get loading(): boolean {
+        return this.querySdk.loading;
     }
 
-    getEnum(key, label) {
-        let tpl = `
-            <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-                <label for="${key}" nz-form-item-required>
-                    <span>
-                        ${label}
-                    </span>
-                </label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                <app-zselect  [data]="options" formControlName="${key}" ></app-zselect>
-                <div nz-form-explain *ngIf="getFormControl('${key}').dirty&&getFormControl('${key}').hasError('required')">{{'Please input ${key}!'|translate}}</div>
-            </div>
-            </div>
-            `
-        return tpl;
+    load(pi?: number) {
+        if (typeof pi !== 'undefined') {
+            this.pi = pi || 1;
+        }
+        this.sub = this.loadData()
+            .subscribe(data => {
+                if (!data) {
+                    return;
+                }
+                this.list = data.results;
+            });
     }
 
-    getDate(key, label) {
-        let tpl = `
-            <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-                <label for="${key}" nz-form-item-required>
-                    <span>
-                        ${label}
-                    </span>
-                </label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                <nz-datepicker [nzSize]="'large'" formControlName="${key}" ></nz-datepicker>
-                <div nz-form-explain *ngIf="getFormControl('${key}').dirty&&getFormControl('${key}').hasError('required')">{{'Please input ${key}!'|translate}}</div>
-            </div>
-            </div>
-            `
-        return tpl;
+    sum() {
+        const me = this;
+        this.sub = this.loadSumData()
+            .subscribe(res => {
+                if (!res) {
+                    return;
+                }
+                me.modalHelper.static(SummodalComponent, { data: res.results, columns: me.columns }, 800).subscribe((saveOk) => {
+                    // 操作成功回调
+                    if (saveOk) {
+                    }
+                });
+            });
     }
 
-
-    getDateTime(key, label) {
-        let tpl = `
-            <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-                <label for="${key}" nz-form-item-required>
-                    <span>
-                        ${label}
-                    </span>
-                </label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                <nz-timepicker [nzSize]="'large'" formControlName="${key}" ></nz-timepicker>
-                <div nz-form-explain *ngIf="getFormControl('${key}').dirty&&getFormControl('${key}').hasError('required')">{{'Please input ${key}!'|translate}}</div>
-            </div>
-            </div>
-            `
-        return tpl;
+    export() {
+        const me = this;
+        me.modalHelper.static(ExprotmodalComponent, {}, 600).subscribe((modal) => {
+            me.modal = modal;
+            me.exportApi().subscribe((res => {
+                me.modal.subject.destroy();
+            }))
+        });
     }
 
+    clear() {
+        this.args = {};
+    }
 
+    showMsg(msg: string) {
+        this.message.info(msg);
+    }
 
+    getTitle() {
+        const menus = this.menuService.getPathByUrl(this.router.url);
+        for (const iterator of menus) {
+            console.log(this.router.url);
+            console.log(iterator['link']);
+            if (iterator['link'] === this.router.url) {
+                return iterator['text']
+            }
+        }
 
+    }
 
 }

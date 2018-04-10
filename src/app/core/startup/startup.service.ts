@@ -52,7 +52,6 @@ export class StartupService {
                 // ACL：设置权限为全量
                 this.aclService.setFull(true);
                 let menuList = [];
-                console.log(menuData);
 
                 for (const row of menuData.results) {
                     const m = {};

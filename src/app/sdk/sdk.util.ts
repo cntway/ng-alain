@@ -246,3 +246,18 @@ export function _(val: string): string {
 }
 
 
+export class CsvParam {
+    csvname: string;
+    csvdesc: string;
+}
+
+export class CsvModelPost extends FeildCheck {
+    where: any;
+    csv: CsvParam;
+    public fields_options = {};
+    public field_keys: string[] = ['where', 'csv'];
+    constructor() {
+        super();
+        this.csv = new CsvParam();
+    }
+}

@@ -1,5 +1,113 @@
 <nz-card>
     <ng-template #body>
+        <form class="cform" nz-form [formGroup]="queryForm" (ngSubmit)="_submitQueryForm()">
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+                    <label for="componentName" nz-form-item-required>componentName
+                        <nz-tooltip [nzTitle]="'组件名称，如user，则生成 UserComponent 组件'">
+                            <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+                        </nz-tooltip>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-input [nzSize]="'large'" formControlName="componentName" [nzId]="'componentName'"></nz-input>
+                    <div nz-form-explain *ngIf="getFormControl(3, 'componentName').dirty&&getFormControl(3, 'componentName').hasError('required')">The input is not valid componentName</div>
+                </div>
+            </div>
+
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+                    <label for="columns" nz-form-item-required>
+                        <span>
+                            columns
+                            <nz-tooltip [nzTitle]="'查询接口columns定义'">
+                                <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+                            </nz-tooltip>
+                        </span>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchQueryColumns($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="columns" nzShowSearch>
+                        <nz-option *ngFor="let option of searchQueryColumnsOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
+                        </nz-option>
+                    </nz-select>
+                    <div nz-form-explain *ngIf="getFormControl(3, 'columns').dirty&&getFormControl(3, 'columns').hasError('required')">Please input your columns!</div>
+                </div>
+            </div>
+
+
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+                    <label for="loadApi" nz-form-item-required>loadApi
+                        <nz-tooltip [nzTitle]="'loadApi'">
+                            <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+                        </nz-tooltip>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchQueryApi($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="loadApi" nzShowSearch>
+                        <nz-option *ngFor="let option of searchQueryApiOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
+                        </nz-option>
+                    </nz-select>
+
+                    <div nz-form-explain *ngIf="getFormControl(3, 'loadApi').dirty&&getFormControl(3, 'loadApi').hasError('required')">The input is not valid componentName</div>
+                </div>
+            </div>
+
+
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+                    <label for="loadSumApi" nz-form-item-required>loadSumApi
+                        <nz-tooltip [nzTitle]="'loadSumApi'">
+                            <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+                        </nz-tooltip>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchQueryApi($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="loadSumApi" nzShowSearch>
+                        <nz-option *ngFor="let option of searchQueryApiOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
+                        </nz-option>
+                    </nz-select>
+
+                    <div nz-form-explain *ngIf="getFormControl(3, 'loadSumApi').dirty&&getFormControl(3, 'loadSumApi').hasError('required')">The input is not valid componentName</div>
+                </div>
+            </div>
+
+
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+                    <label for="exportApi" nz-form-item-required>exportApi
+                        <nz-tooltip [nzTitle]="'exportApi'">
+                            <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+                        </nz-tooltip>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchQueryApi($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="exportApi" nzShowSearch>
+                        <nz-option *ngFor="let option of searchQueryApiOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
+                        </nz-option>
+                    </nz-select>
+
+                    <div nz-form-explain *ngIf="getFormControl(3, 'exportApi').dirty&&getFormControl(3, 'exportApi').hasError('required')">The input is not valid componentName</div>
+                </div>
+            </div>
+
+            <div nz-form-item nz-row style="margin-bottom:8px;">
+                <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="6">
+                    <button nz-button [nzSize]="'large'" [nzType]="'primary'">生成查询组件</button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</nz-card>
+
+
+<nz-card>
+    <ng-template #body>
         <form class="cform" nz-form [formGroup]="validateForm" (ngSubmit)="_submitForm()">
             <div nz-form-item nz-row>
                 <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
@@ -27,8 +135,8 @@
                     </label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [(ngModel)]="columns" [nzSize]="'large'"
-                        (nzSearchChange)="searchColumns($event)" [nzNotFoundContent]="'无法找到'" formControlName="columns" nzShowSearch>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchColumns($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="columns" nzShowSearch>
                         <nz-option *ngFor="let option of searchColumnsOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
                         </nz-option>
                     </nz-select>
@@ -46,8 +154,8 @@
                     </label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [(ngModel)]="loadApi" [nzSize]="'large'"
-                        (nzSearchChange)="searchApi($event)" [nzNotFoundContent]="'无法找到'" formControlName="loadApi" nzShowSearch>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchApi($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="loadApi" nzShowSearch>
                         <nz-option *ngFor="let option of searchApiOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
                         </nz-option>
                     </nz-select>
@@ -65,8 +173,8 @@
                     </label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [(ngModel)]="deleteApi" [nzSize]="'large'"
-                        (nzSearchChange)="searchApi($event)" [nzNotFoundContent]="'无法找到'" formControlName="deleteApi" nzShowSearch>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchApi($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="deleteApi" nzShowSearch>
                         <nz-option *ngFor="let option of searchApiOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
                         </nz-option>
                     </nz-select>
@@ -88,8 +196,8 @@
                     </label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [(ngModel)]="deleteModel" [nzSize]="'large'"
-                        (nzSearchChange)="searchModel($event)" [nzNotFoundContent]="'无法找到'" formControlName="deleteModel" nzShowSearch>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchModel($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="deleteModel" nzShowSearch>
                         <nz-option *ngFor="let option of searchModelOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
                         </nz-option>
                     </nz-select>
@@ -99,7 +207,7 @@
 
             <div nz-form-item nz-row style="margin-bottom:8px;">
                 <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="6">
-                    <button nz-button [nzSize]="'large'" [nzType]="'primary'">生成查询组件</button>
+                    <button nz-button [nzSize]="'large'" [nzType]="'primary'">生成主界面组件</button>
                 </div>
             </div>
         </form>
@@ -132,8 +240,8 @@
                     </label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [(ngModel)]="columns" [nzSize]="'large'"
-                        (nzSearchChange)="searchColumns($event)" [nzNotFoundContent]="'无法找到'" formControlName="columns" nzShowSearch>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchColumns($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="columns" nzShowSearch>
                         <nz-option *ngFor="let option of searchColumnsOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
                         </nz-option>
                     </nz-select>
@@ -150,8 +258,8 @@
                     </label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [(ngModel)]="editModel" [nzSize]="'large'"
-                        (nzSearchChange)="searchModel($event)" [nzNotFoundContent]="'无法找到'" formControlName="editModel" nzShowSearch>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchModel($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="editModel" nzShowSearch>
                         <nz-option *ngFor="let option of searchModelOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
                         </nz-option>
                     </nz-select>
@@ -172,8 +280,8 @@
                     </label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [(ngModel)]="updateApi" [nzSize]="'large'"
-                        (nzSearchChange)="searchApi($event)" [nzNotFoundContent]="'无法找到'" formControlName="updateApi" nzShowSearch>
+                    <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchApi($event)"
+                        [nzNotFoundContent]="'无法找到'" formControlName="updateApi" nzShowSearch>
                         <nz-option *ngFor="let option of searchApiOptions" [nzLabel]="option[0]" [nzValue]="option[0]">
                         </nz-option>
                     </nz-select>
