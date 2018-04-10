@@ -13,6 +13,7 @@
                 <div nz-form-control>
                     <button nz-button [nzType]="'primary'" (click)="load(1)" [nzLoading]="loading">{{"查询"|translate}}</button>
                     <button nz-button (click)="clear()" [disabled]="loading">{{"清除"|translate}}</button>
+                    <button nz-button (click)="export()" [nzLoading]="loading">{{"导出"|translate}}</button>
                 </div>
             </div>
         </form>

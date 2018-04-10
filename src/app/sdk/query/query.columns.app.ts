@@ -19,3 +19,23 @@ export const report_csv_download_get_columns = [
     { index: 'csvdesc', text: '备注', dataType: 'string', width: "200px" },
     { index: 'task_status', text: '状态', dataType: 'string', width: "200px" },
 ];
+
+export const trade_order_query_get_columns = [
+    { index: 'accid', text: '资金id', dataType: 'int', disabled: true },
+    { index: 'bscode', text: '买卖方向', dataType: 'enum', enum: bcexs_enums.BsCodeEnumTranslate },
+    { index: 'pairid', text: '交易对id', dataType: 'int', disabled: true },
+    { index: 'ordercode', text: '订单id', dataType: 'string', disabled: true },
+    { index: 'orderprice', text: '委托价格', dataType: 'float' },
+    { index: 'orderquantity', text: '委托数量', dataType: 'float' },
+    { index: 'ordertype', text: '委托类型', dataType: 'enum', enum: bcexs_enums.OrderTypeEnumTranslate },
+    { index: 'ordertime', text: '委托时间', dataType: 'datetime' },
+    { index: 'orderstatus', text: '委托状态', dataType: 'enum', enum: bcexs_enums.OrderStatusEnumTranslate },
+    { index: 'completequantity', text: '已成交数量', dataType: 'float' },
+    { index: 'fee', text: '手续费', dataType: 'float' },
+    { index: 'dealtime', text: '成交时间', dataType: 'datetime' },
+    { index: 'usedcoincode', text: '占用币种', dataType: 'string' },
+    { index: 'usedamount', text: '占用金额', dataType: 'float' },
+    { index: 'userid', text: '用户id', dataType: 'int', disabled: true },
+    { index: 'marketid', text: '市场id', dataType: 'int', disabled: true },
+    { index: 'tradingday', text: '交易日', dataType: 'datetime', disabled: true  },
+];

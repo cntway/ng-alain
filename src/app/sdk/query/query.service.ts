@@ -27,11 +27,12 @@ export class QuerySdkService extends SdkBase {
         return this.do('get', url, parames);
     }
     
-    sys_exchmoney_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>): Observable<any> {
+    sys_exchmoney_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>, sops:any): Observable<any> {
         const parames = new CsvModelPost()
         parames.where = parseQueryParam(queryParam);
         parames.csv.csvname =csvname;
         parames.csv.csvdesc =csvdesc;
+        parames.csv.sops = sops;
         const url = SERVICE_URl + '/querys/sys_exchmoney/today/csv';
         return this.do('post', url, parames);
     }
@@ -57,11 +58,12 @@ export class QuerySdkService extends SdkBase {
         return this.do('get', url, parames);
     }
     
-    sys_exchmoney_log_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>): Observable<any> {
+    sys_exchmoney_log_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>, sops:any): Observable<any> {
         const parames = new CsvModelPost()
         parames.where = parseQueryParam(queryParam);
         parames.csv.csvname =csvname;
         parames.csv.csvdesc =csvdesc;
+        parames.csv.sops = sops;
         const url = SERVICE_URl + '/querys/sys_exchmoney_log/today/csv';
         return this.do('post', url, parames);
     }
@@ -87,11 +89,12 @@ export class QuerySdkService extends SdkBase {
         return this.do('get', url, parames);
     }
     
-    trade_order_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>): Observable<any> {
+    trade_order_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>, sops:any): Observable<any> {
         const parames = new CsvModelPost()
         parames.where = parseQueryParam(queryParam);
         parames.csv.csvname =csvname;
         parames.csv.csvdesc =csvdesc;
+        parames.csv.sops = sops;
         const url = SERVICE_URl + '/querys/trade_order/today/csv';
         return this.do('post', url, parames);
     }
@@ -117,11 +120,12 @@ export class QuerySdkService extends SdkBase {
         return this.do('get', url, parames);
     }
     
-    user_bonus_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>): Observable<any> {
+    user_bonus_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>, sops:any): Observable<any> {
         const parames = new CsvModelPost()
         parames.where = parseQueryParam(queryParam);
         parames.csv.csvname =csvname;
         parames.csv.csvdesc =csvdesc;
+        parames.csv.sops = sops;
         const url = SERVICE_URl + '/querys/user_bonus/today/csv';
         return this.do('post', url, parames);
     }
@@ -147,11 +151,12 @@ export class QuerySdkService extends SdkBase {
         return this.do('get', url, parames);
     }
     
-    user_bonus_log_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>): Observable<any> {
+    user_bonus_log_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>, sops:any): Observable<any> {
         const parames = new CsvModelPost()
         parames.where = parseQueryParam(queryParam);
         parames.csv.csvname =csvname;
         parames.csv.csvdesc =csvdesc;
+        parames.csv.sops = sops;
         const url = SERVICE_URl + '/querys/user_bonus_log/today/csv';
         return this.do('post', url, parames);
     }

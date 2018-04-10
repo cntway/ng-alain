@@ -5,7 +5,7 @@ import * as bcexs_enums from './sdk.bcexs_enum';
 export const pair_property_group_map_get_columns = [
     { index: 'propertygroupid', text: '属性组', width: "100px" },
     { index: 'propertyname', text: '属性名称', width: "100px" },
-    { index: 'propertyid', text: '属性id', width: "100px" ,disabled: true, },
+    { index: 'propertyid', text: '属性id', width: "100px", disabled: true, },
     { index: 'pairid', text: '交易对id', disabled: true, width: "100px" },
     { index: 'marketid', text: '市场id', disabled: true, width: "100px" },
 
@@ -45,4 +45,12 @@ export const coin_pair_get_columns = [
     { index: 'marketmode', text: '市场模式', dataType: 'enum', enum: bcexs_enums.MarketModeEnumTranslate },
     { index: 'marketid', text: '市场id', dataType: 'int', disabled: true },
     { index: 'cdt', text: '创建时间', dataType: 'datetime' },
+];
+
+export const coin_currencys_get_columns = [
+    { index: 'coincode', text: '币代码', dataType: 'string' },
+    { index: 'marketid', text: '市场id', dataType: 'int', disabled: true },
+    { index: 'marketname', text: '市场名称', dataType: 'string' },
+    { index: 'cdt', text: '创建时间', dataType: 'datetime' },
+
 ];

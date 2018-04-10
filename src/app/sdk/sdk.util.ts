@@ -249,6 +249,7 @@ export function _(val: string): string {
 export class CsvParam {
     csvname: string;
     csvdesc: string;
+    sops: Array<any>;
 }
 
 export class CsvModelPost extends FeildCheck {

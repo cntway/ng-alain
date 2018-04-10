@@ -438,13 +438,30 @@ export abstract class QueryComponentBase implements OnInit, OnDestroy {
     getTitle() {
         const menus = this.menuService.getPathByUrl(this.router.url);
         for (const iterator of menus) {
-            console.log(this.router.url);
-            console.log(iterator['link']);
             if (iterator['link'] === this.router.url) {
                 return iterator['text']
             }
         }
 
+    }
+    
+    makesops() {
+        const show_options = [];
+        for (const iterator of this.columns) {
+            const tmp = {};
+            const tmpOptions = {};
+            if (iterator['disabled']) {
+                continue
+            }
+            tmp['key'] = iterator['index'];
+            tmp['cnname'] = iterator['text'];
+            if (iterator['dataType'] === 'enum') {
+                tmpOptions['enums'] = iterator['enum'];
+            }
+            tmp['options'] = tmpOptions;
+            show_options.push(tmp);
+        }
+        return show_options;
     }
 
 }

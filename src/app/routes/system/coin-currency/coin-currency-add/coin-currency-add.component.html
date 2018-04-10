@@ -1,0 +1,39 @@
+﻿<div class="modal-header">
+    <div class="modal-title">{{title|translate}}</div>
+</div>
+<form #f="ngForm" nz-form [formGroup]="validateForm">
+
+
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
+            <label for="marketid" nz-form-item-required>
+                <span>
+                    {{'市场id'|translate}}
+                </span>
+            </label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+            <app-skd-select formControlName="marketid" [loadService]="marketLoad" [key]="'marketid'" [name]="'marketname'"></app-skd-select>
+            <div nz-form-explain *ngIf="getFormControl('marketid').dirty&&getFormControl('marketid').hasError('required')">{{'Please input marketid!'|translate}}</div>
+        </div>
+    </div>
+
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
+            <label for="coincode" nz-form-item-required>
+                <span>
+                    {{'币代码'|translate}}
+                </span>
+            </label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+            <app-skd-select formControlName="coincode" [loadService]="coinLoad" [key]="'coincode'" [name]="'coincode'"></app-skd-select>
+            <div nz-form-explain *ngIf="getFormControl('coincode').dirty&&getFormControl('coincode').hasError('required')">{{'Please input coincode!'|translate}}</div>
+        </div>
+    </div>
+
+</form>
+<div class="modal-footer">
+    <button nz-button type="button" (click)="close()">{{"关闭"|translate}}</button>
+    <button nz-button (click)="save()" [disabled]="!f.form.valid || !f.form.dirty" [nzLoading]="http.loading" [nzType]="'primary'">{{"保存"|translate}}</button>
+</div>

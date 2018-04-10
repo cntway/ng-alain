@@ -12,7 +12,7 @@
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input [nzSize]="'large'" formControlName="coincode"></nz-input>
+            <nz-input [nzSize]="'large'" [nzReadonly]="'true'" formControlName="coincode"></nz-input>
             <div nz-form-explain *ngIf="getFormControl('coincode').dirty&&getFormControl('coincode').hasError('required')">{{'Please input coincode!'|translate}}</div>
         </div>
     </div>

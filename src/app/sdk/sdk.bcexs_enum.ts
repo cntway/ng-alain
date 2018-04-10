@@ -487,3 +487,20 @@ export const OnlineStatusEnumTranslate = {
     2: '离线',
 }
 
+
+export enum QuoteDataEnum { 
+    NONE = 0,  // None
+    TICKER = 1,  // Ticker
+    TRADE = 2,  // Trade
+    DEPTH = 3,  // Depth
+    KLINE = 4,  // KLine
+}
+
+export const QuoteDataEnumTranslate = { 
+    0: 'None',
+    1: 'Ticker',
+    2: 'Trade',
+    3: 'Depth',
+    4: 'KLine',
+}
+

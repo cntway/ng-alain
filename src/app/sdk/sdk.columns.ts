@@ -81,6 +81,13 @@ export const bonus_vip_rule_get_columns = [
     { index: 'bonusupper', text: '等级积分最高', dataType: 'int' },
 ];
 
+export const coin_currencys_get_columns = [
+    { index: 'coincode', text: '币代码', dataType: 'string' },
+    { index: 'marketid', text: '市场id', dataType: 'int' },
+    { index: 'cdt', text: '创建时间', dataType: 'datetime' },
+    { index: 'marketname', text: '市场名称', dataType: 'string' },
+];
+
 export const coin_info_get_columns = [
     { index: 'coincode', text: '币代码', dataType: 'string' },
     { index: 'coinname', text: '币种名称', dataType: 'string' },
@@ -143,17 +150,6 @@ export const pair_property_group_map_get_columns = [
     { index: 'propertyid', text: '属性id', dataType: 'int' },
     { index: 'marketid', text: '市场id', dataType: 'int' },
     { index: 'propertyname', text: '属性名称', dataType: 'string' },
-];
-
-export const exchange_money_get_columns = [
-    { index: 'coincode', text: '币代码', dataType: 'string' },
-    { index: 'balance', text: '该币种在交易所余额', dataType: 'float' },
-    { index: 'totalfee', text: '交易所收取的总手续费', dataType: 'float' },
-    { index: 'dayfee', text: '交易所当天收取的手续费', dataType: 'float' },
-    { index: 'totalrefill', text: '该币种入金总数量', dataType: 'float' },
-    { index: 'dayrefill', text: '该币种当天入金总数量', dataType: 'float' },
-    { index: 'totalwithdraw', text: '该币种出金总数量', dataType: 'float' },
-    { index: 'daywithdraw', text: '该币种当出入金总数量', dataType: 'float' },
 ];
 
 export const user_users_contact_get_columns = [

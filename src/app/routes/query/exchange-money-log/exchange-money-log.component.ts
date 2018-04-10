@@ -38,6 +38,6 @@ export class ExchangeMoneyLogComponent extends QueryComponentBase {
     }
 
     exportApi() {
-        return this.querySdk.sys_exchmoney_log_csv_query_post_csv_api(this.getTitle(), this.modal.i['csvdesc'], this.getQueryParams());
+        return this.querySdk.sys_exchmoney_log_csv_query_post_csv_api(this.getTitle(), this.modal.i['csvdesc'], this.getQueryParams(), this.makesops());
     }
 }

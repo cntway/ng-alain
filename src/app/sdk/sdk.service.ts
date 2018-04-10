@@ -162,18 +162,6 @@ export class SdkService extends SdkBase {
     }
     
     
-    users_step_one_post_api(parames: model_sdk.UsersStepOnePost): Observable<any> {
-        const url = SERVICE_URl + '/users/users/reviews';
-        return this.do('post', url, parames);
-    }
-    
-    
-    users_step_one_put_api(parames: model_sdk.UsersStepOnePut): Observable<any> {
-        const url = SERVICE_URl + '/users/users/reviews';
-        return this.do('put', url, parames);
-    }
-    
-    
     bonus_rule_delete_api(parames: model_sdk.BonusRuleDelete): Observable<any> {
         const url = SERVICE_URl + '/bcex/bonus/rule';
         return this.do('delete', url, parames);
@@ -249,6 +237,28 @@ export class SdkService extends SdkBase {
     bonus_vip_rule_put_api(parames: model_sdk.BonusVipRulePut): Observable<any> {
         const url = SERVICE_URl + '/bcex/bonus/vip/rule';
         return this.do('put', url, parames);
+    }
+    
+    
+    coin_currencys_delete_api(parames: model_sdk.CoinCurrencysDelete): Observable<any> {
+        const url = SERVICE_URl + '/bcex/trule/coincurrency';
+        return this.do('delete', url, parames);
+    }
+    
+    
+    coin_currencys_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/bcex/trule/coincurrency';
+        return this.do('get', url, parames);
+    }
+    
+    coin_currencys_post_api(parames: model_sdk.CoinCurrencysPost): Observable<any> {
+        const url = SERVICE_URl + '/bcex/trule/coincurrency';
+        return this.do('post', url, parames);
     }
     
     
@@ -390,6 +400,18 @@ export class SdkService extends SdkBase {
     }
     
     
+    muser_images_post_api(parames: model_sdk.MuserImagesPost): Observable<any> {
+        const url = SERVICE_URl + '/musers/images/upload';
+        return this.do('post', url, parames);
+    }
+    
+    
+    user_images_post_api(parames: model_sdk.UserImagesPost): Observable<any> {
+        const url = SERVICE_URl + '/users/images/upload';
+        return this.do('post', url, parames);
+    }
+    
+    
     user_users_contact_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
         const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
         if (sort !== '') {
@@ -506,6 +528,110 @@ export class SdkService extends SdkBase {
     
     user_parames_put_api(parames: model_sdk.UserParamesPut): Observable<any> {
         const url = SERVICE_URl + '/users/parames';
+        return this.do('put', url, parames);
+    }
+    
+    
+    users_step_one_desc_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/users/users/reviews_one/desc';
+        return this.do('get', url, parames);
+    }
+    
+    users_step_one_log_desc_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/users/users/reviews_one/log/desc';
+        return this.do('get', url, parames);
+    }
+    
+    users_step_one_log_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/users/users/reviews_one/log';
+        return this.do('get', url, parames);
+    }
+    
+    users_step_one_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/users/users/reviews_one';
+        return this.do('get', url, parames);
+    }
+    
+    users_step_two_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/users/users/reviews_two';
+        return this.do('get', url, parames);
+    }
+    
+    users_step_two_log_desc_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/users/users/reviews_two/log/desc';
+        return this.do('get', url, parames);
+    }
+    
+    users_step_two_log_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/users/users/reviews_two/log';
+        return this.do('get', url, parames);
+    }
+    
+    users_step_two_desc_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/users/users/reviews_two/desc';
+        return this.do('get', url, parames);
+    }
+    
+    users_step_one_post_api(parames: model_sdk.UsersStepOnePost): Observable<any> {
+        const url = SERVICE_URl + '/users/users/reviews_one';
+        return this.do('post', url, parames);
+    }
+    
+    
+    users_step_two_post_api(parames: model_sdk.UsersStepTwoPost): Observable<any> {
+        const url = SERVICE_URl + '/users/users/reviews_two';
+        return this.do('post', url, parames);
+    }
+    
+    
+    users_step_one_put_api(parames: model_sdk.UsersStepOnePut): Observable<any> {
+        const url = SERVICE_URl + '/users/users/reviews_one';
+        return this.do('put', url, parames);
+    }
+    
+    
+    users_step_two_put_api(parames: model_sdk.UsersStepTwoPut): Observable<any> {
+        const url = SERVICE_URl + '/users/users/reviews_two';
         return this.do('put', url, parames);
     }
     

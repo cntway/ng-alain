@@ -37,5 +37,8 @@ export class ExchangeMoneyComponent extends QueryComponentBase {
         return this.querySdk.sys_exchmoney_sum_query_get_api(this.getQueryParams())
     }
 
+
+    exportApi() {
+        return this.querySdk.sys_exchmoney_csv_query_post_csv_api(this.getTitle(), this.modal.i['csvdesc'], this.getQueryParams(), this.makesops());
+    }
 }
-        
