@@ -21,6 +21,8 @@ export const report_csv_download_get_columns = [
 ];
 
 export const trade_order_query_get_columns = [
+    { index: 'logincode', text: '登陆账号', dataType: 'string' },
+    { index: 'username', text: '用户姓名', dataType: 'string' },
     { index: 'accid', text: '资金id', dataType: 'int', disabled: true },
     { index: 'bscode', text: '买卖方向', dataType: 'enum', enum: bcexs_enums.BsCodeEnumTranslate },
     { index: 'pairid', text: '交易对id', dataType: 'int', disabled: true },
@@ -37,5 +39,39 @@ export const trade_order_query_get_columns = [
     { index: 'usedamount', text: '占用金额', dataType: 'float' },
     { index: 'userid', text: '用户id', dataType: 'int', disabled: true },
     { index: 'marketid', text: '市场id', dataType: 'int', disabled: true },
-    { index: 'tradingday', text: '交易日', dataType: 'datetime', disabled: true  },
+    { index: 'tradingday', text: '交易日', dataType: 'datetime', disabled: true },
+];
+
+export const user_money_query_get_columns = [
+    { index: 'username', text: '用户名称', dataType: 'string' },
+    { index: 'logincode', text: '登陆账号', dataType: 'string' },
+    { index: 'accid', text: '资金账户id', dataType: 'int', disabled: true },
+    { index: 'coincode', text: '币代码', dataType: 'string' },
+    { index: 'balance', text: '余额', dataType: 'float' },
+    { index: 'frozen', text: '冻结额度', dataType: 'float' },
+    { index: 'available', text: '可用额度', dataType: 'float' },
+    { index: 'userid', text: '用户id', dataType: 'int', disabled: true },
+    { index: 'marketid', text: '市场id', dataType: 'int', disabled: true },
+
+];
+
+export const trade_order_log_query_get_columns = [
+    { index: 'logincode', text: '登陆账号', dataType: 'string' },
+    { index: 'username', text: '用户姓名', dataType: 'string' },
+    { index: 'pairname', text: '交易对名称', dataType: 'string' },
+    { index: 'serialid', text: '流水号', dataType: 'int' },
+    { index: 'accid', text: '资金账号', dataType: 'int' , disabled: true },
+    { index: 'bscode', text: '买卖方向', dataType: 'enum', enum: bcexs_enums.BsCodeEnumTranslate },
+    { index: 'pairid', text: '交易对id', dataType: 'int' , disabled: true},
+    { index: 'ordercode', text: '订单id', dataType: 'string' },
+    { index: 'orderprice', text: '委托价格', dataType: 'float' },
+    { index: 'orderquantity', text: '委托数量', dataType: 'float' },
+    { index: 'ordertype', text: '委托类型', dataType: 'enum', enum: bcexs_enums.OrderTypeEnumTranslate },
+    { index: 'ordertime', text: '委托时间', dataType: 'datetime' },
+    { index: 'completequantity', text: '已成交数量', dataType: 'float' , disabled: true},
+    { index: 'userid', text: '用户id', dataType: 'int' , disabled: true},
+    { index: 'marketid', text: '市场id', dataType: 'int' , disabled: true},
+    { index: 'optype', text: '操作类型', dataType: 'enum', enum: bcexs_enums.OrderOpEnumTranslate },
+    { index: 'cdt', text: '创建时间', dataType: 'datetime' },
+
 ];

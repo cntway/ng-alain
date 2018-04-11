@@ -613,7 +613,7 @@ export class ${this.makeClassName(componentDf['componentName'])}Component extend
     }
 
     exportApi() {
-        return this.querySdk.${componentDf['exportApi']}(this.getTitle(), this.modal.i['csvdesc'], this.getQueryParams());
+        return this.querySdk.${componentDf['exportApi']}(this.getTitle(), this.modal.i['csvdesc'], this.getQueryParams(),this.makesops);
     }
 }
         `

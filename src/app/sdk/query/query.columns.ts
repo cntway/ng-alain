@@ -39,6 +39,25 @@ export const sys_exchmoney_log_sum_query_get_columns = [
     { index: 'umchange', text: '变动额度', dataType: 'float' },
 ];
 
+export const user_money_query_get_columns = [
+    { index: 'accid', text: '资金账户id', dataType: 'int' },
+    { index: 'coincode', text: '币代码', dataType: 'string' },
+    { index: 'balance', text: '余额', dataType: 'float' },
+    { index: 'frozen', text: '冻结额度', dataType: 'float' },
+    { index: 'available', text: '可用额度', dataType: 'float' },
+    { index: 'userid', text: '用户id', dataType: 'int' },
+    { index: 'marketid', text: '市场id', dataType: 'int' },
+    { index: 'username', text: '用户名称', dataType: 'string' },
+    { index: 'logincode', text: '登陆账号', dataType: 'string' },
+];
+
+export const user_money_sum_query_get_columns = [
+    { index: 'count', text: '记录数量', dataType: 'int' },
+    { index: 'balance', text: '余额', dataType: 'float' },
+    { index: 'frozen', text: '冻结额度', dataType: 'float' },
+    { index: 'available', text: '可用额度', dataType: 'float' },
+];
+
 export const trade_order_query_get_columns = [
     { index: 'accid', text: '资金id', dataType: 'int' },
     { index: 'bscode', text: '买卖方向', dataType: 'enum', enum: bcexs_enums.BsCodeEnumTranslate },
@@ -57,6 +76,8 @@ export const trade_order_query_get_columns = [
     { index: 'userid', text: '用户id', dataType: 'int' },
     { index: 'marketid', text: '市场id', dataType: 'int' },
     { index: 'tradingday', text: '交易日', dataType: 'datetime' },
+    { index: 'username', text: '用户姓名', dataType: 'string' },
+    { index: 'logincode', text: '登陆账号', dataType: 'string' },
 ];
 
 export const trade_order_sum_query_get_columns = [
@@ -73,6 +94,30 @@ export const trade_order_sum_query_get_columns = [
     { index: 'userid', text: '用户id', dataType: 'int' },
     { index: 'marketid', text: '市场id', dataType: 'int' },
     { index: 'tradingday', text: '交易日', dataType: 'datetime' },
+    { index: 'count', text: '记录数量', dataType: 'int' },
+];
+
+export const trade_order_log_query_get_columns = [
+    { index: 'serialid', text: '流水号', dataType: 'int' },
+    { index: 'accid', text: '资金账号', dataType: 'int' },
+    { index: 'bscode', text: '买卖方向', dataType: 'enum', enum: bcexs_enums.BsCodeEnumTranslate },
+    { index: 'pairid', text: '交易对id', dataType: 'int' },
+    { index: 'ordercode', text: '订单id', dataType: 'string' },
+    { index: 'orderprice', text: '委托价格', dataType: 'float' },
+    { index: 'orderquantity', text: '委托数量', dataType: 'float' },
+    { index: 'ordertype', text: '委托类型', dataType: 'enum', enum: bcexs_enums.OrderTypeEnumTranslate },
+    { index: 'ordertime', text: '委托时间', dataType: 'datetime' },
+    { index: 'completequantity', text: '已成交数量', dataType: 'float' },
+    { index: 'userid', text: '用户id', dataType: 'int' },
+    { index: 'marketid', text: '市场id', dataType: 'int' },
+    { index: 'optype', text: '操作类型', dataType: 'enum', enum: bcexs_enums.OrderOpEnumTranslate },
+    { index: 'cdt', text: '创建时间', dataType: 'datetime' },
+    { index: 'username', text: '用户姓名', dataType: 'string' },
+    { index: 'logincode', text: '登陆账号', dataType: 'string' },
+    { index: 'pairname', text: '交易对名称', dataType: 'string' },
+];
+
+export const trade_order_log_sum_query_get_columns = [
     { index: 'count', text: '记录数量', dataType: 'int' },
 ];
 

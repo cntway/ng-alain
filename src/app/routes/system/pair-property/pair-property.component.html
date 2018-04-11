@@ -2,11 +2,11 @@
     <ng-template #body>
         <form nz-form class="search-form" [nzLayout]="'inline'">
             <div nz-form-item>
-                <label>{{"名称"|translate}}</label>
+                <label>{{"属性名称"|translate}}</label>
             </div>
             <div nz-form-item>
                 <div nz-form-control>
-                    <nz-input [(ngModel)]="args.username" name="username"></nz-input>
+                    <nz-input [(ngModel)]="args.propertyname" name="propertyname"></nz-input>
                 </div>
             </div>
             <div nz-form-item>

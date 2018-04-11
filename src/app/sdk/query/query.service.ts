@@ -69,6 +69,37 @@ export class QuerySdkService extends SdkBase {
     }
     
     
+    user_money_query_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/querys/user_hmoney/today';
+        return this.do('get', url, parames);
+    }
+    
+    user_money_sum_query_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/querys/user_money/today/totle';
+        return this.do('get', url, parames);
+    }
+    
+    user_money_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>, sops:any): Observable<any> {
+        const parames = new CsvModelPost()
+        parames.where = parseQueryParam(queryParam);
+        parames.csv.csvname =csvname;
+        parames.csv.csvdesc =csvdesc;
+        parames.csv.sops = sops;
+        const url = SERVICE_URl + '/querys/user_money/today/csv';
+        return this.do('post', url, parames);
+    }
+    
+    
     trade_order_query_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
         const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
         if (sort !== '') {
@@ -96,6 +127,37 @@ export class QuerySdkService extends SdkBase {
         parames.csv.csvdesc =csvdesc;
         parames.csv.sops = sops;
         const url = SERVICE_URl + '/querys/trade_order/today/csv';
+        return this.do('post', url, parames);
+    }
+    
+    
+    trade_order_log_query_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/querys/trade_order_log/today';
+        return this.do('get', url, parames);
+    }
+    
+    trade_order_log_sum_query_get_api(queryParam: Array<QueryParam>, PageIndex = 1, pageSize = 10, sort = ''): Observable<any> {
+        const parames = { 'page': [(PageIndex - 1) * pageSize, pageSize] };
+        if (sort !== '') {
+            parames['sort'] = sort;
+        }
+        parames['where'] = parseQueryParam(queryParam);
+        const url = SERVICE_URl + '/querys/trade_order_log/today/totle';
+        return this.do('get', url, parames);
+    }
+    
+    trade_order_log_csv_query_post_csv_api(csvname: string, csvdesc: string, queryParam: Array<QueryParam>, sops:any): Observable<any> {
+        const parames = new CsvModelPost()
+        parames.where = parseQueryParam(queryParam);
+        parames.csv.csvname =csvname;
+        parames.csv.csvdesc =csvdesc;
+        parames.csv.sops = sops;
+        const url = SERVICE_URl + '/querys/trade_order_log/today/csv';
         return this.do('post', url, parames);
     }
     

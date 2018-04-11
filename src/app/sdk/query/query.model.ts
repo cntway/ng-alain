@@ -81,6 +81,42 @@ export class SysExchmoneyLogCsvQueryPost extends FeildCheck {
 }
 
 
+export class UserMoneyQueryGet extends FeildCheck {
+
+    
+    public fields_options = { 
+    };
+
+    public field_keys: string[] = [
+        
+    ];
+}
+
+
+export class UserMoneySumQueryGet extends FeildCheck {
+
+    
+    public fields_options = { 
+    };
+
+    public field_keys: string[] = [
+        
+    ];
+}
+
+
+export class UserMoneyCsvQueryPost extends FeildCheck {
+
+    
+    public fields_options = { 
+    };
+
+    public field_keys: string[] = [
+        
+    ];
+}
+
+
 export class TradeOrderQueryGet extends FeildCheck {
 
     
@@ -106,6 +142,42 @@ export class TradeOrderSumQueryGet extends FeildCheck {
 
 
 export class TradeOrderCsvQueryPost extends FeildCheck {
+
+    
+    public fields_options = { 
+    };
+
+    public field_keys: string[] = [
+        
+    ];
+}
+
+
+export class TradeOrderLogQueryGet extends FeildCheck {
+
+    
+    public fields_options = { 
+    };
+
+    public field_keys: string[] = [
+        
+    ];
+}
+
+
+export class TradeOrderLogSumQueryGet extends FeildCheck {
+
+    
+    public fields_options = { 
+    };
+
+    public field_keys: string[] = [
+        
+    ];
+}
+
+
+export class TradeOrderLogCsvQueryPost extends FeildCheck {
 
     
     public fields_options = { 
