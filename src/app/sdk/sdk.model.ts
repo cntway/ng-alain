@@ -125,17 +125,15 @@ export class SysMenuGet extends FeildCheck {
 export class SysMenuPost extends FeildCheck {
 
     
+    public commituri: string;  // 提交接口地址
+    
     public remark: string;  // 备忘
-    
-    public isstop: admins_enums.EnumIsStopType;  // 是否停用
-    
-    public isshow: admins_enums.EnumIsStopType;  // 是否显示
     
     public sortid: number;  // 显示顺序
     
-    public commituri: string;  // 提交接口地址
-    
     public productid: number;  // 产品id
+    
+    public isshow: admins_enums.EnumIsStopType;  // 是否显示
     
     public apikey: string;  // 接口名称
     
@@ -143,40 +141,37 @@ export class SysMenuPost extends FeildCheck {
     
     public funckey: string;  // 前端用配置字段
     
-    public menuname: string;  // 菜单名称
-    
     public pagehref: string;  // 页面地址
     
+    public isstop: admins_enums.EnumIsStopType;  // 是否停用
+    
+    public menuname: string;  // 菜单名称
+    
     public fields_options = { 
-        'remark': { 
+        'commituri': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
         },
-        'isstop': { 
-            'maxlen': 'none',
-            'type': 'EnumIsStopType',
-            'typeValue': 'admins_enums.EnumIsStopType'
-        },
-        'isshow': { 
-            'maxlen': 'none',
-            'type': 'EnumIsStopType',
-            'typeValue': 'admins_enums.EnumIsStopType'
+        'remark': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
         },
         'sortid': { 
             'maxlen': 'none',
             'type': 'int32',
             'typeValue': 'number'
         },
-        'commituri': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
         'productid': { 
             'maxlen': 'none',
             'type': 'int32',
             'typeValue': 'number'
+        },
+        'isshow': { 
+            'maxlen': 'none',
+            'type': 'EnumIsStopType',
+            'typeValue': 'admins_enums.EnumIsStopType'
         },
         'apikey': { 
             'maxlen': '32',
@@ -193,65 +188,7 @@ export class SysMenuPost extends FeildCheck {
             'type': 'string32',
             'typeValue': 'string'
         },
-        'menuname': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
         'pagehref': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-    };
-
-    public field_keys: string[] = [
-        'remark',
-        'isstop',
-        'isshow',
-        'sortid',
-        'commituri',
-        'productid',
-        'apikey',
-        'parentid',
-        'funckey',
-        'menuname',
-        'pagehref'
-    ];
-}
-
-
-export class SysMenuPut extends FeildCheck {
-
-    
-    public remark: string;  // 备忘
-    
-    public isstop: admins_enums.EnumIsStopType;  // 是否停用
-    
-    public isshow: admins_enums.EnumIsStopType;  // 是否显示
-    
-    public sortid: number;  // 显示顺序
-    
-    public commituri: string;  // 提交接口地址
-    
-    public productid: number;  // 产品id
-    
-    public menuid: number;  // 菜单id
-    
-    public apikey: string;  // 接口名称
-    
-    public parentid: number;  // 父菜单id
-    
-    public funckey: string;  // 前端用配置字段
-    
-    public menuname: string;  // 菜单名称
-    
-    public parentids: string;  // 父菜单结构
-    
-    public pagehref: string;  // 页面地址
-    
-    public fields_options = { 
-        'remark': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -261,20 +198,73 @@ export class SysMenuPut extends FeildCheck {
             'type': 'EnumIsStopType',
             'typeValue': 'admins_enums.EnumIsStopType'
         },
-        'isshow': { 
-            'maxlen': 'none',
-            'type': 'EnumIsStopType',
-            'typeValue': 'admins_enums.EnumIsStopType'
+        'menuname': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+    };
+
+    public field_keys: string[] = [
+        'commituri',
+        'remark',
+        'sortid',
+        'productid',
+        'isshow',
+        'apikey',
+        'parentid',
+        'funckey',
+        'pagehref',
+        'isstop',
+        'menuname'
+    ];
+}
+
+
+export class SysMenuPut extends FeildCheck {
+
+    
+    public commituri: string;  // 提交接口地址
+    
+    public remark: string;  // 备忘
+    
+    public sortid: number;  // 显示顺序
+    
+    public productid: number;  // 产品id
+    
+    public menuid: number;  // 菜单id
+    
+    public isshow: admins_enums.EnumIsStopType;  // 是否显示
+    
+    public apikey: string;  // 接口名称
+    
+    public parentids: string;  // 父菜单结构
+    
+    public parentid: number;  // 父菜单id
+    
+    public funckey: string;  // 前端用配置字段
+    
+    public pagehref: string;  // 页面地址
+    
+    public isstop: admins_enums.EnumIsStopType;  // 是否停用
+    
+    public menuname: string;  // 菜单名称
+    
+    public fields_options = { 
+        'commituri': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'remark': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
         },
         'sortid': { 
             'maxlen': 'none',
             'type': 'int32',
             'typeValue': 'number'
-        },
-        'commituri': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
         },
         'productid': { 
             'maxlen': 'none',
@@ -286,7 +276,17 @@ export class SysMenuPut extends FeildCheck {
             'type': 'int32',
             'typeValue': 'number'
         },
+        'isshow': { 
+            'maxlen': 'none',
+            'type': 'EnumIsStopType',
+            'typeValue': 'admins_enums.EnumIsStopType'
+        },
         'apikey': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'parentids': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -301,17 +301,17 @@ export class SysMenuPut extends FeildCheck {
             'type': 'string32',
             'typeValue': 'string'
         },
-        'menuname': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'parentids': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
         'pagehref': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'isstop': { 
+            'maxlen': 'none',
+            'type': 'EnumIsStopType',
+            'typeValue': 'admins_enums.EnumIsStopType'
+        },
+        'menuname': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -319,19 +319,19 @@ export class SysMenuPut extends FeildCheck {
     };
 
     public field_keys: string[] = [
-        'remark',
-        'isstop',
-        'isshow',
-        'sortid',
         'commituri',
+        'remark',
+        'sortid',
         'productid',
         'menuid',
+        'isshow',
         'apikey',
+        'parentids',
         'parentid',
         'funckey',
-        'menuname',
-        'parentids',
-        'pagehref'
+        'pagehref',
+        'isstop',
+        'menuname'
     ];
 }
 
@@ -396,26 +396,26 @@ export class SysRoleGet extends FeildCheck {
 export class SysRolePost extends FeildCheck {
 
     
-    public rolename: string;  // 角色名称
-    
     public roletype: admins_enums.EnumUserType;  // 角色类型
     
+    public rolename: string;  // 角色名称
+    
     public fields_options = { 
-        'rolename': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
         'roletype': { 
             'maxlen': 'none',
             'type': 'EnumUserType',
             'typeValue': 'admins_enums.EnumUserType'
         },
+        'rolename': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
     };
 
     public field_keys: string[] = [
-        'rolename',
-        'roletype'
+        'roletype',
+        'rolename'
     ];
 }
 
@@ -456,26 +456,26 @@ export class SysRoleMenuPut extends FeildCheck {
 export class SysRolePut extends FeildCheck {
 
     
-    public rolename: string;  // 角色名称
-    
     public roleid: number;  // 角色id
     
+    public rolename: string;  // 角色名称
+    
     public fields_options = { 
-        'rolename': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
         'roleid': { 
             'maxlen': 'none',
             'type': 'int32',
             'typeValue': 'number'
         },
+        'rolename': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
     };
 
     public field_keys: string[] = [
-        'rolename',
-        'roleid'
+        'roleid',
+        'rolename'
     ];
 }
 
@@ -548,33 +548,43 @@ export class MuserUsersGet extends FeildCheck {
 export class MuserUsersPost extends FeildCheck {
 
     
+    public userstatus: admins_enums.EnumUserStatus;  // 用户状态
+    
     public userpwd: string;  // 用户密码
-    
-    public logincode: string;  // 登录账号
-    
-    public idcardvaild: Date;  // 证件有效期
     
     public idtype: admins_enums.EnumIdType;  // 证件类型
     
+    public username: string;  // 用户姓名
+    
+    public idcardvaild: Date;  // 证件有效期
+    
+    public logincode: string;  // 登录账号
+    
     public nikename: string;  // 用户昵称
-    
-    public email: string;  // 电子邮箱
-    
-    public idcard: string;  // 证件号码
     
     public phone: string;  // 手机号码
     
-    public userstatus: admins_enums.EnumUserStatus;  // 用户状态
+    public idcard: string;  // 证件号码
     
-    public username: string;  // 用户姓名
+    public email: string;  // 电子邮箱
     
     public fields_options = { 
+        'userstatus': { 
+            'maxlen': 'none',
+            'type': 'EnumUserStatus',
+            'typeValue': 'admins_enums.EnumUserStatus'
+        },
         'userpwd': { 
             'maxlen': '24',
             'type': 'byte24',
             'typeValue': 'string'
         },
-        'logincode': { 
+        'idtype': { 
+            'maxlen': 'none',
+            'type': 'EnumIdType',
+            'typeValue': 'admins_enums.EnumIdType'
+        },
+        'username': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -584,22 +594,12 @@ export class MuserUsersPost extends FeildCheck {
             'type': 'date',
             'typeValue': 'Date'
         },
-        'idtype': { 
-            'maxlen': 'none',
-            'type': 'EnumIdType',
-            'typeValue': 'admins_enums.EnumIdType'
+        'logincode': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
         },
         'nikename': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'email': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'idcard': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -609,12 +609,12 @@ export class MuserUsersPost extends FeildCheck {
             'type': 'string32',
             'typeValue': 'string'
         },
-        'userstatus': { 
-            'maxlen': 'none',
-            'type': 'EnumUserStatus',
-            'typeValue': 'admins_enums.EnumUserStatus'
+        'idcard': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
         },
-        'username': { 
+        'email': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -622,16 +622,16 @@ export class MuserUsersPost extends FeildCheck {
     };
 
     public field_keys: string[] = [
-        'userpwd',
-        'logincode',
-        'idcardvaild',
-        'idtype',
-        'nikename',
-        'email',
-        'idcard',
-        'phone',
         'userstatus',
-        'username'
+        'userpwd',
+        'idtype',
+        'username',
+        'idcardvaild',
+        'logincode',
+        'nikename',
+        'phone',
+        'idcard',
+        'email'
     ];
 }
 
@@ -668,52 +668,22 @@ export class MuserUsersPut extends FeildCheck {
     
     public nikename: string;  // 用户昵称
     
-    public email: string;  // 电子邮箱
-    
-    public idcard: string;  // 证件号码
-    
-    public userid: number;  // 用户id
+    public idtype: admins_enums.EnumIdType;  // 证件类型
     
     public phone: string;  // 手机号码
     
-    public idcardvaild: Date;  // 证件有效期
+    public email: string;  // 电子邮箱
+    
+    public userid: number;  // 用户id
     
     public username: string;  // 用户姓名
     
-    public idtype: admins_enums.EnumIdType;  // 证件类型
+    public idcard: string;  // 证件号码
+    
+    public idcardvaild: Date;  // 证件有效期
     
     public fields_options = { 
         'nikename': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'email': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'idcard': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'userid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'phone': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'idcardvaild': { 
-            'maxlen': 'none',
-            'type': 'date',
-            'typeValue': 'Date'
-        },
-        'username': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -723,17 +693,47 @@ export class MuserUsersPut extends FeildCheck {
             'type': 'EnumIdType',
             'typeValue': 'admins_enums.EnumIdType'
         },
+        'phone': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'email': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'userid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'username': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'idcard': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'idcardvaild': { 
+            'maxlen': 'none',
+            'type': 'date',
+            'typeValue': 'Date'
+        },
     };
 
     public field_keys: string[] = [
         'nikename',
-        'email',
-        'idcard',
-        'userid',
+        'idtype',
         'phone',
-        'idcardvaild',
+        'email',
+        'userid',
         'username',
-        'idtype'
+        'idcard',
+        'idcardvaild'
     ];
 }
 
@@ -760,26 +760,26 @@ export class MuserParamesDelete extends FeildCheck {
 export class MuserParamesGet extends FeildCheck {
 
     
-    public userid: number;  // 用户id
-    
     public paramsname: string;  // 配置名称
     
+    public userid: number;  // 用户id
+    
     public fields_options = { 
-        'userid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'paramsname': { 
             'maxlen': '16',
             'type': 'string16',
             'typeValue': 'string'
         },
+        'userid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'userid',
-        'paramsname'
+        'paramsname',
+        'userid'
     ];
 }
 
@@ -787,21 +787,21 @@ export class MuserParamesGet extends FeildCheck {
 export class MuserParamesPut extends FeildCheck {
 
     
-    public paramsname: string;  // 配置名称
-    
     public paramsvalue: string;  // 配置值
+    
+    public paramsname: string;  // 配置名称
     
     public paramssection: string;  // 配置段
     
     public fields_options = { 
-        'paramsname': { 
-            'maxlen': '16',
-            'type': 'string16',
-            'typeValue': 'string'
-        },
         'paramsvalue': { 
             'maxlen': '32',
             'type': 'string32',
+            'typeValue': 'string'
+        },
+        'paramsname': { 
+            'maxlen': '16',
+            'type': 'string16',
             'typeValue': 'string'
         },
         'paramssection': { 
@@ -812,8 +812,8 @@ export class MuserParamesPut extends FeildCheck {
     };
 
     public field_keys: string[] = [
-        'paramsname',
         'paramsvalue',
+        'paramsname',
         'paramssection'
     ];
 }
@@ -859,25 +859,17 @@ export class BonusRuleGet extends FeildCheck {
 export class BonusRulePost extends FeildCheck {
 
     
-    public pairid: number;  // 交易对id
-    
-    public lower: number;  // 积分范围L
-    
     public bonustype: bcexs_enums.BonusEnum;  // 积分类型
     
     public bonus: number;  // 积分
     
     public upper: number;  // 积分范围H
     
+    public lower: number;  // 积分范围L
+    
+    public pairid: number;  // 交易对id
+    
     public fields_options = { 
-        'pairid': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'lower': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'bonustype': { 
             'type': 'BonusEnum',
             'typeValue': 'bcexs_enums.BonusEnum'
@@ -890,14 +882,22 @@ export class BonusRulePost extends FeildCheck {
             'type': 'int32',
             'typeValue': 'number'
         },
+        'lower': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'pairid': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'pairid',
-        'lower',
         'bonustype',
         'bonus',
-        'upper'
+        'upper',
+        'lower',
+        'pairid'
     ];
 }
 
@@ -942,19 +942,35 @@ export class BonusVipPrivilegeGet extends FeildCheck {
 export class BonusVipPrivilegePost extends FeildCheck {
 
     
+    public takerdiscount: number;  // taker折扣
+    
+    public wdtimesmulti: number;  // 提现次数倍数
+    
+    public makerdiscount: number;  // maker折扣
+    
+    public wdamountmulti: number;  // 提现额度倍数
+    
     public wddiscount: number;  // 提现折扣
     
     public vipclass: bcexs_enums.VipEnum;  // vip等级
     
-    public wdamountmulti: number;  // 提现额度倍数
-    
-    public takerdiscount: number;  // taker折扣
-    
-    public makerdiscount: number;  // maker折扣
-    
-    public wdtimesmulti: number;  // 提现次数倍数
-    
     public fields_options = { 
+        'takerdiscount': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
+        'wdtimesmulti': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'makerdiscount': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
+        'wdamountmulti': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
         'wddiscount': { 
             'type': 'double',
             'typeValue': 'number'
@@ -963,31 +979,15 @@ export class BonusVipPrivilegePost extends FeildCheck {
             'type': 'VipEnum',
             'typeValue': 'bcexs_enums.VipEnum'
         },
-        'wdamountmulti': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'takerdiscount': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'makerdiscount': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'wdtimesmulti': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
     };
 
     public field_keys: string[] = [
-        'wddiscount',
-        'vipclass',
-        'wdamountmulti',
         'takerdiscount',
+        'wdtimesmulti',
         'makerdiscount',
-        'wdtimesmulti'
+        'wdamountmulti',
+        'wddiscount',
+        'vipclass'
     ];
 }
 
@@ -995,19 +995,35 @@ export class BonusVipPrivilegePost extends FeildCheck {
 export class BonusVipPrivilegePut extends FeildCheck {
 
     
+    public takerdiscount: number;  // taker折扣
+    
+    public wdtimesmulti: number;  // 提现次数倍数
+    
+    public makerdiscount: number;  // maker折扣
+    
+    public wdamountmulti: number;  // 提现额度倍数
+    
     public wddiscount: number;  // 提现折扣
     
     public vipclass: bcexs_enums.VipEnum;  // vip等级
     
-    public wdamountmulti: number;  // 提现额度倍数
-    
-    public takerdiscount: number;  // taker折扣
-    
-    public makerdiscount: number;  // maker折扣
-    
-    public wdtimesmulti: number;  // 提现次数倍数
-    
     public fields_options = { 
+        'takerdiscount': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
+        'wdtimesmulti': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'makerdiscount': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
+        'wdamountmulti': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
         'wddiscount': { 
             'type': 'double',
             'typeValue': 'number'
@@ -1016,31 +1032,15 @@ export class BonusVipPrivilegePut extends FeildCheck {
             'type': 'VipEnum',
             'typeValue': 'bcexs_enums.VipEnum'
         },
-        'wdamountmulti': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'takerdiscount': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'makerdiscount': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'wdtimesmulti': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
     };
 
     public field_keys: string[] = [
-        'wddiscount',
-        'vipclass',
-        'wdamountmulti',
         'takerdiscount',
+        'wdtimesmulti',
         'makerdiscount',
-        'wdtimesmulti'
+        'wdamountmulti',
+        'wddiscount',
+        'vipclass'
     ];
 }
 
@@ -1085,17 +1085,13 @@ export class BonusVipRuleGet extends FeildCheck {
 export class BonusVipRulePost extends FeildCheck {
 
     
-    public bonuslower: number;  // 等级积分最低
-    
     public vipclass: bcexs_enums.VipEnum;  // vip等级
     
     public bonusupper: number;  // 等级积分最高
     
+    public bonuslower: number;  // 等级积分最低
+    
     public fields_options = { 
-        'bonuslower': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'vipclass': { 
             'type': 'VipEnum',
             'typeValue': 'bcexs_enums.VipEnum'
@@ -1104,12 +1100,16 @@ export class BonusVipRulePost extends FeildCheck {
             'type': 'int32',
             'typeValue': 'number'
         },
+        'bonuslower': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'bonuslower',
         'vipclass',
-        'bonusupper'
+        'bonusupper',
+        'bonuslower'
     ];
 }
 
@@ -1119,16 +1119,12 @@ export class BonusVipRulePut extends FeildCheck {
     
     public bonuslower: number;  // 等级积分最低
     
-    public ruleid: number;  // 规则id
-    
     public bonusupper: number;  // 等级积分最高
+    
+    public ruleid: number;  // 规则id
     
     public fields_options = { 
         'bonuslower': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'ruleid': { 
             'type': 'int32',
             'typeValue': 'number'
         },
@@ -1136,12 +1132,16 @@ export class BonusVipRulePut extends FeildCheck {
             'type': 'int32',
             'typeValue': 'number'
         },
+        'ruleid': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
         'bonuslower',
-        'ruleid',
-        'bonusupper'
+        'bonusupper',
+        'ruleid'
     ];
 }
 
@@ -1245,52 +1245,52 @@ export class CoinInfoGet extends FeildCheck {
 export class CoinInfoPost extends FeildCheck {
 
     
-    public wdstatus: bcexs_enums.IOStatusEnum;  // 提现状态
-    
-    public coincode: string;  // 币代码
-    
-    public coinname: string;  // 币种名称
-    
-    public pubdtime: Date;  // 上市时间
+    public coincnname: string;  // 币种中文名
     
     public refillstatus: bcexs_enums.IOStatusEnum;  // 充值状态
     
-    public coincnname: string;  // 币种中文名
+    public pubdtime: Date;  // 上市时间
+    
+    public wdstatus: bcexs_enums.IOStatusEnum;  // 提现状态
+    
+    public coinname: string;  // 币种名称
+    
+    public coincode: string;  // 币代码
     
     public fields_options = { 
-        'wdstatus': { 
-            'type': 'IOStatusEnum',
-            'typeValue': 'bcexs_enums.IOStatusEnum'
-        },
-        'coincode': { 
+        'coincnname': { 
             'type': 'string',
             'typeValue': 'string'
-        },
-        'coinname': { 
-            'type': 'string',
-            'typeValue': 'string'
-        },
-        'pubdtime': { 
-            'type': 'datetime',
-            'typeValue': 'Date'
         },
         'refillstatus': { 
             'type': 'IOStatusEnum',
             'typeValue': 'bcexs_enums.IOStatusEnum'
         },
-        'coincnname': { 
+        'pubdtime': { 
+            'type': 'datetime',
+            'typeValue': 'Date'
+        },
+        'wdstatus': { 
+            'type': 'IOStatusEnum',
+            'typeValue': 'bcexs_enums.IOStatusEnum'
+        },
+        'coinname': { 
+            'type': 'string',
+            'typeValue': 'string'
+        },
+        'coincode': { 
             'type': 'string',
             'typeValue': 'string'
         },
     };
 
     public field_keys: string[] = [
-        'wdstatus',
-        'coincode',
-        'coinname',
-        'pubdtime',
+        'coincnname',
         'refillstatus',
-        'coincnname'
+        'pubdtime',
+        'wdstatus',
+        'coinname',
+        'coincode'
     ];
 }
 
@@ -1298,52 +1298,52 @@ export class CoinInfoPost extends FeildCheck {
 export class CoinInfoPut extends FeildCheck {
 
     
-    public wdstatus: bcexs_enums.IOStatusEnum;  // 提现状态
-    
-    public coincode: string;  // 币代码
-    
-    public coinname: string;  // 币种名称
-    
-    public pubdtime: Date;  // 上市时间
+    public coincnname: string;  // 币种中文名
     
     public refillstatus: bcexs_enums.IOStatusEnum;  // 充值状态
     
-    public coincnname: string;  // 币种中文名
+    public pubdtime: Date;  // 上市时间
+    
+    public wdstatus: bcexs_enums.IOStatusEnum;  // 提现状态
+    
+    public coinname: string;  // 币种名称
+    
+    public coincode: string;  // 币代码
     
     public fields_options = { 
-        'wdstatus': { 
-            'type': 'IOStatusEnum',
-            'typeValue': 'bcexs_enums.IOStatusEnum'
-        },
-        'coincode': { 
+        'coincnname': { 
             'type': 'string',
             'typeValue': 'string'
-        },
-        'coinname': { 
-            'type': 'string',
-            'typeValue': 'string'
-        },
-        'pubdtime': { 
-            'type': 'datetime',
-            'typeValue': 'Date'
         },
         'refillstatus': { 
             'type': 'IOStatusEnum',
             'typeValue': 'bcexs_enums.IOStatusEnum'
         },
-        'coincnname': { 
+        'pubdtime': { 
+            'type': 'datetime',
+            'typeValue': 'Date'
+        },
+        'wdstatus': { 
+            'type': 'IOStatusEnum',
+            'typeValue': 'bcexs_enums.IOStatusEnum'
+        },
+        'coinname': { 
+            'type': 'string',
+            'typeValue': 'string'
+        },
+        'coincode': { 
             'type': 'string',
             'typeValue': 'string'
         },
     };
 
     public field_keys: string[] = [
-        'wdstatus',
-        'coincode',
-        'coinname',
-        'pubdtime',
+        'coincnname',
         'refillstatus',
-        'coincnname'
+        'pubdtime',
+        'wdstatus',
+        'coinname',
+        'coincode'
     ];
 }
 
@@ -1370,40 +1370,24 @@ export class CoinPairGet extends FeildCheck {
 export class CoinPairPost extends FeildCheck {
 
     
-    public pricescale: number;  // 报价小数位
-    
     public amountscale: number;  // 金额小数位
-    
-    public currencycode: string;  // 交易对结算币
-    
-    public pairstatus: bcexs_enums.PairStatusEnum;  // 交易对状态
-    
-    public pairname: string;  // 交易对名称
     
     public marketid: number;  // 市场id
     
     public symbolcode: string;  // 交易对标的币
     
+    public pairname: string;  // 交易对名称
+    
+    public currencycode: string;  // 交易对结算币
+    
+    public pricescale: number;  // 报价小数位
+    
+    public pairstatus: bcexs_enums.PairStatusEnum;  // 交易对状态
+    
     public fields_options = { 
-        'pricescale': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'amountscale': { 
             'type': 'int32',
             'typeValue': 'number'
-        },
-        'currencycode': { 
-            'type': 'string',
-            'typeValue': 'string'
-        },
-        'pairstatus': { 
-            'type': 'PairStatusEnum',
-            'typeValue': 'bcexs_enums.PairStatusEnum'
-        },
-        'pairname': { 
-            'type': 'string',
-            'typeValue': 'string'
         },
         'marketid': { 
             'type': 'int32',
@@ -1413,41 +1397,15 @@ export class CoinPairPost extends FeildCheck {
             'type': 'string',
             'typeValue': 'string'
         },
-    };
-
-    public field_keys: string[] = [
-        'pricescale',
-        'amountscale',
-        'currencycode',
-        'pairstatus',
-        'pairname',
-        'marketid',
-        'symbolcode'
-    ];
-}
-
-
-export class CoinPairPut extends FeildCheck {
-
-    
-    public pairid: number;  // 交易对id
-    
-    public pricescale: number;  // 报价小数位
-    
-    public amountscale: number;  // 金额小数位
-    
-    public pairstatus: bcexs_enums.PairStatusEnum;  // 交易对状态
-    
-    public fields_options = { 
-        'pairid': { 
-            'type': 'int32',
-            'typeValue': 'number'
+        'pairname': { 
+            'type': 'string',
+            'typeValue': 'string'
+        },
+        'currencycode': { 
+            'type': 'string',
+            'typeValue': 'string'
         },
         'pricescale': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'amountscale': { 
             'type': 'int32',
             'typeValue': 'number'
         },
@@ -1458,9 +1416,51 @@ export class CoinPairPut extends FeildCheck {
     };
 
     public field_keys: string[] = [
-        'pairid',
+        'amountscale',
+        'marketid',
+        'symbolcode',
+        'pairname',
+        'currencycode',
+        'pricescale',
+        'pairstatus'
+    ];
+}
+
+
+export class CoinPairPut extends FeildCheck {
+
+    
+    public pricescale: number;  // 报价小数位
+    
+    public amountscale: number;  // 金额小数位
+    
+    public pairid: number;  // 交易对id
+    
+    public pairstatus: bcexs_enums.PairStatusEnum;  // 交易对状态
+    
+    public fields_options = { 
+        'pricescale': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'amountscale': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'pairid': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'pairstatus': { 
+            'type': 'PairStatusEnum',
+            'typeValue': 'bcexs_enums.PairStatusEnum'
+        },
+    };
+
+    public field_keys: string[] = [
         'pricescale',
         'amountscale',
+        'pairid',
         'pairstatus'
     ];
 }
@@ -1488,38 +1488,34 @@ export class BcexMarketGet extends FeildCheck {
 export class BcexMarketPut extends FeildCheck {
 
     
-    public settlementtype: bcexs_enums.SettlementEnum;  // 结算负债模式
-    
-    public risktype: bcexs_enums.RiskEnum;  // 风险率计算公式
-    
-    public opofsettlement: bcexs_enums.OperatorEnum;  // 结算模式
+    public tradestatus: bcexs_enums.TradeStatusEnum;  // 交易状态
     
     public trademodel: bcexs_enums.MarketModeEnum;  // 交易模式
+    
+    public opofsettlement: bcexs_enums.OperatorEnum;  // 结算模式
     
     public marketid: number;  // 交易市场Id
     
     public marketname: string;  // 交易市场名称
     
-    public tradestatus: bcexs_enums.TradeStatusEnum;  // 交易状态
+    public risktype: bcexs_enums.RiskEnum;  // 风险率计算公式
+    
+    public settlementtype: bcexs_enums.SettlementEnum;  // 结算负债模式
     
     public opofocmarket: bcexs_enums.OperatorEnum;  // 开休市模式
     
     public fields_options = { 
-        'settlementtype': { 
-            'type': 'SettlementEnum',
-            'typeValue': 'bcexs_enums.SettlementEnum'
-        },
-        'risktype': { 
-            'type': 'RiskEnum',
-            'typeValue': 'bcexs_enums.RiskEnum'
-        },
-        'opofsettlement': { 
-            'type': 'OperatorEnum',
-            'typeValue': 'bcexs_enums.OperatorEnum'
+        'tradestatus': { 
+            'type': 'TradeStatusEnum',
+            'typeValue': 'bcexs_enums.TradeStatusEnum'
         },
         'trademodel': { 
             'type': 'MarketModeEnum',
             'typeValue': 'bcexs_enums.MarketModeEnum'
+        },
+        'opofsettlement': { 
+            'type': 'OperatorEnum',
+            'typeValue': 'bcexs_enums.OperatorEnum'
         },
         'marketid': { 
             'type': 'int32',
@@ -1529,9 +1525,13 @@ export class BcexMarketPut extends FeildCheck {
             'type': 'string',
             'typeValue': 'string'
         },
-        'tradestatus': { 
-            'type': 'TradeStatusEnum',
-            'typeValue': 'bcexs_enums.TradeStatusEnum'
+        'risktype': { 
+            'type': 'RiskEnum',
+            'typeValue': 'bcexs_enums.RiskEnum'
+        },
+        'settlementtype': { 
+            'type': 'SettlementEnum',
+            'typeValue': 'bcexs_enums.SettlementEnum'
         },
         'opofocmarket': { 
             'type': 'OperatorEnum',
@@ -1540,13 +1540,13 @@ export class BcexMarketPut extends FeildCheck {
     };
 
     public field_keys: string[] = [
-        'settlementtype',
-        'risktype',
-        'opofsettlement',
+        'tradestatus',
         'trademodel',
+        'opofsettlement',
         'marketid',
         'marketname',
-        'tradestatus',
+        'risktype',
+        'settlementtype',
         'opofocmarket'
     ];
 }
@@ -1592,44 +1592,32 @@ export class PairPropertyGet extends FeildCheck {
 export class PairPropertyPost extends FeildCheck {
 
     
-    public pairid: number;  // 交易对id
-    
     public wdtimeslimit: number;  // 今日提现次数限制
-    
-    public takerfeeratio: number;  // 主动吃单手续费
-    
-    public wdfeeratio: number;  // 提现手续费
-    
-    public quantitylimitonce: number;  // 单次下单额度限制
-    
-    public propertyname: string;  // 属性对名称
-    
-    public quantitylimitday: number;  // 全天下单额度限制
     
     public wdamountlimit: number;  // 今日提现额度限制
     
-    public referrfeeratio: number;  // 推荐费
+    public propertyname: string;  // 属性对名称
+    
+    public quantitylimitonce: number;  // 单次下单额度限制
+    
+    public takerfeeratio: number;  // 主动吃单手续费
+    
+    public quantitylimitday: number;  // 全天下单额度限制
+    
+    public wdfeeratio: number;  // 提现手续费
     
     public makerfeeratio: number;  // 挂单成交手续费
     
+    public pairid: number;  // 交易对id
+    
+    public referrfeeratio: number;  // 推荐费
+    
     public fields_options = { 
-        'pairid': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'wdtimeslimit': { 
             'type': 'int32',
             'typeValue': 'number'
         },
-        'takerfeeratio': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'wdfeeratio': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'quantitylimitonce': { 
+        'wdamountlimit': { 
             'type': 'double',
             'typeValue': 'number'
         },
@@ -1637,15 +1625,19 @@ export class PairPropertyPost extends FeildCheck {
             'type': 'string',
             'typeValue': 'string'
         },
+        'quantitylimitonce': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
+        'takerfeeratio': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
         'quantitylimitday': { 
             'type': 'double',
             'typeValue': 'number'
         },
-        'wdamountlimit': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'referrfeeratio': { 
+        'wdfeeratio': { 
             'type': 'double',
             'typeValue': 'number'
         },
@@ -1653,19 +1645,27 @@ export class PairPropertyPost extends FeildCheck {
             'type': 'double',
             'typeValue': 'number'
         },
+        'pairid': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'referrfeeratio': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'pairid',
         'wdtimeslimit',
-        'takerfeeratio',
-        'wdfeeratio',
-        'quantitylimitonce',
-        'propertyname',
-        'quantitylimitday',
         'wdamountlimit',
-        'referrfeeratio',
-        'makerfeeratio'
+        'propertyname',
+        'quantitylimitonce',
+        'takerfeeratio',
+        'quantitylimitday',
+        'wdfeeratio',
+        'makerfeeratio',
+        'pairid',
+        'referrfeeratio'
     ];
 }
 
@@ -1677,21 +1677,21 @@ export class PairPropertyPut extends FeildCheck {
     
     public wdtimeslimit: number;  // 今日提现次数限制
     
-    public takerfeeratio: number;  // 主动吃单手续费
-    
-    public wdfeeratio: number;  // 提现手续费
-    
-    public quantitylimitonce: number;  // 单次下单额度限制
+    public wdamountlimit: number;  // 今日提现额度限制
     
     public propertyname: string;  // 属性对名称
     
+    public quantitylimitonce: number;  // 单次下单额度限制
+    
+    public takerfeeratio: number;  // 主动吃单手续费
+    
     public quantitylimitday: number;  // 全天下单额度限制
     
-    public wdamountlimit: number;  // 今日提现额度限制
-    
-    public referrfeeratio: number;  // 推荐费
+    public wdfeeratio: number;  // 提现手续费
     
     public makerfeeratio: number;  // 挂单成交手续费
+    
+    public referrfeeratio: number;  // 推荐费
     
     public fields_options = { 
         'propertyid': { 
@@ -1702,15 +1702,7 @@ export class PairPropertyPut extends FeildCheck {
             'type': 'int32',
             'typeValue': 'number'
         },
-        'takerfeeratio': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'wdfeeratio': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'quantitylimitonce': { 
+        'wdamountlimit': { 
             'type': 'double',
             'typeValue': 'number'
         },
@@ -1718,19 +1710,27 @@ export class PairPropertyPut extends FeildCheck {
             'type': 'string',
             'typeValue': 'string'
         },
+        'quantitylimitonce': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
+        'takerfeeratio': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
         'quantitylimitday': { 
             'type': 'double',
             'typeValue': 'number'
         },
-        'wdamountlimit': { 
-            'type': 'double',
-            'typeValue': 'number'
-        },
-        'referrfeeratio': { 
+        'wdfeeratio': { 
             'type': 'double',
             'typeValue': 'number'
         },
         'makerfeeratio': { 
+            'type': 'double',
+            'typeValue': 'number'
+        },
+        'referrfeeratio': { 
             'type': 'double',
             'typeValue': 'number'
         },
@@ -1739,14 +1739,14 @@ export class PairPropertyPut extends FeildCheck {
     public field_keys: string[] = [
         'propertyid',
         'wdtimeslimit',
-        'takerfeeratio',
-        'wdfeeratio',
-        'quantitylimitonce',
-        'propertyname',
-        'quantitylimitday',
         'wdamountlimit',
-        'referrfeeratio',
-        'makerfeeratio'
+        'propertyname',
+        'quantitylimitonce',
+        'takerfeeratio',
+        'quantitylimitday',
+        'wdfeeratio',
+        'makerfeeratio',
+        'referrfeeratio'
     ];
 }
 
@@ -1848,68 +1848,16 @@ export class PairPropertyGroupPut extends FeildCheck {
 export class PairPropertyGroupMapDelete extends FeildCheck {
 
     
-    public pairid: number;  // 交易对id
-    
     public propertygroupid: number;  // 属性组id
-    
-    public fields_options = { 
-        'pairid': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'propertygroupid': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-    };
-
-    public field_keys: string[] = [
-        'pairid',
-        'propertygroupid'
-    ];
-}
-
-
-export class PairPropertyGroupMapGet extends FeildCheck {
-
     
     public pairid: number;  // 交易对id
     
-    public propertygroupid: number;  // 属性组id
-    
     public fields_options = { 
+        'propertygroupid': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
         'pairid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'propertygroupid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-    };
-
-    public field_keys: string[] = [
-        'pairid',
-        'propertygroupid'
-    ];
-}
-
-
-export class PairPropertyGroupMapPost extends FeildCheck {
-
-    
-    public propertygroupid: number;  // 属性组id
-    
-    public propertyid: number;  // 属性id
-    
-    public fields_options = { 
-        'propertygroupid': { 
-            'type': 'int32',
-            'typeValue': 'number'
-        },
-        'propertyid': { 
             'type': 'int32',
             'typeValue': 'number'
         },
@@ -1917,7 +1865,59 @@ export class PairPropertyGroupMapPost extends FeildCheck {
 
     public field_keys: string[] = [
         'propertygroupid',
-        'propertyid'
+        'pairid'
+    ];
+}
+
+
+export class PairPropertyGroupMapGet extends FeildCheck {
+
+    
+    public propertygroupid: number;  // 属性组id
+    
+    public pairid: number;  // 交易对id
+    
+    public fields_options = { 
+        'propertygroupid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'pairid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+    };
+
+    public field_keys: string[] = [
+        'propertygroupid',
+        'pairid'
+    ];
+}
+
+
+export class PairPropertyGroupMapPost extends FeildCheck {
+
+    
+    public propertyid: number;  // 属性id
+    
+    public propertygroupid: number;  // 属性组id
+    
+    public fields_options = { 
+        'propertyid': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'propertygroupid': { 
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+    };
+
+    public field_keys: string[] = [
+        'propertyid',
+        'propertygroupid'
     ];
 }
 
@@ -2033,44 +2033,59 @@ export class UserStatusUsersGet extends FeildCheck {
 export class UserUsersPost extends FeildCheck {
 
     
-    public brokeruserid: number;  // 用户id
-    
     public userpwd: string;  // 用户密码
-    
-    public logincode: string;  // 登录账号
-    
-    public idcardvaild: Date;  // 证件有效期
-    
-    public country: string;  // 国籍
     
     public idtype: users_enums.EnumIdType;  // 证件类型
     
-    public nikename: string;  // 用户昵称
-    
-    public idcard: string;  // 证件号码
+    public brokeruserid: number;  // 用户id
     
     public email: string;  // 电子邮箱
     
+    public username: string;  // 用户姓名
+    
+    public country: string;  // 国籍
+    
+    public idcardvaild: Date;  // 证件有效期
+    
+    public logincode: string;  // 登录账号
+    
+    public nikename: string;  // 用户昵称
+    
     public phone: string;  // 手机号码
     
-    public telcode: string;  // 电话区号
+    public idcard: string;  // 证件号码
     
-    public username: string;  // 用户姓名
+    public telcode: string;  // 电话区号
     
     public jsoncache: string;  // 附加字段
     
     public fields_options = { 
-        'brokeruserid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'userpwd': { 
             'maxlen': '64',
             'type': 'string64',
             'typeValue': 'string'
         },
-        'logincode': { 
+        'idtype': { 
+            'maxlen': 'none',
+            'type': 'EnumIdType',
+            'typeValue': 'users_enums.EnumIdType'
+        },
+        'brokeruserid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'email': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'username': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'country': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -2080,27 +2095,12 @@ export class UserUsersPost extends FeildCheck {
             'type': 'date',
             'typeValue': 'Date'
         },
-        'country': { 
+        'logincode': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
-        },
-        'idtype': { 
-            'maxlen': 'none',
-            'type': 'EnumIdType',
-            'typeValue': 'users_enums.EnumIdType'
         },
         'nikename': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'idcard': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'email': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -2110,12 +2110,12 @@ export class UserUsersPost extends FeildCheck {
             'type': 'string32',
             'typeValue': 'string'
         },
-        'telcode': { 
+        'idcard': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
         },
-        'username': { 
+        'telcode': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -2128,18 +2128,18 @@ export class UserUsersPost extends FeildCheck {
     };
 
     public field_keys: string[] = [
-        'brokeruserid',
         'userpwd',
-        'logincode',
-        'idcardvaild',
-        'country',
         'idtype',
-        'nikename',
-        'idcard',
+        'brokeruserid',
         'email',
-        'phone',
-        'telcode',
         'username',
+        'country',
+        'idcardvaild',
+        'logincode',
+        'nikename',
+        'phone',
+        'idcard',
+        'telcode',
         'jsoncache'
     ];
 }
@@ -2148,31 +2148,26 @@ export class UserUsersPost extends FeildCheck {
 export class UserUsersContactPut extends FeildCheck {
 
     
-    public country: string;  // 国籍
-    
-    public email: string;  // 电子邮箱
-    
     public userid: number;  // 用户id
+    
+    public country: string;  // 国籍
     
     public telcode: string;  // 电话区号
     
     public phone: string;  // 手机号码
     
+    public email: string;  // 电子邮箱
+    
     public fields_options = { 
-        'country': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'email': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
         'userid': { 
             'maxlen': 'none',
             'type': 'int32',
             'typeValue': 'number'
+        },
+        'country': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
         },
         'telcode': { 
             'maxlen': '32',
@@ -2184,14 +2179,19 @@ export class UserUsersContactPut extends FeildCheck {
             'type': 'string32',
             'typeValue': 'string'
         },
+        'email': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
     };
 
     public field_keys: string[] = [
-        'country',
-        'email',
         'userid',
+        'country',
         'telcode',
-        'phone'
+        'phone',
+        'email'
     ];
 }
 
@@ -2199,42 +2199,42 @@ export class UserUsersContactPut extends FeildCheck {
 export class UserUsersIdcardPut extends FeildCheck {
 
     
-    public userid: number;  // 用户id
-    
     public idcard: string;  // 证件号码
-    
-    public idtype: users_enums.EnumIdType;  // 证件类型
     
     public idcardvaild: Date;  // 证件有效期
     
+    public idtype: users_enums.EnumIdType;  // 证件类型
+    
+    public userid: number;  // 用户id
+    
     public fields_options = { 
-        'userid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'idcard': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
-        },
-        'idtype': { 
-            'maxlen': 'none',
-            'type': 'EnumIdType',
-            'typeValue': 'users_enums.EnumIdType'
         },
         'idcardvaild': { 
             'maxlen': 'none',
             'type': 'date',
             'typeValue': 'Date'
         },
+        'idtype': { 
+            'maxlen': 'none',
+            'type': 'EnumIdType',
+            'typeValue': 'users_enums.EnumIdType'
+        },
+        'userid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'userid',
         'idcard',
+        'idcardvaild',
         'idtype',
-        'idcardvaild'
+        'userid'
     ];
 }
 
@@ -2242,26 +2242,16 @@ export class UserUsersIdcardPut extends FeildCheck {
 export class UserUsersPut extends FeildCheck {
 
     
-    public userid: number;  // 用户id
-    
     public nikename: string;  // 用户昵称
-    
-    public username: string;  // 用户姓名
     
     public jsoncache: string;  // 附加字段
     
+    public userid: number;  // 用户id
+    
+    public username: string;  // 用户姓名
+    
     public fields_options = { 
-        'userid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'nikename': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'username': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -2271,13 +2261,23 @@ export class UserUsersPut extends FeildCheck {
             'type': 'jsonString',
             'typeValue': 'string'
         },
+        'userid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
+        'username': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
     };
 
     public field_keys: string[] = [
-        'userid',
         'nikename',
-        'username',
-        'jsoncache'
+        'jsoncache',
+        'userid',
+        'username'
     ];
 }
 
@@ -2285,26 +2285,26 @@ export class UserUsersPut extends FeildCheck {
 export class UserStatusUsersPut extends FeildCheck {
 
     
-    public userid: number;  // 用户id
-    
     public statusvalue: string;  // 状态值
     
+    public userid: number;  // 用户id
+    
     public fields_options = { 
-        'userid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'statusvalue': { 
             'maxlen': '16',
             'type': 'string16',
             'typeValue': 'string'
         },
+        'userid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'userid',
-        'statusvalue'
+        'statusvalue',
+        'userid'
     ];
 }
 
@@ -2350,21 +2350,26 @@ export class UserAreacodeGet extends FeildCheck {
 export class UserAreacodePost extends FeildCheck {
 
     
+    public numcode: string;  // 数字编码
+    
     public enname: string;  // 英文名称
     
     public cnname: string;  // 中文名称
     
-    public threecode: string;  // 三位编码
-    
-    public numcode: string;  // 数字编码
-    
     public areadesc: string;  // 备注信息
     
-    public telcode: string;  // 手机区号
+    public threecode: string;  // 三位编码
     
     public twocode: string;  // 二位编码
     
+    public telcode: string;  // 手机区号
+    
     public fields_options = { 
+        'numcode': { 
+            'maxlen': '16',
+            'type': 'string16',
+            'typeValue': 'string'
+        },
         'enname': { 
             'maxlen': '32',
             'type': 'string32',
@@ -2375,24 +2380,14 @@ export class UserAreacodePost extends FeildCheck {
             'type': 'string32',
             'typeValue': 'string'
         },
-        'threecode': { 
-            'maxlen': '8',
-            'type': 'string8',
-            'typeValue': 'string'
-        },
-        'numcode': { 
-            'maxlen': '16',
-            'type': 'string16',
-            'typeValue': 'string'
-        },
         'areadesc': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
         },
-        'telcode': { 
-            'maxlen': '16',
-            'type': 'string16',
+        'threecode': { 
+            'maxlen': '8',
+            'type': 'string8',
             'typeValue': 'string'
         },
         'twocode': { 
@@ -2400,16 +2395,21 @@ export class UserAreacodePost extends FeildCheck {
             'type': 'string8',
             'typeValue': 'string'
         },
+        'telcode': { 
+            'maxlen': '16',
+            'type': 'string16',
+            'typeValue': 'string'
+        },
     };
 
     public field_keys: string[] = [
+        'numcode',
         'enname',
         'cnname',
-        'threecode',
-        'numcode',
         'areadesc',
-        'telcode',
-        'twocode'
+        'threecode',
+        'twocode',
+        'telcode'
     ];
 }
 
@@ -2417,21 +2417,26 @@ export class UserAreacodePost extends FeildCheck {
 export class UserAreacodePut extends FeildCheck {
 
     
+    public threecode: string;  // 三位编码
+    
     public enname: string;  // 英文名称
     
     public cnname: string;  // 中文名称
     
-    public areadesc: string;  // 备注信息
-    
-    public threecode: string;  // 三位编码
-    
-    public telcode: string;  // 手机区号
+    public twocode: string;  // 二位编码
     
     public numcode: string;  // 数字编码
     
-    public twocode: string;  // 二位编码
+    public telcode: string;  // 手机区号
+    
+    public areadesc: string;  // 备注信息
     
     public fields_options = { 
+        'threecode': { 
+            'maxlen': '8',
+            'type': 'string8',
+            'typeValue': 'string'
+        },
         'enname': { 
             'maxlen': '32',
             'type': 'string32',
@@ -2442,19 +2447,9 @@ export class UserAreacodePut extends FeildCheck {
             'type': 'string32',
             'typeValue': 'string'
         },
-        'areadesc': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
-        'threecode': { 
+        'twocode': { 
             'maxlen': '8',
             'type': 'string8',
-            'typeValue': 'string'
-        },
-        'telcode': { 
-            'maxlen': '16',
-            'type': 'string16',
             'typeValue': 'string'
         },
         'numcode': { 
@@ -2462,21 +2457,26 @@ export class UserAreacodePut extends FeildCheck {
             'type': 'string16',
             'typeValue': 'string'
         },
-        'twocode': { 
-            'maxlen': '8',
-            'type': 'string8',
+        'telcode': { 
+            'maxlen': '16',
+            'type': 'string16',
+            'typeValue': 'string'
+        },
+        'areadesc': { 
+            'maxlen': '32',
+            'type': 'string32',
             'typeValue': 'string'
         },
     };
 
     public field_keys: string[] = [
+        'threecode',
         'enname',
         'cnname',
-        'areadesc',
-        'threecode',
-        'telcode',
+        'twocode',
         'numcode',
-        'twocode'
+        'telcode',
+        'areadesc'
     ];
 }
 
@@ -2484,26 +2484,26 @@ export class UserAreacodePut extends FeildCheck {
 export class UserParamesDelete extends FeildCheck {
 
     
-    public userid: number;  // 用户id
-    
     public paramsname: string;  // 配置名称
     
+    public userid: number;  // 用户id
+    
     public fields_options = { 
-        'userid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'paramsname': { 
             'maxlen': '16',
             'type': 'string16',
             'typeValue': 'string'
         },
+        'userid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'userid',
-        'paramsname'
+        'paramsname',
+        'userid'
     ];
 }
 
@@ -2511,26 +2511,26 @@ export class UserParamesDelete extends FeildCheck {
 export class UserParamesGet extends FeildCheck {
 
     
-    public userid: number;  // 用户id
-    
     public paramsname: string;  // 配置名称
     
+    public userid: number;  // 用户id
+    
     public fields_options = { 
-        'userid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'paramsname': { 
             'maxlen': '16',
             'type': 'string16',
             'typeValue': 'string'
         },
+        'userid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'userid',
-        'paramsname'
+        'paramsname',
+        'userid'
     ];
 }
 
@@ -2538,20 +2538,15 @@ export class UserParamesGet extends FeildCheck {
 export class UserParamesPut extends FeildCheck {
 
     
-    public userid: number;  // 用户id
-    
     public paramsvalue: string;  // 配置值
     
     public paramsname: string;  // 配置名称
     
     public paramssection: string;  // 配置段
     
+    public userid: number;  // 用户id
+    
     public fields_options = { 
-        'userid': { 
-            'maxlen': 'none',
-            'type': 'int32',
-            'typeValue': 'number'
-        },
         'paramsvalue': { 
             'maxlen': '32',
             'type': 'string32',
@@ -2567,13 +2562,18 @@ export class UserParamesPut extends FeildCheck {
             'type': 'string16',
             'typeValue': 'string'
         },
+        'userid': { 
+            'maxlen': 'none',
+            'type': 'int32',
+            'typeValue': 'number'
+        },
     };
 
     public field_keys: string[] = [
-        'userid',
         'paramsvalue',
         'paramsname',
-        'paramssection'
+        'paramssection',
+        'userid'
     ];
 }
 
@@ -2698,52 +2698,52 @@ export class UsersStepTwoDescGet extends FeildCheck {
 export class UsersStepOnePost extends FeildCheck {
 
     
-    public idcardvaild: Date;  // 证件有效期
-    
-    public country: string;  // 国籍
-    
     public idtype: users_enums.EnumIdType;  // 证件类型
-    
-    public idcard: string;  // 证件号码
     
     public userid: number;  // 用户id
     
-    public telcode: string;  // 电话区号
-    
     public username: string;  // 用户姓名
     
+    public country: string;  // 国籍
+    
+    public idcardvaild: Date;  // 证件有效期
+    
+    public idcard: string;  // 证件号码
+    
+    public telcode: string;  // 电话区号
+    
     public fields_options = { 
-        'idcardvaild': { 
-            'maxlen': 'none',
-            'type': 'date',
-            'typeValue': 'Date'
-        },
-        'country': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
         'idtype': { 
             'maxlen': 'none',
             'type': 'EnumIdType',
             'typeValue': 'users_enums.EnumIdType'
-        },
-        'idcard': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
         },
         'userid': { 
             'maxlen': 'none',
             'type': 'int32',
             'typeValue': 'number'
         },
-        'telcode': { 
+        'username': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
         },
-        'username': { 
+        'country': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'idcardvaild': { 
+            'maxlen': 'none',
+            'type': 'date',
+            'typeValue': 'Date'
+        },
+        'idcard': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
+        'telcode': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -2751,13 +2751,13 @@ export class UsersStepOnePost extends FeildCheck {
     };
 
     public field_keys: string[] = [
-        'idcardvaild',
-        'country',
         'idtype',
-        'idcard',
         'userid',
-        'telcode',
-        'username'
+        'username',
+        'country',
+        'idcardvaild',
+        'idcard',
+        'telcode'
     ];
 }
 
@@ -2765,21 +2765,26 @@ export class UsersStepOnePost extends FeildCheck {
 export class UsersStepTwoPost extends FeildCheck {
 
     
-    public userid: number;  // 用户id
-    
     public img_idcard_hand: string;  // 图片地址
     
-    public img_idcard_back: string;  // 图片地址
+    public userid: number;  // 用户id
     
     public img_idcard_front: string;  // 图片地址
     
+    public img_idcard_back: string;  // 图片地址
+    
     public fields_options = { 
+        'img_idcard_hand': { 
+            'maxlen': '32',
+            'type': 'string32',
+            'typeValue': 'string'
+        },
         'userid': { 
             'maxlen': 'none',
             'type': 'int32',
             'typeValue': 'number'
         },
-        'img_idcard_hand': { 
+        'img_idcard_front': { 
             'maxlen': '32',
             'type': 'string32',
             'typeValue': 'string'
@@ -2789,18 +2794,13 @@ export class UsersStepTwoPost extends FeildCheck {
             'type': 'string32',
             'typeValue': 'string'
         },
-        'img_idcard_front': { 
-            'maxlen': '32',
-            'type': 'string32',
-            'typeValue': 'string'
-        },
     };
 
     public field_keys: string[] = [
-        'userid',
         'img_idcard_hand',
-        'img_idcard_back',
-        'img_idcard_front'
+        'userid',
+        'img_idcard_front',
+        'img_idcard_back'
     ];
 }
 

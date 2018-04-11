@@ -19,6 +19,8 @@ import {
     Validators
 } from '@angular/forms';
 
+// const proto = require('F:\\bcex\\bcex\\datamodel\\model\\out\\tradeSystem.proto.json');
+
 @Component({
     selector: 'app-appfile',
     templateUrl: './appfile.component.html',
@@ -28,6 +30,7 @@ import {
     }
   `]
 })
+
 export class AppfileComponent implements OnInit {
 
     _sdk_model = sdk_model;
@@ -36,6 +39,8 @@ export class AppfileComponent implements OnInit {
     validateForm: FormGroup;
     editForm: FormGroup;
     queryForm: FormGroup;
+    pyForm: FormGroup;
+
     searchColumnsOptions = [];
     searchModelOptions = [];
     searchApiOptions = [];
@@ -168,7 +173,9 @@ export class AppfileComponent implements OnInit {
             columns: [null, [Validators.required]],
         });
 
-        
+        this.pyForm = this.fb.group({
+            columns: [null, [Validators.required]],
+        });
     }
 
     getFormControl(type: number, name: string) {
@@ -180,6 +187,9 @@ export class AppfileComponent implements OnInit {
         }
         if (type === 3) {
             return this.queryForm.controls[name];
+        }
+        if (type === 4) {
+            return this.pyForm.controls[name];
         }
     }
 

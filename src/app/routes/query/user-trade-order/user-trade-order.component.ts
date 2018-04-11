@@ -38,6 +38,6 @@ export class UserTradeOrderComponent extends QueryComponentBase {
     }
 
     exportApi() {
-        return this.querySdk.trade_order_csv_query_post_csv_api(this.getTitle(), this.modal.i['csvdesc'], this.getQueryParams());
+        return this.querySdk.trade_order_csv_query_post_csv_api(this.getTitle(), this.modal.i['csvdesc'], this.getQueryParams(),this.makesops());
     }
 }

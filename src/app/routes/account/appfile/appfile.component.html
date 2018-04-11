@@ -1,3 +1,60 @@
+<!-- <nz-card>
+    <ng-template #body>
+        <form class="cform" nz-form [formGroup]="pyForm" (ngSubmit)="_submitQueryForm()">
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+                    <label for="columns" nz-form-item-required>主表名
+                        <nz-tooltip [nzTitle]="'主表名'">
+                            <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+                        </nz-tooltip>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-input [nzSize]="'large'" formControlName="columns" [nzId]="'columns'"></nz-input>
+                    <div nz-form-explain *ngIf="getFormControl(4, 'columns').dirty&&getFormControl(4, 'columns').hasError('required')">The input is not valid componentName</div>
+                </div>
+            </div>
+
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+                    <label for="columns" nz-form-item-required>副表名
+                        <nz-tooltip [nzTitle]="''">
+                            <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+                        </nz-tooltip>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-input [nzSize]="'large'" formControlName="columns" [nzId]="'columns'"></nz-input>
+                    <div nz-form-explain *ngIf="getFormControl(4, 'columns').dirty&&getFormControl(4, 'columns').hasError('required')">The input is not valid componentName</div>
+                </div>
+            </div>
+
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+                    <label for="columns" nz-form-item-required>columns
+                        <nz-tooltip [nzTitle]="'组件名称，如user，则生成 UserComponent 组件'">
+                            <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+                        </nz-tooltip>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-input [nzSize]="'large'" formControlName="columns" [nzId]="'columns'"></nz-input>
+                    <div nz-form-explain *ngIf="getFormControl(4, 'columns').dirty&&getFormControl(4, 'columns').hasError('required')">The input is not valid componentName</div>
+                </div>
+            </div>
+
+
+
+            <div nz-form-item nz-row style="margin-bottom:8px;">
+                <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="6">
+                    <button nz-button [nzSize]="'large'" [nzType]="'primary'">生成查询模板</button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</nz-card> -->
+
+
 <nz-card>
     <ng-template #body>
         <form class="cform" nz-form [formGroup]="queryForm" (ngSubmit)="_submitQueryForm()">

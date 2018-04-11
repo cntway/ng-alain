@@ -166,20 +166,6 @@
     </div>
 
 
-    <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-            <label for="jsoncache" nz-form-item-required>
-                <span>
-                    附属字段
-                </span>
-            </label>
-        </div>
-        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input [nzSize]="'large'" formControlName="jsoncache"></nz-input>
-            <div nz-form-explain *ngIf="getFormControl('jsoncache').dirty&&getFormControl('jsoncache').hasError('required')">{{'Please input jsoncache!'|translate}}</div>
-        </div>
-    </div>
-
 </form>
 
 <div class="modal-footer">

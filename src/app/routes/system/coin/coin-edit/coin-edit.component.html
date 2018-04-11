@@ -12,7 +12,7 @@
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input [nzSize]="'large'" [nzReadonly]="'true'" formControlName="coincode"></nz-input>
+            <nz-input [nzSize]="'large'" [nzDisabled]="'true'" formControlName="coincode"></nz-input>
             <div nz-form-explain *ngIf="getFormControl('coincode').dirty&&getFormControl('coincode').hasError('required')">{{'Please input coincode!'|translate}}</div>
         </div>
     </div>
@@ -87,7 +87,7 @@
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-datepicker [nzSize]="'large'" formControlName="pubdtime"></nz-datepicker>
+            <nz-datepicker [nzSize]="'large'" formControlName="pubdtime" [nzDisabled]="'true'" ></nz-datepicker>
             <div nz-form-explain *ngIf="getFormControl('pubdtime').dirty&&getFormControl('pubdtime').hasError('required')">{{'Please input pubtime!'|translate}}</div>
         </div>
     </div>

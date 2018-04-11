@@ -199,6 +199,7 @@ export abstract class EditComponentBase implements OnInit {
                 group['checkPassword'] = [null, [Validators.required, this.confirmationValidator]];
             }
         }
+        console.log(group);
         this.validateForm = this.fb.group(group);
 
 

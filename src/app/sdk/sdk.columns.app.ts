@@ -2,17 +2,42 @@ import * as admins_enums from './sdk.admins_enum';
 import * as users_enums from './sdk.users_enum';
 import * as bcexs_enums from './sdk.bcexs_enum';
 
-export const pair_property_group_map_get_columns = [
-    { index: 'propertygroupid', text: '属性组', width: "100px" },
-    { index: 'propertyname', text: '属性名称', width: "100px" },
-    { index: 'propertyid', text: '属性id', width: "100px", disabled: true, },
-    { index: 'pairid', text: '交易对id', disabled: true, width: "100px" },
-    { index: 'marketid', text: '市场id', disabled: true, width: "100px" },
 
+export const user_users_get_columns = [
+    { index: 'userid', text: '用户id', dataType: 'int', disabled: true  },
+    { index: 'logincode', text: '登录账号', dataType: 'string' },
+    { index: 'useracctype', text: '账号类别', dataType: 'enum', enum: users_enums.EnumUserAccTypeTranslate },
+    { index: 'username', text: '用户姓名', dataType: 'string' },
+    { index: 'nikename', text: '用户昵称', dataType: 'string' , disabled: true },
+    { index: 'country', text: '国籍', dataType: 'string' },
+    { index: 'telcode', text: '区号', dataType: 'string' , disabled: true },
+    { index: 'phone', text: '联系手机', dataType: 'string' },
+    { index: 'email', text: '电子邮件', dataType: 'string' },
+    { index: 'idtype', text: '证件类型', dataType: 'enum', enum: users_enums.EnumIdTypeTranslate },
+    { index: 'idcard', text: '证件号码', dataType: 'string' },
+    { index: 'idcardvaild', text: '证件有效期', dataType: 'date' },
+    { index: 'createsorce', text: '开户来源', dataType: 'enum', enum: users_enums.EnumCreateSourceTypeTranslate },
+    { index: 'lastresetpwdtime', text: '最后修改密码时间', dataType: 'datetime' , disabled: true },
+    { index: 'lastcreatetime', text: '开户时间', dataType: 'datetime' },
+    { index: 'jsoncache', text: '附属字段', dataType: 'string' , disabled: true },
 ];
+
+
+export const pair_property_group_map_get_columns = [
+    { index: 'propertygroupid', text: '属性组id', dataType: 'int' , disabled: true },
+    { index: 'pairid', text: '交易对id', dataType: 'int' , disabled: true },
+    { index: 'propertyid', text: '属性id', dataType: 'int' , disabled: true },
+    { index: 'marketid', text: '市场id', dataType: 'int' , disabled: true },
+    { index: 'groupname', text: '属性组名称', dataType: 'string' },
+    { index: 'propertyname', text: '属性名称', dataType: 'string' },
+    { index: 'pairname', text: '交易对名称', dataType: 'string' },
+];
+
 export const pair_property_get_columns = [
-    { index: 'propertyid', text: '属性id', dataType: 'int', disabled: true },
-    { index: 'pairid', text: '交易对id', dataType: 'int' },
+    { index: 'propertyid', text: '属性id', dataType: 'int' , disabled: true},
+    { index: 'pairid', text: '交易对id', dataType: 'int' , disabled: true},
+    { index: 'propertyname', text: '属性名称', dataType: 'string' },
+    { index: 'pairname', text: '交易对名称', dataType: 'string' },
     { index: 'takerfeeratio', text: '主动吃单手续费', dataType: 'float' },
     { index: 'makerfeeratio', text: '挂单成交手续费', dataType: 'float' },
     { index: 'wdfeeratio', text: '提现手续费', dataType: 'float' },
@@ -53,4 +78,22 @@ export const coin_currencys_get_columns = [
     { index: 'marketname', text: '市场名称', dataType: 'string' },
     { index: 'cdt', text: '创建时间', dataType: 'datetime' },
 
+];
+
+export const pair_property_group_get_columns = [
+    { index: 'propertygroupid', text: '属性组id', dataType: 'int', disabled: true },
+    { index: 'groupname', text: '属性组名称', dataType: 'string', width: "200px" },
+    { index: 'note', text: '备注', dataType: 'string' , width: "200px"},
+
+];
+
+export const bcex_market_get_columns = [
+    { index: 'marketid', text: '交易市场id', dataType: 'int', disabled: true  },
+    { index: 'marketname', text: '交易市场名称', dataType: 'string' },
+    { index: 'trademodel', text: '交易模式', dataType: 'enum', enum: bcexs_enums.MarketModeEnumTranslate },
+    { index: 'risktype', text: '风险率计算公式', dataType: 'enum', enum: bcexs_enums.RiskEnumTranslate },
+    { index: 'settlementtype', text: '结算负债模式', dataType: 'enum', enum: bcexs_enums.SettlementEnumTranslate },
+    { index: 'tradestatus', text: '交易状态', dataType: 'enum', enum: bcexs_enums.TradeStatusEnumTranslate },
+    { index: 'opofocmarket', text: '开休市模式', dataType: 'enum', enum: bcexs_enums.OperatorEnumTranslate },
+    { index: 'opofsettlement', text: '结算模式', dataType: 'enum', enum: bcexs_enums.OperatorEnumTranslate },
 ];

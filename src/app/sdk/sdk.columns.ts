@@ -136,6 +136,7 @@ export const pair_property_get_columns = [
     { index: 'quantitylimitday', text: '全天下单额度限制', dataType: 'float' },
     { index: 'wdtimeslimit', text: '今日提现次数限制', dataType: 'int' },
     { index: 'wdamountlimit', text: '今日提现额度限制', dataType: 'float' },
+    { index: 'pairname', text: '交易对名称', dataType: 'string' },
 ];
 
 export const pair_property_group_get_columns = [
@@ -149,7 +150,9 @@ export const pair_property_group_map_get_columns = [
     { index: 'pairid', text: '交易对id', dataType: 'int' },
     { index: 'propertyid', text: '属性id', dataType: 'int' },
     { index: 'marketid', text: '市场id', dataType: 'int' },
+    { index: 'groupname', text: '属性组名称', dataType: 'string' },
     { index: 'propertyname', text: '属性名称', dataType: 'string' },
+    { index: 'pairname', text: '交易对名称', dataType: 'string' },
 ];
 
 export const user_users_contact_get_columns = [
