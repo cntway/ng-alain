@@ -21,7 +21,9 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 import { NzSchemaFormModule } from 'nz-schema-form';
 import { SkdSelectComponent } from './skd-select/skd-select.component';
 import { SummodalComponent } from './summodal/summodal.component';
+
 import { ExprotmodalComponent } from './exprotmodal/exprotmodal.component';
+import { MenuauthComponent } from './menuauth/menuauth.component';
 const THIRDMODULES = [
     CountdownModule,
     UEditorModule,
@@ -31,7 +33,7 @@ const THIRDMODULES = [
 // endregion
 
 // region: your componets & directives
-const COMPONENTS = [ZselectComponent, MenuSelectComponent, SelectComponent, SkdSelectComponent, SummodalComponent, ExprotmodalComponent];
+const COMPONENTS = [ZselectComponent, MenuSelectComponent, SelectComponent, SkdSelectComponent, SummodalComponent, ExprotmodalComponent, MenuauthComponent];
 const DIRECTIVES = [];
 // endregion
 
@@ -56,6 +58,7 @@ const DIRECTIVES = [];
         ...DIRECTIVES,
         SummodalComponent,
         ExprotmodalComponent,
+        MenuauthComponent,
     ],
     exports: [
         CommonModule,

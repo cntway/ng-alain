@@ -16,6 +16,7 @@ export class TreeAntdBasicComponent implements OnInit {
 
   ngOnInit() {
     generateData(this.nodes, 3, 2, 1);
+    console.log(this.nodes);
   }
 
   onEvent(ev: any) {

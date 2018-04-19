@@ -2,6 +2,8 @@ import { MenuComponent } from './menu/menu.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
+import { NzTreeModule } from 'ng-tree-antd';
+
 import { RoleComponent } from './role/role.component';
 import { RoleEditComponent } from './role/role-edit/role-edit.component';
 import { ManagerComponent } from './manager/manager.component';
@@ -22,6 +24,9 @@ import { BonusRuleEditComponent } from './bonus-rule/bonus-rule-edit/bonus-rule-
 import { BonusRuleAddComponent } from './bonus-rule/bonus-rule-add/bonus-rule-add.component';
 import { VipPrivilegeAddComponent } from './vip-privilege/vip-privilege-add/vip-privilege-add.component';
 import { VipPrivilegeEditComponent } from './vip-privilege/vip-privilege-edit/vip-privilege-edit.component';
+import { RoleMenuComponent } from './role-menu/role-menu.component';
+import { RoleMenuAddComponent } from './role-menu/role-menu-add/role-menu-add.component';
+import { RoleMenuEditComponent } from './role-menu/role-menu-edit/role-menu-edit.component';
 
 
 const routes: Routes = [
@@ -33,6 +38,7 @@ const routes: Routes = [
     { path: 'viprule', component: VipruleComponent },
     { path: 'vip/privilege', component: VipPrivilegeComponent },
     { path: 'bonus/rule', component: BonusRuleComponent },
+    { path: 'role/menu', component: RoleMenuComponent },
 
 ];
 
@@ -51,11 +57,14 @@ const COMPONENTS_NOROUNT = [
     VipPrivilegeEditComponent,
     BonusRuleEditComponent,
     BonusRuleAddComponent,
+    RoleMenuEditComponent,
+    RoleMenuAddComponent,
 ];
 
 @NgModule({
     imports: [
         SharedModule,
+        NzTreeModule,
         RouterModule.forChild(routes),
     ],
     providers: [],
@@ -80,6 +89,9 @@ const COMPONENTS_NOROUNT = [
         BonusRuleAddComponent,
         VipPrivilegeAddComponent,
         VipPrivilegeEditComponent,
+        RoleMenuComponent,
+        RoleMenuAddComponent,
+        RoleMenuEditComponent,
         MenuEditComponent
     ],
     exports: [
