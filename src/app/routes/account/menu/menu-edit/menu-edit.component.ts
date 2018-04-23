@@ -3,6 +3,7 @@ import { NzModalSubject, NzMessageService } from 'ng-zorro-antd';
 import { SdkService } from '@sdk/sdk.service';
 import * as model_sdk from '@sdk/sdk.model';
 import * as enum_sdk from '@sdk/sdk.enum';
+import { _HttpClient } from '@delon/theme';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class MenuEditComponent implements OnInit {
     i: any;
     is_new: boolean;
     title: string;
-
+    searchFunckeyOptions = [];
+    funckeyOptions = [];
     iconOptions = [
         { value: 'anticon-file', label: 'file' },
         { value: 'icon-chemistry', label: 'elements' },
@@ -27,6 +29,7 @@ export class MenuEditComponent implements OnInit {
     ];
 
     constructor(
+        public http: _HttpClient,
         private subject: NzModalSubject,
         public msgSrv: NzMessageService,
         public sdk: SdkService) { }
@@ -40,8 +43,24 @@ export class MenuEditComponent implements OnInit {
             this.is_new = true;
             this.title = '添加';
         }
+        this.http.get('/devel/client_api_config_json').subscribe((res: any) => {
+            this.funckeyOptions = [];
+            for (const key in res) {
+                this.funckeyOptions.push({ value: res[key]['api_key'], label: res[key]['api_key'] }, );
+            }
+            this.searchFunckeyOptions = this.funckeyOptions;
+        });
     }
 
+    searchFunckey(event) {
+        this.searchFunckeyOptions = [];
+        for (let option of this.funckeyOptions) {
+            console.log(option);
+            if (option['value'].indexOf(event) > -1) {
+                this.searchFunckeyOptions.push(option);
+            }
+        }
+    }
     save(e) {
         if (this.is_new) {
             this.add();

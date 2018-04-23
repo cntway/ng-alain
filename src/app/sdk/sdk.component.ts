@@ -191,7 +191,7 @@ export abstract class EditComponentBase implements OnInit {
     ngOnInit() {
         this.isNew();
         const fields_options = this.edit_model.fields_options;
-        const group = {}
+        const group = {};
         for (const index in fields_options) {
             const validator = this.getValidator(index, fields_options[index]);
             group[index] = validator;

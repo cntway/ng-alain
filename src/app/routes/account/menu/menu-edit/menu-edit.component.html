@@ -30,9 +30,15 @@
         <div nz-form-label nz-col [nzSpan]="4">
             <label>权限标识</label>
         </div>
+
         <div nz-form-control nz-col [nzSpan]="8">
-            <input nz-input [(ngModel)]="i.funckey" name="funckey" required />
+            <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchFunckey($event)"
+                [nzNotFoundContent]="'无法找到'" [(ngModel)]="i.funckey" name="funckey" nzShowSearch>
+                <nz-option *ngFor="let option of searchFunckeyOptions" [nzLabel]="option['label']" [nzValue]="option['value']">
+                </nz-option>
+            </nz-select>
         </div>
+
     </div>
 
 

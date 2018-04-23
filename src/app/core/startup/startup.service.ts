@@ -50,10 +50,14 @@ export class StartupService {
                 // 用户信息：包括姓名、头像、邮箱地址
                 this.settingService.setUser(res.user);
                 // ACL：设置权限为全量
-                this.aclService.setFull(true);
+                // this.aclService.setFull(true);
+                this.aclService.setAbility(['test']);
                 let menuList = [];
 
                 for (const row of menuData.results) {
+                    if (row['isshow'] === '0') {
+                        continue;
+                    }
                     const m = {};
                     m['text'] = row['menuname'];
                     m['link'] = row['pagehref'];

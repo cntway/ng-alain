@@ -28,9 +28,6 @@ export class MenuauthComponent implements OnInit {
     public showText: string = `${this.checkedNodes.length}项已选择`;
     public nzReadonly = true;
     options = {
-        getChildren: (node: any) => {
-            return node.data.children;
-        }
     };
 
     _value: string;
@@ -48,6 +45,8 @@ export class MenuauthComponent implements OnInit {
         }
         this._value = value;
         this.onChange(value);
+        this.checkedNodes = value;
+        this.showText = `${this.checkedNodes.length}项已选择`;
 
     }
     writeValue(value: any): void {
@@ -64,7 +63,6 @@ export class MenuauthComponent implements OnInit {
     constructor(private sdk: SdkService, private msg: NzMessageService) { }
 
     ngOnInit() {
-        console.log(this.treeModel);
     }
 
     handleOk = (e?: Event) => {
@@ -74,12 +72,13 @@ export class MenuauthComponent implements OnInit {
         const nodeList = this.convertTreeToList(this.treeModel.treeModel.nodes);
         this.checkedNodes = [];
         for (const iterator of nodeList) {
-            console.log(iterator);
+            if (iterator['id'] === 0) {
+                continue;
+            }
             if (iterator['halfChecked'] | iterator['checked']) {
                 this.checkedNodes.push(iterator['id']);
             }
         }
-        console.log(this.checkedNodes);
         this.nzValue = this.checkedNodes;
         this.showText = `${this.checkedNodes.length}项已选择`;
         this.isVisible = false;
@@ -98,6 +97,9 @@ export class MenuauthComponent implements OnInit {
                 for (const row of data['results']) {
                     row['name'] = row['menuname'];
                     row['id'] = row['menuid'];
+                    if (this.nzValue.indexOf(row['id']) > -1) {
+                        row['checked'] = true;
+                    }
                 }
                 results.push({
                     "name": "根目录",
@@ -106,7 +108,8 @@ export class MenuauthComponent implements OnInit {
                     "menuname": "根目录",
                     "sortid": 0,
                     "parentid": -1,
-                    "parentids": ","
+                    "parentids": ",",
+                    "checked": this.nzValue.length > 0
                 })
 
                 return results;

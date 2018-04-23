@@ -1,9 +1,10 @@
 ﻿
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { EditComponentBase } from '@sdk/sdk.component';
 import * as skd_columns from '@sdk/sdk.columns';
 import * as sdk_model from '@sdk/sdk.model';
-import { generateData } from './generate-data';
+import { QueryParam, QueryOp } from '@sdk/sdk.util';
+
 import {
     FormBuilder,
     FormGroup,
@@ -23,10 +24,12 @@ import {
     templateUrl: './role-menu-edit.component.html',
 })
 export class RoleMenuEditComponent extends EditComponentBase {
-
+    rolename = "xxsdfds";
     nodes = [];
     columns = skd_columns.sys_role_menu_get_columns;
     edit_model = new sdk_model.SysRoleMenuPut();
+
+    @ViewChild('appMenuSelect') appMenuSelect: any;
 
     save() {
         const param = Object.assign(this.edit_model, this.validateForm.getRawValue());
@@ -39,7 +42,7 @@ export class RoleMenuEditComponent extends EditComponentBase {
     ngOnInit() {
         this.isNew();
         const fields_options = this.edit_model.fields_options;
-        const group = {}
+        const group = {};
         for (const index in fields_options) {
             const validator = this.getValidator(index, fields_options[index]);
             group[index] = validator;
@@ -47,10 +50,19 @@ export class RoleMenuEditComponent extends EditComponentBase {
                 group['checkPassword'] = [null, [Validators.required, this.confirmationValidator]];
             }
         }
-        console.log(group);
         this.validateForm = this.fb.group(group);
-
-        generateData(this.nodes, 3, 2, 1);
+        const param = new QueryParam();
+        param.key = 'roleid';
+        param.value = this.i['roleid'];
+        param.op = QueryOp.op_eq;
+        this.sdk.sys_role_menu_get_api([param], 1, 9999).subscribe((res) => {
+            const menuids = [];
+            for (const iterator of res['results']) {
+                menuids.push(iterator['menuid']);
+            }
+            // this.validateForm.controls['menuids'].setValue(menuids);
+            this.appMenuSelect.nzValue = menuids;
+        });
     }
 
     onEvent(ev: any) {

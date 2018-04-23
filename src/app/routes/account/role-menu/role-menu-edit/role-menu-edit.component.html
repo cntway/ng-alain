@@ -1,22 +1,21 @@
 ﻿<div class="modal-header">
     <div class="modal-title">{{title|translate}}</div>
 </div>
-<form #f="ngForm" nz-form [formGroup]="validateForm">
 
-
-    <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
-            <label for="roleid" nz-form-item-required>
-                <span>
-                    {{'角色id'|translate}}
-                </span>
-            </label>
-        </div>
-        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <nz-input-number [nzSize]="'large'" formControlName="roleid" [nzStep]="1" [nzMax]="1000000" [nzMin]="0"></nz-input-number>
-            <div nz-form-explain *ngIf="getFormControl('roleid').dirty&&getFormControl('roleid').hasError('required')">{{'Please input roleid!'|translate}}</div>
-        </div>
+<div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSm]="8" [nzXs]="24">
+        <label for="rolename" nz-form-item-required>
+            <span>
+                {{'角色名称'|translate}}
+            </span>
+        </label>
     </div>
+    <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+        <nz-input [nzSize]="'large'" [(ngModel)]='i.rolename'></nz-input>
+    </div>
+</div>
+
+<form #f="ngForm" nz-form [formGroup]="validateForm">
 
 
     <div nz-form-item nz-row>
@@ -28,7 +27,7 @@
             </label>
         </div>
         <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-            <app-menuauth formControlName="menuids" name="menuids"></app-menuauth>
+            <app-menuauth #appMenuSelect formControlName="menuids" name="menuids"></app-menuauth>
             <div nz-form-explain *ngIf="getFormControl('menuids').dirty&&getFormControl('menuids').hasError('required')">{{'Please input roleid!'|translate}}</div>
         </div>
 

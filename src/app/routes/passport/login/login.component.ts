@@ -7,6 +7,7 @@ import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '
 import { ReuseTabService } from '@delon/abc';
 import { SdkService } from '@sdk/sdk.service';
 import { UserLoginPost } from '@sdk/sdk.model';
+import { ACLService } from '@delon/acl';
 
 @Component({
     selector: 'passport-login',
@@ -31,6 +32,7 @@ export class UserLoginComponent implements OnDestroy {
         public msg: NzMessageService,
         private settingsService: SettingsService,
         private socialService: SocialService,
+        @Inject(ACLService) private aclService: ACLService,
         @Inject(MenuService) private menuService: MenuService,
         @Optional() @Inject(ReuseTabService) private reuseTabService: ReuseTabService,
         @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
@@ -136,6 +138,7 @@ export class UserLoginComponent implements OnDestroy {
                 // 初始化菜单
                 this.menuService.clear();
                 this.menuService.add(menuList);
+                this.aclService.setAbility(['test']);
                 this.router.navigate(['/dashboard']);
             });
 
