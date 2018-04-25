@@ -24,10 +24,10 @@
                                 {{item.menuname}}
                             </td>
                             <td nz-td>{{item.pagehref}}</td>
-                            <td nz-td>{{item.funckey}}</td>
-                            <td nz-td>{{item.sortid}}</td>
+                            <td nz-td>{{item.apikey}}</td>
                             <td nz-td>{{item.remark}}</td>
-                            <td nz-td>{{item.isshow}}</td>
+                            <td nz-td [innerHTML]="item.isshow===1|yn"></td>
+                            <td nz-td>{{item.sortid}}</td>
                             <td nz-td>
                                 <a (click)="edit(item)">修改</a>
                                 <span nz-table-divider></span>

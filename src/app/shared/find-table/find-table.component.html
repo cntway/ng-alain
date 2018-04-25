@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <div class="modal-title">查找</div>
+</div>
+<form nz-form class="search-form" [nzLayout]="'inline'">
+    <div nz-form-item>
+        <label>{{"角色名称"}}</label>
+    </div>
+    <div nz-form-item>
+        <div nz-form-control>
+            <nz-input [(ngModel)]="args.rolename" name="rolename"></nz-input>
+        </div>
+    </div>
+    <div nz-form-item>
+        <div nz-form-control>
+            <button nz-button [nzType]="'primary'" (click)="load(1)" [nzLoading]="sdk.loading">{{"查询"}}</button>
+        </div>
+    </div>
+</form>
+
+
+<nz-table #nzTable [nzAjaxData]="list" [nzLoading]="sdk.loading" [(nzPageIndex)]="pi" (nzPageIndexChange)="load()" [nzSize]="'small'"
+    [nzBordered]="'true'">
+    <thead nz-thead>
+        <tr>
+            <th nz-th *ngFor="let column of columns" [nzWidth]="column.width">
+                <span>{{column.text}}</span>
+            </th>
+            <th nz-th [nzWidth]="'200px'">
+                <span>{{'操作'}}</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody nz-tbody>
+        <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+            <td nz-td *ngFor="let column of columns">
+                <span *ngIf="column.enum  else elseBlock ">{{column.enum[data[column.index]]}}</span>
+                <ng-template #elseBlock>
+                    <span>{{data[column.index]}}</span>
+                </ng-template>
+            </td>
+            <td nz-td>
+                <a (click)="select(data)">{{'选择'}}</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

@@ -23,7 +23,7 @@
 <nz-card>
     <ng-template #body>
         <div class="mb-sm text-right">
-            <button nz-button [nzType]="'primary'" (click)="edit({})">{{'添加'|translate}}</button>
+            <button nz-button [nzType]="'primary'" (click)="edit({})" acl [acl-ability]="getApikey('[POST]')">{{'添加'|translate}}</button>
         </div>
         <nz-table #nzTable [nzAjaxData]="list" [nzShowSizeChanger]="true" [nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pi"
             (nzPageIndexChange)="load()" [(nzPageSize)]="ps" [nzBordered]="'true'" [nzShowTotal]="'false'">
@@ -47,7 +47,7 @@
                         </ng-template>
                     </td>
                     <td nz-td>
-                        <a (click)="edit(data)">{{'修改'|translate}}</a>
+                        <a (click)="edit(data)" acl [acl-ability]="getApikey('[PUT]')">{{'修改'|translate}}</a>
                         <span nz-table-divider></span>
 
                     </td>

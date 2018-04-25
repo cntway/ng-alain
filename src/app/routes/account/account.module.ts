@@ -27,6 +27,7 @@ import { VipPrivilegeEditComponent } from './vip-privilege/vip-privilege-edit/vi
 import { RoleMenuComponent } from './role-menu/role-menu.component';
 import { RoleMenuAddComponent } from './role-menu/role-menu-add/role-menu-add.component';
 import { RoleMenuEditComponent } from './role-menu/role-menu-edit/role-menu-edit.component';
+import { ManagerAddComponent } from './manager/manager-add/manager-add.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,7 @@ const COMPONENTS_NOROUNT = [
     BonusRuleAddComponent,
     RoleMenuEditComponent,
     RoleMenuAddComponent,
+    ManagerAddComponent,
 ];
 
 @NgModule({
@@ -92,6 +94,7 @@ const COMPONENTS_NOROUNT = [
         RoleMenuComponent,
         RoleMenuAddComponent,
         RoleMenuEditComponent,
+        ManagerAddComponent,
         MenuEditComponent
     ],
     exports: [

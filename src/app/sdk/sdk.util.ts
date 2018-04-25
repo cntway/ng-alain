@@ -4,7 +4,7 @@ import * as bcexs_enums from './sdk.bcexs_enum';
 import { isDate } from 'util';
 export const UINT_LIAT = ['uint16'];
 export const FLOAT_LIST = ['double8_4', 'double16_6', 'double16_2', 'double24_8', 'double'];
-export const STRING_LIST = ['string4', 'string8', 'string12', 'string16', 'string24', 'string32', 'string64', 'string512', 'jsonString', 'string'];
+export const STRING_LIST = ['string4', 'string8', 'string12', 'string16', 'string24', 'string32', 'string64', 'string128', 'string512', 'jsonString', 'string'];
 export const BYTE_LIST = ['byte24'];
 
 export class FeildCheckError extends Error { }
@@ -155,7 +155,7 @@ export abstract class FeildCheck {
                 options['type'].slice(-4) === 'Enum')) {
                 FeildCheck.check_field_enum(options['type'], key, val);
             } else {
-                throw (new FeildCheckError(_('枚举名称定义格式不符')));
+                throw (new FeildCheckError(_(`${key}定义格式不符`)));
             }
         });
     }

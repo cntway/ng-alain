@@ -4,7 +4,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { ModalHelper, _HttpClient, MenuService } from '@delon/theme';
 import { ReuseTabService } from '@delon/abc';
 import { Router } from '@angular/router';
-
+import { ApikesService } from './apikeys.service';
 import { SdkService } from './sdk.service';
 import { NzModalSubject } from 'ng-zorro-antd';
 import * as model_sdk from './sdk.model';
@@ -60,6 +60,8 @@ export abstract class ComponentBase implements OnInit, OnDestroy {
     public abstract deleteData(i: any);
 
     constructor(
+        protected apikesService: ApikesService,
+        protected router: Router,
         protected sdk: SdkService,
         protected message: NzMessageService,
         protected modalHelper: ModalHelper) {
@@ -110,6 +112,9 @@ export abstract class ComponentBase implements OnInit, OnDestroy {
         }
     }
 
+    getApikey(method) {
+        return this.apikesService.getApikey(this.router.url, method)
+    }
     /** 是否正在加载中 */
     get loading(): boolean {
         return this.sdk.loading;
@@ -331,6 +336,7 @@ export abstract class QueryComponentBase implements OnInit, OnDestroy {
     public abstract exportApi(): Observable<any>;
 
     constructor(
+        protected apikesService: ApikesService,
         protected router: Router,
         protected menuService: MenuService,
         protected subject: NzModalSubject,
@@ -445,7 +451,7 @@ export abstract class QueryComponentBase implements OnInit, OnDestroy {
         }
 
     }
-    
+
     makesops() {
         const show_options = [];
         for (const iterator of this.columns) {

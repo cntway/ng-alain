@@ -15,10 +15,11 @@ export class MenuComponent extends AccountBase {
     public columns = [
         { index: 'menuname', text: '名称', sort: true, width: '150px' },
         { index: 'pagehref', text: '链接', sort: true, width: '100px' },
-        { index: 'funckey', text: '权限标识', sort: true, width: '100px' },
-        { index: 'sortid', text: '排序', sort: true, width: '100px' },
+        { index: 'apikey', text: '权限标识', sort: true, width: '100px' },
         { index: 'remark', text: '图标', sort: true, width: '100px' },
-        { index: 'isshow', text: '可见', sort: true, width: '50px' },
+        { index: 'isshow', text: '菜单显示', sort: true, width: '50px' },
+        { index: 'sortid', text: '排序', sort: true, width: '100px' },
+
     ];
 
     expandDataCache = {};
@@ -120,7 +121,7 @@ export class MenuComponent extends AccountBase {
         console.log(editData);
         me.modalHelper.static(MenuEditComponent, { i }, 800).subscribe((saveOk) => {
             if (saveOk) {
-                me.load();
+                // me.load();
             }
         });
     }
@@ -128,11 +129,11 @@ export class MenuComponent extends AccountBase {
     addSub(parentData) {
         const me = this;
         const i = {};
-        i['parentId'] = parentData.id;
+        i['parentid'] = parentData.id;
         me.modalHelper.static(MenuEditComponent, { i }, 800).subscribe((saveOk) => {
             // 操作成功回调
             if (saveOk) {
-                me.load();
+                // me.load();
                 // me.message.info('操作成功');
             }
         });

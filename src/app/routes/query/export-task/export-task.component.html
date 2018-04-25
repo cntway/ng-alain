@@ -45,7 +45,7 @@
                         <a href="{{data['download_url']}}" download="{{data['csvname']}}" *ngIf="data['task_status']!=='waitting'">{{'下载'|translate}}</a>
                         <span nz-table-divider></span>
                         <nz-popconfirm [nzTitle]="'确定删除？'|translate" [nzOkText]="'ok'" [nzCancelText]="'cancel'" (nzOnConfirm)="delete(data)">
-                            <a nz-popconfirm>{{'删除'|translate}}</a>
+                            <a nz-popconfirm acl [acl-ability]="getApikey('[DELETE]')">{{'删除'|translate}}</a>
                         </nz-popconfirm>
                     </td>
                 </tr>

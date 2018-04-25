@@ -1,34 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { AccountBase } from '../account.base';
+﻿
+import { Observable } from 'rxjs/Rx';
+import { Component } from '@angular/core';
+import { ComponentBase } from '@sdk/sdk.component';
 import { QueryParam } from '@sdk/sdk.util';
-import * as model_sdk from '@sdk/sdk.model';
+import * as sdk_model from '@sdk/sdk.model';
 import * as skd_columns from '@sdk/sdk.columns';
+import { ManagerAddComponent } from './manager-add/manager-add.component';
 import { ManagerEditComponent } from './manager-edit/manager-edit.component';
-
 
 @Component({
     selector: 'app-manager',
     templateUrl: './manager.component.html',
 })
-export class ManagerComponent extends AccountBase implements OnInit {
+export class ManagerComponent extends ComponentBase {
 
-
-    ngOnInit() {
-    }
-
+    public deleteModel = sdk_model.MuserUsersDelete;
     public columns: Array<any> = skd_columns.muser_users_get_columns;
+    public editComponent = ManagerEditComponent;
+    public addComponent = ManagerAddComponent;
 
-    load(pi?: number) {
-        if (typeof pi !== 'undefined') {
-            this.pi = pi || 1;
-        }
-        const ob = this.loadData(pi);
-        ob.subscribe(data => {
-            this.list = data.results;
-        });
-    }
-
-    loadData(pi?: number) {
+    loadData(): Observable<any> {
         const parma_list = [];
         Object.keys(this.args).forEach((key) => {
             const qp = new QueryParam();
@@ -37,23 +28,17 @@ export class ManagerComponent extends AccountBase implements OnInit {
             qp.op = qp.op_like;
             parma_list.push(qp);
         });
-        return this.sdk.muser_users_get_api(parma_list, pi);
-    }
-
-    deleteData(data: any) {
-        const modeDelete = new model_sdk.SysRoleDelete();
-        modeDelete.roleid = data['roleid'];
-        return this.sdk.sys_role_delete_api(modeDelete);
-    }
-
-    edit(i) {
-        const me = this;
-        me.modalHelper.static(ManagerEditComponent, { i }, 600).subscribe((saveOk) => {
-            // 操作成功回调
-            if (saveOk) {
-                me.load();
-                // me.message.info('操作成功');
+        return this.sdk.muser_users_get_api(parma_list, this.pi).map((res): any => {
+            {
+                return res;
             }
         });
     }
+
+    deleteData(data: any) {
+        const param = Object.assign(new this.deleteModel(), data);
+        return this.sdk.muser_users_delete_api(param);
+    }
+
+
 }

@@ -24,6 +24,8 @@ import { SummodalComponent } from './summodal/summodal.component';
 
 import { ExprotmodalComponent } from './exprotmodal/exprotmodal.component';
 import { MenuauthComponent } from './menuauth/menuauth.component';
+import { FindBackComponent } from './find-back/find-back.component';
+import { FindTableComponent } from './find-table/find-table.component';
 const THIRDMODULES = [
     CountdownModule,
     UEditorModule,
@@ -33,7 +35,16 @@ const THIRDMODULES = [
 // endregion
 
 // region: your componets & directives
-const COMPONENTS = [ZselectComponent, MenuSelectComponent, SelectComponent, SkdSelectComponent, SummodalComponent, ExprotmodalComponent, MenuauthComponent];
+const COMPONENTS = [
+    FindBackComponent,
+    FindTableComponent,
+    ZselectComponent,
+    MenuSelectComponent,
+    SelectComponent,
+    SkdSelectComponent,
+    SummodalComponent,
+    ExprotmodalComponent,
+    MenuauthComponent];
 const DIRECTIVES = [];
 // endregion
 
@@ -56,9 +67,6 @@ const DIRECTIVES = [];
         // your components
         ...COMPONENTS,
         ...DIRECTIVES,
-        SummodalComponent,
-        ExprotmodalComponent,
-        MenuauthComponent,
     ],
     exports: [
         CommonModule,
@@ -81,6 +89,7 @@ const DIRECTIVES = [];
     entryComponents: [
         SummodalComponent,
         ExprotmodalComponent,
+        FindTableComponent,
     ],
 })
 export class SharedModule { }

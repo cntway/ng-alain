@@ -22,7 +22,7 @@
 <nz-card>
     <ng-template #body>
         <div class="mb-sm text-right">
-            <button nz-button [nzType]="'primary'" (click)="edit({})">{{'添加'|translate}}</button>
+            <button nz-button [nzType]="'primary'" (click)="edit({})" acl [acl-ability]="getApikey('[POST]')">{{'添加'|translate}}</button>
         </div>
         <nz-table #nzTable [nzAjaxData]="list" [nzShowSizeChanger]="true" [nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pi"
             (nzPageIndexChange)="load()" [(nzPageSize)]="ps" [nzBordered]="'true'" [nzShowTotal]="'false'">
@@ -47,7 +47,7 @@
                     </td>
                     <td nz-td>
                         <nz-popconfirm [nzTitle]="'确定删除？'|translate" [nzOkText]="'ok'" [nzCancelText]="'cancel'" (nzOnConfirm)="delete(data)">
-                            <a nz-popconfirm>{{'删除'|translate}}</a>
+                            <a nz-popconfirm acl [acl-ability]="getApikey('[DELETE]')">{{'删除'|translate}}</a>
                         </nz-popconfirm>
                     </td>
                 </tr>

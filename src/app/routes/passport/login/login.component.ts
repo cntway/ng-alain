@@ -123,8 +123,13 @@ export class UserLoginComponent implements OnDestroy {
             });
             this.sdk.sys_menu_detail_get_api([], 1, 99999).subscribe((menuRes: any) => {
                 let menuList = [];
+                let apiKeys = [];
                 for (const row of menuRes.results) {
+                    apiKeys.push(row['apikey']);
                     const m = {};
+                    if (row['isshow'] === 0) {
+                        continue;
+                    }
                     m['text'] = row['menuname'];
                     m['link'] = row['pagehref'];
                     m['icon'] = row['remark'];
@@ -138,7 +143,8 @@ export class UserLoginComponent implements OnDestroy {
                 // 初始化菜单
                 this.menuService.clear();
                 this.menuService.add(menuList);
-                this.aclService.setAbility(['test']);
+                this.aclService.setAbility(apiKeys);
+                console.log(apiKeys);
                 this.router.navigate(['/dashboard']);
             });
 

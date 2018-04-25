@@ -44,7 +44,7 @@
                         </ng-template>
                     </td>
                     <td nz-td>
-                        <a (click)="edit(data)">{{'修改'|translate}}</a>
+                        <a (click)="edit(data)" acl [acl-ability]="getApikey('[PUT]')">{{'修改'|translate}}</a>
                         <span nz-table-divider></span>
 
                     </td>

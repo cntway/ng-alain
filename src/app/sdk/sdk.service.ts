@@ -1,4 +1,4 @@
-import { parseQueryParam, QueryParam, FeildCheckError } from './sdk.util';
+import { parseQueryParam, QueryParam, FeildCheckError, CsvParam, CsvModelPost } from './sdk.util';
 import * as model_sdk from './sdk.model';
 import { SdkBase, SERVICE_URl } from './sdk.base';
 import { Observable } from 'rxjs/Rx';
@@ -455,6 +455,18 @@ export class SdkService extends SdkBase {
     user_users_post_api(parames: model_sdk.UserUsersPost): Observable<any> {
         const url = SERVICE_URl + '/users/users';
         return this.do('post', url, parames);
+    }
+    
+    
+    user_users_resetaccpwd_put_api(parames: model_sdk.UserUsersResetaccpwdPut): Observable<any> {
+        const url = SERVICE_URl + '/users/users/resetaccpwd';
+        return this.do('put', url, parames);
+    }
+    
+    
+    user_users_resetpwd_put_api(parames: model_sdk.UserUsersResetpwdPut): Observable<any> {
+        const url = SERVICE_URl + '/users/users/resetpwd';
+        return this.do('put', url, parames);
     }
     
     

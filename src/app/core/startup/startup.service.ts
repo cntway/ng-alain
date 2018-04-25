@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MenuService, SettingsService, TitleService } from '@delon/theme';
 import { ACLService } from '@delon/acl';
 import { I18NService } from '../i18n/i18n.service';
+import { ApikesService } from '@sdk/apikeys.service';
 
 /**
  * 用于应用启动时
@@ -15,6 +16,7 @@ import { I18NService } from '../i18n/i18n.service';
 @Injectable()
 export class StartupService {
     constructor(
+        protected apikesService: ApikesService,
         private menuService: MenuService,
         private translate: TranslateService,
         private i18n: I18NService,
@@ -51,13 +53,15 @@ export class StartupService {
                 this.settingService.setUser(res.user);
                 // ACL：设置权限为全量
                 // this.aclService.setFull(true);
-                this.aclService.setAbility(['test']);
                 let menuList = [];
-
+                let apiKeys = [];
                 for (const row of menuData.results) {
-                    if (row['isshow'] === '0') {
+                    if (row['isshow'] === 0) {
+                        apiKeys.push(row['apikey'])
+                        this.apikesService.setApikey(row['parentid'], row['apikey'])
                         continue;
                     }
+                    this.apikesService.setUrlMap(row['pagehref'], row['menuid'])
                     const m = {};
                     m['text'] = row['menuname'];
                     m['link'] = row['pagehref'];
@@ -68,6 +72,7 @@ export class StartupService {
                     m['parentid'] = row['parentid'];
                     menuList.push(m);
                 }
+                this.aclService.setAbility(apiKeys);
                 menuList = this.transData(menuList, 'id', 'parentid', 'children');
                 // 初始化菜单
                 this.menuService.add(menuList);

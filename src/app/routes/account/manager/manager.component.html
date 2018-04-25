@@ -1,18 +1,18 @@
-<nz-card>
+﻿<nz-card>
     <ng-template #body>
         <form nz-form class="search-form" [nzLayout]="'inline'">
             <div nz-form-item>
-                <label>{{"角色名称"|translate}}</label>
+                <label>{{"名称"|translate}}</label>
             </div>
             <div nz-form-item>
                 <div nz-form-control>
-                    <nz-input [(ngModel)]="args.rolename" name="rolename"></nz-input>
+                    <nz-input [(ngModel)]="args.username" name="username"></nz-input>
                 </div>
             </div>
             <div nz-form-item>
                 <div nz-form-control>
-                    <button nz-button [nzType]="'primary'" (click)="load(1)" [nzLoading]="loading">{{"查询"|translate}}</button>
-                    <button nz-button (click)="clear()" [disabled]="loading">{{"清除"|translate}}</button>
+                    <button nz-button [nzType]="'primary'" (click)="load(1)" acl [acl-ability]="getApikey('[GET]')" [nzLoading]="loading">{{"查询"|translate}}</button>
+                    <button nz-button (click)="clear()" [disabled]="loading" acl [acl-ability]="'muser_users[GET]'">{{"清除"|translate}}</button>
                 </div>
             </div>
         </form>
@@ -22,10 +22,10 @@
 <nz-card>
     <ng-template #body>
         <div class="mb-sm text-right">
-            <button nz-button [nzType]="'primary'" (click)="edit({})">{{'添加'|translate}}</button>
+            <button nz-button [nzType]="'primary'" (click)="edit({})" acl [acl-ability]="getApikey('[POST]')">{{'添加'|translate}}</button>
         </div>
         <nz-table #nzTable [nzAjaxData]="list" [nzShowSizeChanger]="true" [nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pi"
-            (nzPageIndexChange)="load(pi)" [(nzPageSize)]="ps" [nzBordered]="'true'" [nzShowTotal]="'false'">
+            (nzPageIndexChange)="load()" [(nzPageSize)]="ps" [nzBordered]="'true'" [nzShowTotal]="'false'">
             <thead nz-thead>
                 <tr>
                     <th nz-th *ngFor="let column of columns" [nzWidth]="column.width">
@@ -46,11 +46,9 @@
                         </ng-template>
                     </td>
                     <td nz-td>
-                        <a (click)="edit(data)">{{'修改'|translate}}</a>
+                        <a (click)="edit(data)" acl [acl-ability]="getApikey('[PUT]')">{{'修改'|translate}}</a>
                         <span nz-table-divider></span>
-                        <nz-popconfirm [nzTitle]="'确定删除？'|translate" [nzOkText]="'ok'" [nzCancelText]="'cancel'" (nzOnConfirm)="delete(data)">
-                            <a nz-popconfirm>{{'删除'|translate}}</a>
-                        </nz-popconfirm>
+
                     </td>
                 </tr>
             </tbody>

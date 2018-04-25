@@ -44,7 +44,7 @@ export class MenuEditComponent implements OnInit {
             this.title = '添加';
         }
         this.http.get('/devel/client_api_config_json').subscribe((res: any) => {
-            this.funckeyOptions = [];
+            this.funckeyOptions = [{ value: 'menu/folder', label: 'menu/folder' }];
             for (const key in res) {
                 this.funckeyOptions.push({ value: res[key]['api_key'], label: res[key]['api_key'] }, );
             }
@@ -82,8 +82,8 @@ export class MenuEditComponent implements OnInit {
         param.pagehref = this.i.pagehref;
         param.commituri = this.i.pagehref;
         param.remark = this.i.remark;
-        param.funckey = this.i.funckey;
-        param.apikey = this.i.funckey;
+        param.funckey = this.i.apikey;
+        param.apikey = this.i.apikey;
 
         this.sdk.sys_menu_put_api(param).subscribe((res) => {
             this.subject.next('onOk');
@@ -96,14 +96,14 @@ export class MenuEditComponent implements OnInit {
         param.isshow = this.i.isshow;
         param.parentid = parseInt(this.i.parentid);
         param.productid = 1;
-        param.apikey = '';
+        param.apikey = this.i.apikey;
         param.isstop = 0;
         param.sortid = parseInt(this.i.sortid);
         param.menuname = this.i.menuname;
         param.pagehref = this.i.pagehref;
         param.commituri = this.i.pagehref;
         param.remark = this.i.remark;
-        param.funckey = this.i.funckey;
+        param.funckey = this.i.apikey;
 
         this.sdk.sys_menu_post_api(param).subscribe((res) => {
             this.subject.next('onOk');

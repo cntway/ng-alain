@@ -33,7 +33,7 @@
 
         <div nz-form-control nz-col [nzSpan]="8">
             <nz-select nzAllowClear [nzPlaceHolder]="'input search text'" [nzFilter]="false" [nzSize]="'large'" (nzSearchChange)="searchFunckey($event)"
-                [nzNotFoundContent]="'无法找到'" [(ngModel)]="i.funckey" name="funckey" nzShowSearch>
+                [nzNotFoundContent]="'无法找到'" [(ngModel)]="i.apikey" name="apikey" nzShowSearch>
                 <nz-option *ngFor="let option of searchFunckeyOptions" [nzLabel]="option['label']" [nzValue]="option['value']">
                 </nz-option>
             </nz-select>
@@ -50,7 +50,7 @@
             <app-select [(ngModel)]="i.remark" name="remark" [options]='iconOptions' required></app-select>
         </div>
         <div nz-form-label nz-col [nzSpan]="4">
-            <label>可见</label>
+            <label>菜单显示</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="8">
             <app-select [(ngModel)]="i.isshow" name="isshow" [options]='booleanOptions' required></app-select>

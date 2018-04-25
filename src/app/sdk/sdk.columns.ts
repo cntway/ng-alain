@@ -40,6 +40,7 @@ export const sys_role_get_columns = [
 export const muser_users_get_columns = [
     { index: 'userid', text: '用户id', dataType: 'int' },
     { index: 'logincode', text: '登陆账号', dataType: 'string' },
+    { index: 'roleid', text: '角色id', dataType: 'int' },
     { index: 'userstatus', text: '用户状态', dataType: 'enum', enum: admins_enums.EnumUserStatusTranslate },
     { index: 'username', text: '用户姓名', dataType: 'string' },
     { index: 'nikename', text: '昵称', dataType: 'string' },
